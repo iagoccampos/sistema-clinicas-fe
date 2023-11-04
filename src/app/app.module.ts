@@ -6,10 +6,13 @@ import { AppComponent } from './app.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
+import { LoginComponent } from './components/login/login.component'
+import { SharedModule } from './shared/shared.module'
 
 @NgModule({
 	declarations: [
 		AppComponent,
+		LoginComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -17,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http'
 		BrowserAnimationsModule,
 		ReactiveFormsModule,
 		HttpClientModule,
+		SharedModule,
 	],
 	bootstrap: [AppComponent],
 })
