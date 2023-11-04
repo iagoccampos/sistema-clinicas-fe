@@ -3,22 +3,22 @@ import { Injectable } from '@angular/core'
 import { ClinicModel, ClinicQuery } from '../models/clinic.model'
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class ClinicService {
-  private readonly clinicUrl = '/api/clinic'
+	private readonly clinicUrl = '/api/clinic'
 
-  constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) { }
 
-  getClinics(query?: ClinicQuery) {
-    return this.http.get<ClinicModel[]>(this.clinicUrl, { params: query })
-  }
+	getClinics(query?: ClinicQuery) {
+		return this.http.get<ClinicModel[]>(this.clinicUrl, { params: query })
+	}
 
-  getClinic(clinicId: string) {
-    return this.http.get<ClinicModel | null>(`${this.clinicUrl}/${clinicId}`)
-  }
+	getClinic(clinicId: string) {
+		return this.http.get<ClinicModel | null>(`${this.clinicUrl}/${clinicId}`)
+	}
 
-  addClinic(newClinic: ClinicModel) {
-    return this.http.post<ClinicModel>(this.clinicUrl, newClinic)
-  }
+	addClinic(newClinic: ClinicModel) {
+		return this.http.post<ClinicModel>(this.clinicUrl, newClinic)
+	}
 }

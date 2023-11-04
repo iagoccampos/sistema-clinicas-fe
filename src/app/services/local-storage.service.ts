@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class LocalStorageService {
 	private readonly tokenKey = 'token'
@@ -10,7 +10,7 @@ export class LocalStorageService {
 	constructor() { }
 
 	getSetToken(newToken?: string) {
-		if (newToken) {
+		if(newToken) {
 			localStorage.setItem(this.tokenKey, newToken)
 		}
 
@@ -22,7 +22,7 @@ export class LocalStorageService {
 	}
 
 	getSetDarkTheme(darkMode?: boolean) {
-		if (darkMode !== undefined) {
+		if(darkMode !== undefined) {
 			localStorage.setItem(this.darkModeKey, darkMode ? 't' : 'f')
 		}
 
