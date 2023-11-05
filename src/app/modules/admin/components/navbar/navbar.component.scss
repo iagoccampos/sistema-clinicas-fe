@@ -1,0 +1,22 @@
+.spacer {
+	flex: 1 1 auto;
+}
+
+mat-toolbar {
+	button {
+		height: 100%;
+		border-radius: 0px;
+	}
+
+	button:first-of-type {
+		margin-right: 8px;
+	}
+
+	button.selected {
+		background: rgba(0, 0, 0, 0.2) !important;
+	}
+
+	> span {
+		margin-right: 16px;
+	}
+}

@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+	<button mat-icon-button (click)="toggleSidenav()" *ngIf="navService.showSidenavToggle$ | async">
+		<span class="material-icons">
+			menu
+		</span>
+	</button>
+	<span>Sistema Clinicas</span>
+	<button mat-flat-button color="primary" [routerLink]="['/clinicas']" routerLinkActive="selected">
+		Clínicas
+	</button>
+	<span class="spacer"></span>
+	<button mat-icon-button (click)="toggleLightMode()">
+		<span class="material-icons">
+			{{ (themeService.isDarkTheme$ | async) ? 'light_mode' : 'dark_mode'}}
+		</span>
+	</button>
+	<button mat-icon-button>
+		<span class="material-icons">
+			settings
+		</span>
+	</button>
+	<button mat-icon-button (click)="logout()">
+		<span class="material-icons">
+			exit_to_app
+		</span>
+	</button>
+</mat-toolbar>

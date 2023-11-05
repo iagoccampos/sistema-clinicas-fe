@@ -20,6 +20,6 @@ export class LoginComponent {
 
 	login() {
 		this.loginForm.value
-		this.authService.login(this.loginForm.getRawValue())
+		this.authService.loginAndRedirect(this.loginForm.getRawValue())
 	}
 }

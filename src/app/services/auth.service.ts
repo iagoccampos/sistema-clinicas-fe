@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router'
-import { User } from '../models/user.model'
+import { User, UserLevel } from '../models/user.model'
 import { JwtHelperService } from '@auth0/angular-jwt'
 import { LocalStorageService } from './local-storage.service'
 
@@ -21,17 +21,17 @@ export class AuthService {
 		}
 	}
 
-	login(form: { username: string, password: string }) {
+	loginAndRedirect(form: { username: string, password: string }) {
 		this.http.post<{ auth: boolean, token: string }>(this.loginUrl, form).subscribe((result) => {
 			if(result.auth) {
 				this.currentUser = this.helper.decodeToken(result.token)
 				this.localStorageService.getSetToken(result.token)
-				this.router.navigate(['/clinicas'])
+				this.redirect()
 			}
 		})
 	}
 
-	logout() {
+	logoutAndRedirect() {
 		this.currentUser = null
 		this.localStorageService.deleteToken()
 
@@ -43,7 +43,7 @@ export class AuthService {
 			const token = this.localStorageService.getSetToken()
 
 			if(token && this.helper.isTokenExpired(token)) {
-				this.logout()
+				this.logoutAndRedirect()
 				return false
 			}
 
@@ -51,5 +51,21 @@ export class AuthService {
 		}
 
 		return false
+	}
+
+	getUser() {
+		return JSON.parse(JSON.stringify(this.currentUser)) as User
+	}
+
+	private redirect() {
+		if(this.currentUser) {
+			switch (this.currentUser.level) {
+				case UserLevel.Admin:
+					this.router.navigate(['/admin'])
+					break
+				case UserLevel.Regular:
+					break
+			}
+		}
 	}
 }
