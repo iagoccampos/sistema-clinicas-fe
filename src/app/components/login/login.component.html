@@ -1,9 +1,11 @@
-<div fxLayout="row" fxLayoutAlign="center center" style="height: 80%;">
-	<div fxFlex="35" fxFlex.xs="80" fxFlex.sm="60">
+<div class="row justify-content-center align-items-center h-75">
+	<div class="col-4">
 		<mat-card>
-			<mat-card-title>
-				<h1>Sistema Clínicas</h1>
-			</mat-card-title>
+			<mat-card-header>
+				<mat-card-title>
+					<h1>Sistema Clínicas</h1>
+				</mat-card-title>
+			</mat-card-header>
 			<mat-card-content>
 				<form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
 					<div fxLayout="column">
@@ -28,5 +30,4 @@
 			</mat-card-content>
 		</mat-card>
 	</div>
-
 </div>

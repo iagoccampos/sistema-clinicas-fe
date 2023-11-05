@@ -3,14 +3,18 @@ import { CommonModule } from '@angular/common'
 import { OverlayModule } from '@angular/cdk/overlay'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatCardModule } from '@angular/material/card'
-import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatButtonModule } from '@angular/material/button'
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
 import { MatIconModule } from '@angular/material/icon'
 
 const materialModules = [
 	OverlayModule,
 	MatDialogModule,
 	MatCardModule,
+	MatButtonModule,
 	MatFormFieldModule,
+	MatInputModule,
 	MatIconModule,
 ]
 
@@ -21,6 +25,9 @@ const materialModules = [
 	],
 	exports: [
 		...materialModules,
+	],
+	providers: [
+		{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
 	],
 })
 export class SharedModule { }

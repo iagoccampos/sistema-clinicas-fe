@@ -38,7 +38,7 @@ export class AuthService {
 		this.router.navigate(['login'])
 	}
 
-	isLoggedIn(): boolean {
+	isLoggedIn() {
 		if(this.currentUser) {
 			const token = this.localStorageService.getSetToken()
 

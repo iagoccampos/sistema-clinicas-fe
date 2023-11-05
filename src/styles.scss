@@ -1,39 +1,37 @@
-
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
-// Plus imports for other components in your app.
+@use 'styles-component-themes' as styles-component-themes;
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
 @include mat.core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$clinicas-primary: mat.define-palette(mat.$indigo-palette);
-$clinicas-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$clinicas-warn: mat.define-palette(mat.$red-palette);
-
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$clinicas-theme: mat.define-light-theme((
-  color: (
-    primary: $clinicas-primary,
-    accent: $clinicas-accent,
-    warn: $clinicas-warn,
-  )
+$dark-theme: mat.define-dark-theme((
+	color: (
+		primary: mat.define-palette(mat.$purple-palette),
+		accent: mat.define-palette(mat.$green-palette)
+	)
 ));
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include mat.all-component-themes($clinicas-theme);
+$light-theme: mat.define-light-theme((
+	color: (
+		primary: mat.define-palette(mat.$indigo-palette),
+		accent: mat.define-palette(mat.$pink-palette),
+	)
+));
+
+@include mat.all-component-themes($light-theme);
+@include styles-component-themes.themes($light-theme);
+
+:is(.main-div, .cdk-overlay-container).dark-theme {
+	@include mat.all-component-colors($dark-theme);
+	@include styles-component-themes.themes($dark-theme);
+}
 
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// Meus
+
+mat-form-field, table.mat-table {
+	width: 100%;
+}

@@ -1,4 +1,6 @@
+import { OverlayContainer } from '@angular/cdk/overlay'
 import { Component } from '@angular/core';
+import { ThemeService } from './services/theme.service'
 
 @Component({
 	selector: 'app-root',
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
 	styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-	title = 'clinicas';
+	constructor(public themeService: ThemeService, overlayContainer: OverlayContainer) {
+		const classList = overlayContainer.getContainerElement().classList
+
+		themeService.isDarkTheme$.subscribe((val) => {
+			if(val) {
+				classList.add('dark-theme')
+			} else {
+				classList.remove('dark-theme')
+			}
+		})
+	}
 }
