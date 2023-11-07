@@ -1,6 +1,8 @@
 import { OverlayContainer } from '@angular/cdk/overlay'
 import { Component } from '@angular/core';
 import { ThemeService } from './services/theme.service'
+import { Store } from '@ngrx/store'
+import { getTokenFromStore } from './auth-store/auth.actions'
 
 @Component({
 	selector: 'app-root',
@@ -8,7 +10,7 @@ import { ThemeService } from './services/theme.service'
 	styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-	constructor(public themeService: ThemeService, overlayContainer: OverlayContainer) {
+	constructor(public themeService: ThemeService, overlayContainer: OverlayContainer, private store: Store) {
 		const classList = overlayContainer.getContainerElement().classList
 
 		themeService.isDarkTheme$.subscribe((val) => {
@@ -18,5 +20,7 @@ export class AppComponent {
 				classList.remove('dark-theme')
 			}
 		})
+
+		store.dispatch(getTokenFromStore())
 	}
 }

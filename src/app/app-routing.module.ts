@@ -3,10 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component'
 import { isAuth } from './shared/guards/is-auth.guard'
 import { isAdmin } from './shared/guards/is-admin.guard'
+import { isNotAuth } from './shared/guards/is-not-auth.guard'
 
 const routes: Routes = [
 	{ path: '', pathMatch: 'full', redirectTo: '/login' },
-	{ path: 'login', title: 'Login', component: LoginComponent },
+	{ path: 'login', title: 'Login', component: LoginComponent, canActivate: [isNotAuth] },
 	{ path: 'admin', canActivate: [isAuth, isAdmin], loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule) },
 ];
 

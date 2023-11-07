@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store"
 import { User } from "../models/user.model"
-import { login, loginError, loginSuccess, logout, toggleHidePass } from "./auth.actions"
+import { getTokenFromStore, login, loginError, loginSuccess, logout, toggleHidePass } from "./auth.actions"
 
 export type Status = 'pending' | 'loading' | 'error' | 'success'
 
@@ -24,6 +24,9 @@ export const authReducer = createReducer<AuthState>(
 	initialState,
 	on(toggleHidePass, (state): AuthState => {
 		return { ...state, hidePass: !state.hidePass }
+	}),
+	on(getTokenFromStore, (state): AuthState => {
+		return { ...state }
 	}),
 	on(login, (state): AuthState => {
 		return { ...state, status: 'loading', errorMsg: null }

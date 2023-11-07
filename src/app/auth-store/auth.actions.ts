@@ -5,6 +5,10 @@ export const toggleHidePass = createAction(
 	'[Auth] ToggleHidePass',
 )
 
+export const getTokenFromStore = createAction(
+	'[Auth] GetToken',
+)
+
 export const login = createAction(
 	'[Auth] Login',
 	props<{ username: string, password: string }>(),

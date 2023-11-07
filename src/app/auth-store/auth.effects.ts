@@ -1,12 +1,27 @@
 import { Injectable } from "@angular/core"
 import { Actions, createEffect, ofType } from "@ngrx/effects"
 import { catchError, map, of, switchMap, tap } from "rxjs"
-import { login, loginError, loginSuccess, logout } from "./auth.actions"
+import { getTokenFromStore, login, loginError, loginSuccess, logout } from "./auth.actions"
 import { AuthService } from "../services/auth.service"
 import { SnackbarService } from "../services/snackbar.service"
 
 @Injectable()
 export class AuthEffects {
+	private readonly getToken = createEffect(() => {
+		return this.actions$.pipe(
+			ofType(getTokenFromStore),
+			map(() => {
+				const authData = this.authService.loadTokenFromStorage()
+
+				if(authData) {
+					return loginSuccess(authData)
+				}
+
+				return loginError({ errorMsg: 'Faça a autenticação para acessar o sistema.' })
+			}),
+		)
+	})
+
 	private readonly login = createEffect(() => {
 		return this.actions$.pipe(
 			ofType(login),

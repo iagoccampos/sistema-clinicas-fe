@@ -13,6 +13,22 @@ export class AuthService {
 
 	constructor(private http: HttpClient, private router: Router, private localStorageService: LocalStorageService) {}
 
+	loadTokenFromStorage() {
+		const token = this.localStorageService.getSetToken()
+
+		if(token && !this.helper.isTokenExpired(token)) {
+			const currentUser = this.helper.decodeToken<User>(token)
+
+			if(currentUser) {
+				return { currentUser, token }
+			}
+
+			return null
+		}
+
+		return null
+	}
+
 	loginAndRedirect(form: { username: string, password: string }) {
 		return this.http.post<{ auth: boolean, token?: string, error?: string}>(this.loginUrl, form).pipe(
 			map((res) => {
@@ -36,7 +52,7 @@ export class AuthService {
 		this.router.navigate(['login'])
 	}
 
-	private redirect(user: User) {
+	redirect(user: User) {
 		switch (user.level) {
 			case UserLevel.Admin:
 				this.router.navigate(['/admin'])
