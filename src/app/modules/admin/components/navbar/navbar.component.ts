@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
-import { AuthService } from 'src/app/services/auth.service'
+import { Store } from '@ngrx/store'
+import { logout } from 'src/app/auth-store/auth.actions'
 import { NavService } from 'src/app/services/nav.service'
 import { ThemeService } from 'src/app/services/theme.service'
 
@@ -11,10 +12,10 @@ import { ThemeService } from 'src/app/services/theme.service'
 })
 export class NavbarComponent {
 
-	constructor(private authService: AuthService, public navService: NavService, public themeService: ThemeService) { }
+	constructor(public navService: NavService, public themeService: ThemeService, public store: Store) { }
 
 	logout() {
-		this.authService.logoutAndRedirect()
+		this.store.dispatch(logout())
 	}
 
 	toggleSidenav() {

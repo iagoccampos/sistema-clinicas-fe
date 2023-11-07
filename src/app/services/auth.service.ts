@@ -4,68 +4,45 @@ import { Router } from '@angular/router'
 import { User, UserLevel } from '../models/user.model'
 import { JwtHelperService } from '@auth0/angular-jwt'
 import { LocalStorageService } from './local-storage.service'
+import { map } from 'rxjs'
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-	private currentUser: User | null = null
-
 	private readonly helper = new JwtHelperService()
-
 	private readonly loginUrl = '/api/auth/login'
 
-	constructor(private http: HttpClient, private router: Router, private localStorageService: LocalStorageService) {
-		const token = localStorageService.getSetToken()
-
-		if(token) {
-			this.currentUser = this.helper.decodeToken(token)
-		}
-	}
+	constructor(private http: HttpClient, private router: Router, private localStorageService: LocalStorageService) {}
 
 	loginAndRedirect(form: { username: string, password: string }) {
-		this.http.post<{ auth: boolean, token: string }>(this.loginUrl, form).subscribe((result) => {
-			if(result.auth) {
-				this.currentUser = this.helper.decodeToken(result.token)
-				this.localStorageService.getSetToken(result.token)
-				this.redirect()
-			}
-		})
+		return this.http.post<{ auth: boolean, token?: string, error?: string}>(this.loginUrl, form).pipe(
+			map((res) => {
+				if(res.token) {
+					const user = this.helper.decodeToken<User>(res.token)
+
+					if(user) {
+						this.localStorageService.getSetToken(res.token)
+						this.redirect(user)
+						return { user, token: res.token }
+					}
+				}
+
+				return { user: null, token: null, error: res.error }
+			}),
+		)
 	}
 
 	logoutAndRedirect() {
-		this.currentUser = null
 		this.localStorageService.deleteToken()
-
 		this.router.navigate(['login'])
 	}
 
-	isLoggedIn() {
-		if(this.currentUser) {
-			const token = this.localStorageService.getSetToken()
-
-			if(token && this.helper.isTokenExpired(token)) {
-				this.logoutAndRedirect()
-				return false
-			}
-
-			return true
-		}
-
-		return false
-	}
-
-	getUser() {
-		return JSON.parse(JSON.stringify(this.currentUser)) as User
-	}
-
-	private redirect() {
-		if(this.currentUser) {
-			switch (this.currentUser.level) {
-				case UserLevel.Admin:
-					this.router.navigate(['/admin'])
-					break
-				case UserLevel.Regular:
-					break
-			}
+	private redirect(user: User) {
+		switch (user.level) {
+			case UserLevel.Admin:
+				this.router.navigate(['/admin'])
+				break
+			case UserLevel.Regular:
+				break
 		}
 	}
 }

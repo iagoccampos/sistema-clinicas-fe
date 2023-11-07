@@ -1,12 +1,24 @@
-import { CanActivateFn, Router } from '@angular/router'
+import { CanActivateFn } from '@angular/router'
 import { inject } from '@angular/core'
-import { AuthService } from '../../services/auth.service'
+import { JwtHelperService } from '@auth0/angular-jwt'
+import { Store } from '@ngrx/store'
+import { selectToken } from 'src/app/auth-store/auth.selector'
+import { map } from 'rxjs'
+import { logout } from 'src/app/auth-store/auth.actions'
+
+const helper = new JwtHelperService()
 
 export const isAuth: CanActivateFn = () => {
-	if(inject(AuthService).isLoggedIn()) {
-		return true
-	}
+	const store = inject(Store)
 
-	inject(Router).navigate(['login'])
-	return false
+	return store.select(selectToken).pipe(
+		map((token) => {
+			if(!token || helper.isTokenExpired(token)) {
+				store.dispatch(logout())
+				return false
+			}
+
+			return true
+		}),
+	)
 }

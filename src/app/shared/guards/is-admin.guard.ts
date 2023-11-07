@@ -1,15 +1,22 @@
-import { CanActivateFn } from '@angular/router'
 import { inject } from '@angular/core'
-import { AuthService } from '../../services/auth.service'
-import { UserLevel } from 'src/app/models/user.model'
+import { CanActivateFn } from '@angular/router'
+import { Store } from '@ngrx/store'
+import { map } from 'rxjs'
+import { logout } from 'src/app/auth-store/auth.actions'
+import { selectCurrentUser } from 'src/app/auth-store/auth.selector'
 
 export const isAdmin: CanActivateFn = () => {
-	const authService = inject(AuthService)
+	const store = inject(Store)
 
-	if(authService.getUser()?.level === UserLevel.Admin) {
-		return true
-	}
+	return store.select(selectCurrentUser).pipe(
+		map((val) => {
+			if(val?.level === 'Admin') {
+				return true
+			}
 
-	authService.logoutAndRedirect()
-	return false
+			store.dispatch(logout())
+
+			return false
+		}),
+	)
 }

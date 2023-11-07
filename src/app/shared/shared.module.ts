@@ -8,6 +8,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/mat
 import { MatInputModule } from '@angular/material/input'
 import { MatIconModule } from '@angular/material/icon'
 import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 const materialModules = [
 	OverlayModule,
@@ -18,6 +19,7 @@ const materialModules = [
 	MatInputModule,
 	MatIconModule,
 	MatToolbarModule,
+	MatSnackBarModule,
 ]
 
 @NgModule({

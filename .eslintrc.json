@@ -1,104 +1,112 @@
 {
-	"root": true,
-	"ignorePatterns": [
-		"projects/**/*"
-	],
-	"overrides": [
-		{
-			"files": [
-				"*.ts"
-			],
-			"extends": [
-				"eslint:recommended",
-				"plugin:@typescript-eslint/recommended",
-				"plugin:@angular-eslint/recommended",
-				"plugin:@angular-eslint/template/process-inline-templates"
-			],
-			"rules": {
-				"indent": [
-					"error",
-					"tab",
-					{
-						"SwitchCase": 1
-					}
-				],
-				"no-multi-spaces": "error",
-				"spaced-comment": "error",
-				"no-trailing-spaces": "error",
-				"switch-colon-spacing": "off",
-				"template-curly-spacing": "error",
-				"semi-spacing": "error",
-				"block-spacing": "error",
-				"keyword-spacing": [
-					"error",
-					{
-						"overrides": {
-							"if": {
-								"after": false
-							}
-						}
-					}
-				],
-				"computed-property-spacing": [
-					"error",
-					"never"
-				],
-				"rest-spread-spacing": "error",
-				"object-curly-spacing": [
-					"error",
-					"always"
-				],
-				"array-bracket-spacing": "error",
-				"func-call-spacing": "error",
-				"comma-spacing": "error",
-				"arrow-spacing": "error",
-				"key-spacing": "error",
-				"space-in-parens": "error",
-				"space-before-function-paren": [
-					"error",
-					"never"
-				],
-				"space-before-blocks": "error",
-				"no-multiple-empty-lines": [
-					"error",
-					{
-						"max": 1,
-						"maxEOF": 0,
-						"maxBOF": 0
-					}
-				],
-				"comma-dangle": [
-					"error",
-					"always-multiline"
-				],
-				"@typescript-eslint/no-empty-function": "off",
-				"@angular-eslint/directive-selector": [
-					"error",
-					{
-						"type": "attribute",
-						"prefix": "app",
-						"style": "camelCase"
-					}
-				],
-				"@angular-eslint/component-selector": [
-					"error",
-					{
-						"type": "element",
-						"prefix": "app",
-						"style": "kebab-case"
-					}
-				]
-			}
-		},
-		{
-			"files": [
-				"*.html"
-			],
-			"extends": [
-				"plugin:@angular-eslint/template/recommended",
-				"plugin:@angular-eslint/template/accessibility"
-			],
-			"rules": {}
-		}
-	]
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "indent": [
+          "error",
+          "tab",
+          {
+            "SwitchCase": 1
+          }
+        ],
+        "no-multi-spaces": "error",
+        "spaced-comment": "error",
+        "no-trailing-spaces": "error",
+        "switch-colon-spacing": "off",
+        "template-curly-spacing": "error",
+        "semi-spacing": "error",
+        "block-spacing": "error",
+        "keyword-spacing": [
+          "error",
+          {
+            "overrides": {
+              "if": {
+                "after": false
+              }
+            }
+          }
+        ],
+        "computed-property-spacing": [
+          "error",
+          "never"
+        ],
+        "rest-spread-spacing": "error",
+        "object-curly-spacing": [
+          "error",
+          "always"
+        ],
+        "array-bracket-spacing": "error",
+        "func-call-spacing": "error",
+        "comma-spacing": "error",
+        "arrow-spacing": "error",
+        "key-spacing": "error",
+        "space-in-parens": "error",
+        "space-before-function-paren": [
+          "error",
+          "never"
+        ],
+        "space-before-blocks": "error",
+        "no-multiple-empty-lines": [
+          "error",
+          {
+            "max": 1,
+            "maxEOF": 0,
+            "maxBOF": 0
+          }
+        ],
+        "comma-dangle": [
+          "error",
+          "always-multiline"
+        ],
+        "@typescript-eslint/no-empty-function": "off",
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:@angular-eslint/template/accessibility"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "plugin:@ngrx/all-requiring-type-checking"
+      ]
+    }
+  ]
 }

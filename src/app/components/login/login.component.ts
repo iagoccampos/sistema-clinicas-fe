@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
-import { AuthService } from '../../services/auth.service'
+import { Store } from '@ngrx/store'
+import { login, toggleHidePass } from 'src/app/auth-store/auth.actions'
+import { selectErrorMsg, selectHidePass, selectStatus } from 'src/app/auth-store/auth.selector'
 
 @Component({
 	selector: 'app-login',
@@ -9,17 +11,22 @@ import { AuthService } from '../../services/auth.service'
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
-	hidePass = true
+	readonly hidePass$ = this.store.select(selectHidePass)
+	readonly status$ = this.store.select(selectStatus)
+	readonly errorMsg$ = this.store.select(selectErrorMsg)
 
 	readonly loginForm = new FormGroup({
 		username: new FormControl('', { validators: [Validators.required, Validators.maxLength(20)], nonNullable: true }),
 		password: new FormControl('', { validators: [Validators.required, Validators.maxLength(20)], nonNullable: true }),
 	})
 
-	constructor(private authService: AuthService) { }
+	constructor(private readonly store: Store) {}
+
+	toggleHidePass() {
+		this.store.dispatch(toggleHidePass())
+	}
 
 	login() {
-		this.loginForm.value
-		this.authService.loginAndRedirect(this.loginForm.getRawValue())
+		this.store.dispatch(login(this.loginForm.getRawValue()))
 	}
 }
