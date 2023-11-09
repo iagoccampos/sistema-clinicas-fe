@@ -2,7 +2,7 @@ import { OverlayContainer } from '@angular/cdk/overlay'
 import { Component } from '@angular/core';
 import { ThemeService } from './services/theme.service'
 import { Store } from '@ngrx/store'
-import { getTokenFromStore } from './auth-store/auth.actions'
+import { getTokenFromStore } from './components/auth/store/auth.actions'
 
 @Component({
 	selector: 'app-root',

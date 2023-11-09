@@ -2,9 +2,9 @@ import { CanActivateFn } from '@angular/router'
 import { inject } from '@angular/core'
 import { JwtHelperService } from '@auth0/angular-jwt'
 import { Store } from '@ngrx/store'
-import { selectToken } from 'src/app/auth-store/auth.selector'
+import { logout } from 'src/app/components/auth/store/auth.actions'
 import { map } from 'rxjs'
-import { logout } from 'src/app/auth-store/auth.actions'
+import { selectToken } from 'src/app/components/auth/store/auth.selector'
 
 const helper = new JwtHelperService()
 

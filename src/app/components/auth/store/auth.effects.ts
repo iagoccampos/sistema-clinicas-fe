@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core"
 import { Actions, createEffect, ofType } from "@ngrx/effects"
 import { catchError, map, of, switchMap, tap } from "rxjs"
 import { getTokenFromStore, login, loginError, loginSuccess, logout } from "./auth.actions"
-import { AuthService } from "../services/auth.service"
-import { SnackbarService } from "../services/snackbar.service"
+import { AuthService } from "src/app/services/auth.service"
+import { SnackbarService } from "src/app/services/snackbar.service"
 
 @Injectable()
 export class AuthEffects {
@@ -17,7 +17,7 @@ export class AuthEffects {
 					return loginSuccess(authData)
 				}
 
-				return loginError({ errorMsg: 'Faça a autenticação para acessar o sistema.' })
+				return loginError({ error: { errorMsg: 'Faça a autenticação para acessar o sistema.' } })
 			}),
 		)
 	})
@@ -29,13 +29,13 @@ export class AuthEffects {
 				return this.authService.loginAndRedirect(val).pipe(
 					map((res) => {
 						if(!res.user) {
-							return loginError({ errorMsg: res.error || 'Usuário não encontrado.' })
+							return loginError({ error: { errorMsg: res.error || 'Usuário não encontrado.' } })
 						}
 
 						return loginSuccess({ currentUser: res.user, token: res.token })
 					}),
 					catchError((err) => {
-						return of(loginError({ errorMsg: err.error }))
+						return of(loginError({ error: { errorMsg: err.error } }))
 					}),
 				)
 			}),
@@ -55,7 +55,7 @@ export class AuthEffects {
 		return this.actions$.pipe(
 			ofType(loginError),
 			tap((error) => {
-				this.snackbarService.error(error.errorMsg)
+				this.snackbarService.error(error.error.errorMsg)
 			}),
 		)
 	}, { dispatch: false })

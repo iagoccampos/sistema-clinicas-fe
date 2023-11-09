@@ -9,15 +9,15 @@ import { JwtModule } from '@auth0/angular-jwt'
 import { environment } from '../environments/environment'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
-import { LoginComponent } from './components/login/login.component'
+import { AuthComponent } from './components/auth/auth.component'
 import { SharedModule } from './shared/shared.module';
-import { authReducer } from './auth-store/auth.reducer';
-import { AuthEffects } from './auth-store/auth.effects'
+import { AuthEffects } from './components/auth/store/auth.effects'
+import { authReducer } from './components/auth/store/auth.reducer'
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		LoginComponent,
+		AuthComponent,
 	],
 	imports: [
 		BrowserModule,

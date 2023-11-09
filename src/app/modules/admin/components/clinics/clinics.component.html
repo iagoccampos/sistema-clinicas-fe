@@ -1,0 +1,36 @@
+<div class="">
+	<app-new-clinic></app-new-clinic>
+	<app-page-header title="Clínicas"></app-page-header>
+	<ng-container *ngIf="{ clinics: getClinics$ | async, error: getClinicsError$ | async } as data">
+		<div class="row">
+			<ng-container *ngIf="data.error">
+				{{ data.error }}
+			</ng-container>
+			<ng-container *ngIf="data.clinics && !data.error; else loading">
+				<div *ngFor="let clinic of data.clinics" class="col-3 mb-4">
+					<mat-card class="dashboard-card">
+						<mat-card-header>
+							<mat-card-title>
+								{{clinic.name}}
+								<button mat-icon-button class="more-button" [matMenuTriggerFor]="menu"
+									aria-label="Toggle menu">
+									<mat-icon>more_vert</mat-icon>
+								</button>
+								<mat-menu #menu="matMenu" xPosition="before">
+									<button mat-menu-item [routerLink]="['clincias',clinic._id]">Ir</button>
+								</mat-menu>
+							</mat-card-title>
+						</mat-card-header>
+
+						<mat-card-content class="dashboard-card-content">
+							<div>Conteúdo...</div>
+						</mat-card-content>
+					</mat-card>
+				</div>
+			</ng-container>
+			<ng-template #loading>
+				<mat-spinner *ngIf="!data.error"></mat-spinner>
+			</ng-template>
+		</div>
+	</ng-container>
+</div>

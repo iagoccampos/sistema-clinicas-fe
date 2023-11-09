@@ -1,15 +1,14 @@
 import { createReducer, on } from "@ngrx/store"
-import { User } from "../models/user.model"
 import { getTokenFromStore, login, loginError, loginSuccess, logout, toggleHidePass } from "./auth.actions"
-
-export type Status = 'pending' | 'loading' | 'error' | 'success'
+import { FormStatus } from "src/app/models/form-status.model"
+import { User } from "src/app/models/user.model"
 
 export interface AuthState {
 	currentUser: User | null
 	token: string | null
 	hidePass: boolean
 	errorMsg: string | null
-	status: Status
+	status: FormStatus
 }
 
 const initialState: AuthState = {
@@ -18,7 +17,7 @@ const initialState: AuthState = {
 	hidePass: true,
 	errorMsg: null,
 	status: 'pending',
-}
+} as const
 
 export const authReducer = createReducer<AuthState>(
 	initialState,
@@ -32,7 +31,7 @@ export const authReducer = createReducer<AuthState>(
 		return { ...state, status: 'loading', errorMsg: null }
 	}),
 	on(loginError, (state, action): AuthState => {
-		return { ...state, status: 'error', errorMsg: action.errorMsg }
+		return { ...state, status: 'error', errorMsg: action.error.errorMsg }
 	}),
 	on(loginSuccess, (state, action): AuthState => {
 		return { ...state, status: 'success', currentUser: action.currentUser, token: action.token }

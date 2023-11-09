@@ -1,5 +1,6 @@
 import { createAction, props } from "@ngrx/store"
-import { User } from "../models/user.model"
+import { ActionError } from "src/app/models/action-error.model"
+import { User } from "src/app/models/user.model"
 
 export const toggleHidePass = createAction(
 	'[Auth] ToggleHidePass',
@@ -16,7 +17,7 @@ export const login = createAction(
 
 export const loginError = createAction(
 	'[Auth] LoginError',
-	props<{ errorMsg: string }>(),
+	props<{ error: ActionError}>(),
 )
 
 export const loginSuccess = createAction(

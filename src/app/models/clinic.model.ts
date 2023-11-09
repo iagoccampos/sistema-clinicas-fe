@@ -1,6 +1,8 @@
-export interface ClinicModel {
+export interface Clinic {
 	_id: string
 	name: string
 }
 
-export type ClinicQuery = Partial<ClinicModel>
+export type NewClinic = Omit<Clinic, '_id'>
+
+export type ClinicQuery = Partial<Clinic>

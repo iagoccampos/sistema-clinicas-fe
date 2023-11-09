@@ -1,0 +1,20 @@
+<app-page-header title="Adicionar Clínicas" [hideHr]="true"></app-page-header>
+<mat-expansion-panel>
+	<mat-expansion-panel-header>
+		<mat-panel-title>
+			<span class="material-icons">
+				add_circle
+			</span>
+			Adicionar Clínica
+		</mat-panel-title>
+	</mat-expansion-panel-header>
+	<form [formGroup]="clinicForm" (ngSubmit)="submit()">
+		<mat-form-field>
+			<mat-label>Nome</mat-label>
+			<input matInput formControlName="name" maxlength="50">
+		</mat-form-field>
+		<button mat-flat-button color="primary" text="Adicionar" [disabled]="clinicForm.invalid || (loading$ | async)">Adicionar
+			<mat-icon *ngIf="loading$ | async"><mat-spinner color="primary" diameter="18"></mat-spinner></mat-icon>
+		</button>
+	</form>
+</mat-expansion-panel>

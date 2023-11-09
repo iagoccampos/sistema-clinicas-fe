@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { Store } from '@ngrx/store'
-import { login, toggleHidePass } from 'src/app/auth-store/auth.actions'
-import { selectErrorMsg, selectHidePass, selectStatus } from 'src/app/auth-store/auth.selector'
+import { toggleHidePass, login } from './store/auth.actions'
+import { selectHidePass, selectStatus, selectErrorMsg } from './store/auth.selector'
 
 @Component({
 	selector: 'app-login',
-	templateUrl: './login.component.html',
-	styleUrls: ['./login.component.scss'],
+	templateUrl: './auth.component.html',
+	styleUrls: ['./auth.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent {
+export class AuthComponent {
 	readonly hidePass$ = this.store.select(selectHidePass)
 	readonly status$ = this.store.select(selectStatus)
 	readonly errorMsg$ = this.store.select(selectErrorMsg)

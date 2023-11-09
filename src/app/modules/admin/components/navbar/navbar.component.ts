@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { Store } from '@ngrx/store'
-import { logout } from 'src/app/auth-store/auth.actions'
+import { logout } from 'src/app/components/auth/store/auth.actions'
 import { NavService } from 'src/app/services/nav.service'
 import { ThemeService } from 'src/app/services/theme.service'
 
