@@ -5,7 +5,8 @@ import { ClinicsComponent } from './components/clinics/clinics.component'
 
 const routes: Routes = [
 	{ path: '', component: AdminComponent, children: [
-		{ path: '', component: ClinicsComponent },
+		{ path: '', redirectTo: 'clinicas', pathMatch: 'full' },
+		{ path: 'clinicas', component: ClinicsComponent },
 	] },
 ];
 
