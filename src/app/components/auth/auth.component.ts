@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { Store } from '@ngrx/store'
 import { toggleHidePass, login } from './store/auth.actions'
-import { selectHidePass, selectStatus, selectErrorMsg } from './store/auth.selector'
+import { selectHidePass, selectStatus } from './store/auth.selector'
+import { map, tap } from 'rxjs'
 
 @Component({
 	selector: 'app-login',
@@ -12,8 +13,13 @@ import { selectHidePass, selectStatus, selectErrorMsg } from './store/auth.selec
 })
 export class AuthComponent {
 	readonly hidePass$ = this.store.select(selectHidePass)
-	readonly status$ = this.store.select(selectStatus)
-	readonly errorMsg$ = this.store.select(selectErrorMsg)
+	readonly loading$ = this.store.select(selectStatus).pipe(tap((val) => {
+		if(val === 'loading') {
+			this.loginForm.disable()
+		} else {
+			this.loginForm.enable()
+		}
+	}), map((val) => val === 'loading'))
 
 	readonly loginForm = new FormGroup({
 		username: new FormControl('', { validators: [Validators.required, Validators.maxLength(20)], nonNullable: true }),
