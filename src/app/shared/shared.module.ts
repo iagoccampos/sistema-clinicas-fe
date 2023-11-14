@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card'
 import { MatButtonModule } from '@angular/material/button'
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
+import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatIconModule } from '@angular/material/icon'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
@@ -17,6 +18,7 @@ import { MatListModule } from '@angular/material/list'
 import { ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { PageHeaderComponent } from './components/page-header/page-header.component'
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core'
 
 const materialModules = [
 	OverlayModule,
@@ -25,6 +27,8 @@ const materialModules = [
 	MatButtonModule,
 	MatFormFieldModule,
 	MatInputModule,
+	MatDatepickerModule,
+	MatNativeDateModule,
 	MatIconModule,
 	MatToolbarModule,
 	MatSnackBarModule,
@@ -34,6 +38,7 @@ const materialModules = [
 	MatExpansionModule,
 	MatSidenavModule,
 	MatListModule,
+	MatDialogModule,
 ]
 
 const components = [
@@ -54,6 +59,7 @@ const components = [
 		...components,
 	],
 	providers: [
+		{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
 		{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
 	],
 })

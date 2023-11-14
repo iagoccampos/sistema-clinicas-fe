@@ -14,6 +14,9 @@ import { NewClinicEffects } from './components/clinics/new-clinic/store/new-clin
 import { SidenavComponent } from './components/sidenav/sidenav.component'
 import { NavListItemComponent } from './components/sidenav/nav-list-item/nav-list-item.component'
 import { ClinicComponent } from './components/clinic/clinic.component'
+import { PatientComponent } from './components/patient/patient.component'
+import { FindPatientComponent } from './components/patient/find-patient/find-patient.component'
+import { PatientDialogComponent } from './components/patient/patient-dialog/patient-dialog.component'
 
 @NgModule({
 	declarations: [
@@ -24,6 +27,9 @@ import { ClinicComponent } from './components/clinic/clinic.component'
 		NewClinicComponent,
 		SidenavComponent,
 		NavListItemComponent,
+		PatientComponent,
+		PatientDialogComponent,
+		FindPatientComponent,
 	],
 	imports: [
 		CommonModule,

@@ -1,0 +1,100 @@
+<form [formGroup]="findPatientsForm" autocomplete="off">
+	<div class="row">
+		<div class="col">
+			<mat-form-field>
+				<mat-label>Nome</mat-label>
+				<input matInput formControlName="name" maxlength="40">
+			</mat-form-field>
+		</div>
+		<div class="col">
+			<mat-form-field>
+				<mat-label>Data de nascimento</mat-label>
+				<input matInput appMask="00/00/0000" [matDatepicker]="picker2" formControlName="birthday">
+				<mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+				<mat-datepicker #picker2></mat-datepicker>
+			</mat-form-field>
+		</div>
+
+	</div>
+	<div class="row">
+		<div class="col">
+			<mat-form-field>
+				<mat-label>RG</mat-label>
+				<input matInput appMask="0.000.000" formControlName="rg">
+			</mat-form-field>
+		</div>
+		<div class="col">
+			<mat-form-field>
+				<mat-label>CPF</mat-label>
+				<input matInput appMask="000.000.000-00" formControlName="cpf">
+			</mat-form-field>
+		</div>
+		<div class="col">
+			<mat-form-field>
+				<mat-label>Ficha</mat-label>
+				<input matInput formControlName="card">
+			</mat-form-field>
+		</div>
+	</div>
+	<button type="button" mat-flat-button color="accent" (click)="clearForm()">Limpar</button>
+</form>
+
+<!-- <div class="mat-elevation-z8">
+	<div class="table-container">
+		<table mat-table [dataSource]="dataSource" multiTemplateDataRows>
+			<ng-container matColumnDef="card">
+				<th mat-header-cell *matHeaderCellDef>Ficha</th>
+				<td mat-cell *matCellDef="let row">{{row.card}}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="name">
+				<th mat-header-cell *matHeaderCellDef>Nome</th>
+				<td mat-cell *matCellDef="let row">{{row.name}}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="birthday">
+				<th mat-header-cell *matHeaderCellDef>Data de Nasc.</th>
+				<td mat-cell *matCellDef="let row">{{row.birthday ? (row.birthday | date) : '' }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="rg">
+				<th mat-header-cell *matHeaderCellDef>RG</th>
+				<td mat-cell *matCellDef="let row">{{ row.rg | rg }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="cpf">
+				<th mat-header-cell *matHeaderCellDef>CPF</th>
+				<td mat-cell *matCellDef="let row">{{ row.cpf | cpf }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="expandedDetail">
+				<td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+					<div class="table-row-detail"
+						[@detailExpand]="element === expandedPatient ? 'expanded' : 'collapsed' ">
+						<div fxFlex fxLayoutAlign="space-between center">
+							<div fxFlex>
+								<p>Telefones: <span *ngIf="!element.phones.length">Nenhum telefone cadastrado</span></p>
+								<ul>
+									<li *ngFor="let phone of element.phones">{{ phone | phone }}</li>
+								</ul>
+							</div>
+							<div fxLayoutAlign="end center" fxLayoutGap="8px">
+								<button mat-flat-button color="accent" (click)="editPatient(element)">Editar</button>
+								<button mat-flat-button color="warn"
+									(click)="deletePatient(element._id)">Deletar</button>
+							</div>
+						</div>
+					</div>
+				</td>
+			</ng-container>
+
+			<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+			<tr mat-row *matRowDef="let row; columns: displayedColumns;" class="element-row"
+				[class.expanded-row]="expandedPatient === row"
+				(click)="expandedPatient = (expandedPatient === row ? null : row)"></tr>
+			<tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+		</table>
+	</div>
+
+	<mat-paginator></mat-paginator>
+</div> -->

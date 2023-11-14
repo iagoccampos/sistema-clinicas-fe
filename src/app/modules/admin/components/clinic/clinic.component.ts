@@ -10,7 +10,7 @@ import { ClinicService } from 'src/app/services/clinic.service'
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClinicComponent implements OnInit {
-	@Input('id') clinicId: string | null = null
+	@Input({ alias: 'id', required: true }) clinicId: string | null = null
 
 	clinic$: Observable<Clinic | null> | null = null
 

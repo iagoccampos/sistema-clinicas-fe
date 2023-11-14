@@ -1,0 +1,14 @@
+<app-page-header title="Pacientes" [hideHr]="true"></app-page-header>
+<button mat-flat-button color="primary" type="button" style="margin-bottom: 7px;" (click)="addPatient()">Adicionar
+	Paciente</button>
+<mat-expansion-panel expanded="true" [hideToggle]="true">
+	<mat-expansion-panel-header>
+		<mat-panel-title>
+			<span class="material-icons">
+				person_search
+			</span>
+			Procurar Pacientes
+		</mat-panel-title>
+	</mat-expansion-panel-header>
+	<app-find-patient></app-find-patient>
+</mat-expansion-panel>

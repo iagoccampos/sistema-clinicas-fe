@@ -1,0 +1,63 @@
+<h1 mat-dialog-title>{{ data.patient ? 'Editar Paciente' : 'Adicionar Paciente' }}</h1>
+<mat-dialog-content>
+	<form [formGroup]="patientForm" (ngSubmit)="submit()" autocomplete="off" id="form">
+		<div fxLayout="row" fxLayoutGap="16px">
+			<div fxFlex>
+				<mat-form-field>
+					<mat-label>Nome Completo</mat-label>
+					<input matInput formControlName="name" maxlength="40">
+				</mat-form-field>
+			</div>
+			<div fxFlex>
+				<mat-form-field>
+					<mat-label>Data de nascimento</mat-label>
+					<input matInput [matDatepicker]="picker"
+						formControlName="birthday">
+					<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+					<mat-datepicker #picker></mat-datepicker>
+				</mat-form-field>
+			</div>
+		</div>
+
+		<div fxLayout="row" fxLayoutGap="16px">
+			<div fxFlex>
+				<mat-form-field>
+					<mat-label>RG</mat-label>
+					<input matInput formControlName="rg">
+				</mat-form-field>
+			</div>
+			<div fxFlex>
+				<mat-form-field>
+					<mat-label>CPF</mat-label>
+					<input matInput formControlName="cpf">
+				</mat-form-field>
+			</div>
+		</div>
+
+		<div fxLayout="row" fxLayoutGap="16px">
+			<div fxLayout="column" fxLayoutGap="0px" formArrayName="phones">
+				<h3>Telefones:</h3>
+				<div *ngFor="let phones of phonesControl.controls; let i = index;">
+					<mat-form-field>
+						<mat-label>Telefone {{ i + 1 }}</mat-label>
+						<input matInput appMask="(00) 00000-0000" [formControlName]="i">
+						<button *ngIf="phonesControl.controls.length > 1" type="button" mat-icon-button matSuffix
+							(click)="removePhone(i)">
+							<mat-icon>remove</mat-icon>
+						</button>
+						<button *ngIf="phonesControl.controls.length < 5" type="button" mat-icon-button matSuffix
+							(click)="addPhone()">
+							<mat-icon>add</mat-icon>
+						</button>
+					</mat-form-field>
+				</div>
+			</div>
+		</div>
+	</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button mat-button type="button" mat-dialog-close>Cancelar</button>
+	<button mat-flat-button color="primary" [disabled]="patientForm.invalid || false">{{ data.patient ? 'Editar' : 'Adicionar' }}
+		<mat-icon *ngIf="false"><mat-spinner color="primary" diameter="18"></mat-spinner></mat-icon>
+	</button>
+</mat-dialog-actions>
