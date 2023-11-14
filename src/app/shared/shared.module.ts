@@ -12,6 +12,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatMenuModule } from '@angular/material/menu'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatExpansionModule } from '@angular/material/expansion'
+import { MatSidenavModule } from '@angular/material/sidenav'
+import { MatListModule } from '@angular/material/list'
 import { ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { PageHeaderComponent } from './components/page-header/page-header.component'
@@ -30,6 +32,8 @@ const materialModules = [
 	MatMenuModule,
 	MatProgressSpinnerModule,
 	MatExpansionModule,
+	MatSidenavModule,
+	MatListModule,
 ]
 
 const components = [

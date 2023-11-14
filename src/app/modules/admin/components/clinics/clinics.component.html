@@ -1,4 +1,4 @@
-<div class="">
+<div class="container-fluid">
 	<app-new-clinic></app-new-clinic>
 	<app-page-header title="Clínicas"></app-page-header>
 	<ng-container *ngIf="{ clinics: getClinics$ | async, error: getClinicsError$ | async } as data">
@@ -17,7 +17,7 @@
 									<mat-icon>more_vert</mat-icon>
 								</button>
 								<mat-menu #menu="matMenu" xPosition="before">
-									<button mat-menu-item [routerLink]="['clincias',clinic._id]">Ir</button>
+									<button mat-menu-item [routerLink]="['../', 'clinica', clinic._id]">Ir</button>
 								</mat-menu>
 							</mat-card-title>
 						</mat-card-header>
@@ -29,7 +29,9 @@
 				</div>
 			</ng-container>
 			<ng-template #loading>
-				<mat-spinner *ngIf="!data.error"></mat-spinner>
+				<div *ngIf="!data.error" class="d-flex justify-content-center mt-5">
+					<mat-spinner></mat-spinner>
+				</div>
 			</ng-template>
 		</div>
 	</ng-container>
