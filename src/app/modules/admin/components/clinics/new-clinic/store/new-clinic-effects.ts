@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 import { Actions, createEffect, ofType } from "@ngrx/effects"
 import { ClinicService } from "src/app/services/clinic.service"
-import { ActivatedRoute, Router } from "@angular/router"
+import { Router } from "@angular/router"
 import { catchError, map, of, switchMap, tap } from "rxjs"
 import { createClinic, createClinicError, createClinicSuccess } from "./new-clinic.actions"
 import { SnackbarService } from "src/app/services/snackbar.service"
@@ -37,8 +37,8 @@ export class NewClinicEffects {
 		return this.actions$.pipe(
 			ofType(createClinicSuccess),
 			tap((val) => {
-				this.snackbarService.error(`Clínica "${val.clinic.name}" criada com sucesso.`)
-				this.router.navigate(['clinica', val.clinic._id], { relativeTo: this.route })
+				this.snackbarService.success(`Clínica "${val.clinic.name}" criada com sucesso.`)
+				this.router.navigate(['admin', 'clinica', val.clinic._id])
 			}),
 		)
 	}, { dispatch: false })
@@ -47,6 +47,5 @@ export class NewClinicEffects {
 		private actions$: Actions,
 		private clinicService: ClinicService,
 		private snackbarService: SnackbarService,
-		private router: Router,
-		private route: ActivatedRoute) {}
+		private router: Router) {}
 }
