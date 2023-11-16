@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component } from '@angular/core'
 import { PatientService } from 'src/app/services/patient.service'
 
 @Component({
@@ -7,10 +7,8 @@ import { PatientService } from 'src/app/services/patient.service'
 	styleUrls: ['./patient.component.scss'],
 })
 export class PatientComponent {
-	@Input({ alias: 'id', required: true }) clinicId: string | null = null
 
-	constructor(private patientService: PatientService) {
-	}
+	constructor(private patientService: PatientService) {}
 
 	addPatient() {
 		// this.patientService.openPatientDialog({ clinicId: this.clinicId })

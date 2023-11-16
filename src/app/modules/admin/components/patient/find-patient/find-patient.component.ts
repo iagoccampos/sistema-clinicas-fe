@@ -1,9 +1,8 @@
 import { trigger, state, style, transition, animate } from '@angular/animations'
-import { AfterViewInit, Component, Input, ViewChild } from '@angular/core'
+import { AfterViewInit, Component, ViewChild } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatTableDataSource } from '@angular/material/table'
-import { ActivatedRoute } from '@angular/router'
 import { interval } from 'rxjs'
 import { debounce } from 'rxjs/operators'
 import { IPatient } from 'src/app/models/patient.model'
@@ -24,8 +23,6 @@ import { PatientService } from 'src/app/services/patient.service'
 })
 export class FindPatientComponent implements AfterViewInit {
 
-	@Input({ alias: 'id' }) clinicId: string | null = null
-
 	findPatientsForm = new FormGroup({
 		name: new FormControl('', { validators: [Validators.maxLength(40)], nonNullable: true }),
 		birthday: new FormControl('', { nonNullable: true }),
@@ -40,9 +37,7 @@ export class FindPatientComponent implements AfterViewInit {
 
 	@ViewChild(MatPaginator) paginator!: MatPaginator
 
-	constructor(private patientService: PatientService, private router: ActivatedRoute) {
-		this.clinicId = this.router.snapshot.paramMap.get('clinicId') as string
-	}
+	constructor(private patientService: PatientService) {}
 
 	ngAfterViewInit() {
 		this.getPatients()

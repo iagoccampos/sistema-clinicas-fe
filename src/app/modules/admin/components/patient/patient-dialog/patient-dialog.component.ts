@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs'
 import { IPatient } from 'src/app/models/patient.model'
 import { PatientService } from 'src/app/services/patient.service'
 
-export type DialogData = { clinicId: string, patient?: IPatient }
+export type DialogData = { patient?: IPatient }
 
 export type DialogReturn = { changed: boolean }
 
