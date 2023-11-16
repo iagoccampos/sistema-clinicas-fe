@@ -9,7 +9,7 @@ const routes: Routes = [
 	{ path: '', component: AdminComponent, children: [
 		{ path: '', redirectTo: 'clinicas', pathMatch: 'full' },
 		{ path: 'clinicas', component: ClinicsComponent },
-		{ path: 'clinica/:id', component: ClinicComponent, children: [
+		{ path: 'clinica/:clinicId', component: ClinicComponent, children: [
 			{ path: '', redirectTo: 'pacientes', pathMatch: 'full' },
 			{ path: 'pacientes', component: PatientComponent },
 		] },
