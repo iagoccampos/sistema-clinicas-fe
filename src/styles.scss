@@ -66,6 +66,7 @@ table.mat-table {
 	padding: 25px !important;
 }
 
+// Pra colocar icones nos titulos
 mat-panel-title {
 	align-items: center;
 
@@ -74,6 +75,7 @@ mat-panel-title {
 	}
 }
 
+// Pra resolver a cor do background do autofill
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -82,4 +84,34 @@ input:-webkit-autofill:active {
 	-webkit-text-fill-color: #ffffff;
 	transition: background-color 5000s ease-in-out 0s;
 	box-shadow: inset 0 0 20px 20px rgba($color: #000000, $alpha: 0);
+}
+
+// Pra resolver o problema de padding do dialog
+.mat-mdc-dialog-content {
+	padding-top: 8px !important;
+}
+
+// Tabela
+.mat-mdc-table {
+	tr.detail-row {
+		height: 0;
+	}
+
+	tr.table-row:hover {
+		cursor: pointer;
+		background: rgba($color: #000000, $alpha: 0.07);
+	}
+
+	tr.table-row:not(.expanded-row):active {
+		background: rgba($color: #000000, $alpha: 0.15);
+	}
+
+	.table-row td {
+		border-bottom-width: 0;
+	}
+
+	.expanded-detail {
+		overflow: hidden;
+		//display: flex;
+	}
 }

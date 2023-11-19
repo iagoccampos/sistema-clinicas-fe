@@ -6,7 +6,6 @@ import { ClinicService } from 'src/app/services/clinic.service'
 @Component({
 	selector: 'app-clinic',
 	templateUrl: './clinic.component.html',
-	styleUrls: ['./clinic.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClinicComponent implements OnInit {

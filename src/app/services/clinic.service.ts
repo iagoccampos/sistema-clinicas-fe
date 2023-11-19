@@ -9,10 +9,14 @@ import { Clinic, ClinicQuery } from '../models/clinic.model'
 export class ClinicService {
 	private readonly clinicUrl = '/api/clinic'
 
-	private _currentClinicId: string | null = null
+	private _currentClinic: Clinic | null = null
 
 	get currentClinicId() {
-		return this._currentClinicId
+		return this._currentClinic?._id || null
+	}
+
+	get currentClinic() {
+		return JSON.parse(JSON.stringify(this._currentClinic)) as Clinic
 	}
 
 	constructor(private http: HttpClient) { }
@@ -21,11 +25,12 @@ export class ClinicService {
 		return this.http.get<Clinic[]>(this.clinicUrl, { params: query })
 	}
 
-	getClinic(clinicId: string, setCurrentClinicId = true) {
+	getClinic(clinicId: string, setCurrentClinic = true) {
 		return this.http.get<Clinic | null>(`${this.clinicUrl}/${clinicId}`).pipe(
-			tap(() => {
-				if(setCurrentClinicId) {
-					this._currentClinicId = clinicId
+			tap((val) => {
+				if(setCurrentClinic) {
+					this._currentClinic = val
+
 				}
 			}),
 		)

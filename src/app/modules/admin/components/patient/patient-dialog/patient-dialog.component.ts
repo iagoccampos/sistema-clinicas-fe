@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core'
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
-import { BehaviorSubject } from 'rxjs'
+import { map, tap } from 'rxjs'
+import { Store } from '@ngrx/store'
 import { IPatient } from 'src/app/models/patient.model'
-import { PatientService } from 'src/app/services/patient.service'
+import { createPatient, editPatient } from '../store/patient.actions'
+import { selectEditOrCreateStatus } from '../store/patient.selector'
 
-export type DialogData = { patient?: IPatient }
-
-export type DialogReturn = { changed: boolean }
+export type DialogData = { patient?: IPatient } | null
 
 @Component({
 	selector: 'app-new-user-dialog',
@@ -16,25 +16,37 @@ export type DialogReturn = { changed: boolean }
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PatientDialogComponent {
-	private readonly onFormSubmitSub$ = new BehaviorSubject(false)
-	readonly onFormSubmit$ = this.onFormSubmitSub$.asObservable()
+	loading$ = this.store.select(selectEditOrCreateStatus).pipe(
+		tap((val) => {
+			if(val === 'loading') {
+				this.patientForm.disable()
+			} else {
+				if(val === 'success') {
+					this.dialogRef.close()
+				}
+			}
+		}),
+		map((val) => {
+			return val === 'loading'
+		}),
+	)
 
 	readonly patientForm = new FormGroup({
 		name: new FormControl('', { validators: [Validators.required, Validators.maxLength(40)], nonNullable: true }),
 		birthday: new FormControl('', { nonNullable: true }),
 		rg: new FormControl('', { nonNullable: true }),
 		cpf: new FormControl('', { nonNullable: true }),
-		phones: new FormArray([new FormControl('')]),
+		phones: new FormArray([new FormControl('', { nonNullable: true })]),
 	})
 
 	get phonesControl() {
 		return (this.patientForm.get('phones') as FormArray)
 	}
 
-	constructor(public dialogRef: MatDialogRef<PatientDialogComponent, DialogReturn>, @Inject(MAT_DIALOG_DATA) public data: DialogData,
-		private patientService: PatientService) {
-		if(data.patient) {
-			// this.patientForm.patchValue(data.patient)
+	constructor(public dialogRef: MatDialogRef<PatientDialogComponent, void>, @Inject(MAT_DIALOG_DATA) public data: DialogData,
+		private store: Store) {
+		if(data?.patient) {
+			this.patientForm.patchValue(data.patient)
 		}
 	}
 
@@ -43,7 +55,7 @@ export class PatientDialogComponent {
 			return
 		}
 
-		this.phonesControl.push(new FormControl())
+		this.phonesControl.push(new FormControl('', { nonNullable: true }))
 	}
 
 	removePhone(index: number) {
@@ -51,25 +63,10 @@ export class PatientDialogComponent {
 	}
 
 	submit() {
-		if(this.patientForm.invalid) {
-			this.patientForm.markAllAsTouched()
-			return
-		}
-
-		this.onFormSubmitSub$.next(true)
-
-		if(this.data.patient) {
-			// this.patientService.editPatient(this.patientForm.getRawValue(), this.data.clinicId, this.data.patient._id).subscribe(() => {
-			// 	this.dialogRef.close()
-			// }, (err) => {
-			// 	this.onFormSubmitSub$.next(false)
-			// })
+		if(this.data?.patient) {
+			this.store.dispatch(editPatient({ id: this.data.patient._id, patient: this.patientForm.getRawValue() }))
 		} else {
-			// this.patientService.createPatient(this.patientForm.getRawValue(), this.data.clinicId).subscribe(() => {
-			// 	this.dialogRef.close()
-			// }, (err) => {
-			// 	this.onFormSubmitSub$.next(false)
-			// })
+			this.store.dispatch(createPatient({ patient: this.patientForm.getRawValue() }))
 		}
 	}
 }

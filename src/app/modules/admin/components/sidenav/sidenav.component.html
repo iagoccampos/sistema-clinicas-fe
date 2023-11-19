@@ -1,5 +1,5 @@
 <mat-sidenav-container class="side-nav">
-	<mat-sidenav #sidenav mode="side" class="container-fluid" [opened]="(navService.sidenavOpen$ | async) && !!clinic">
+	<mat-sidenav #sidenav mode="side" class="container-fluid" [opened]="navService.sidenavOpen$ | async">
 		<h1>Clínica: {{ clinic?.name }}</h1>
 		<mat-nav-list>
 			<app-nav-list-item *ngFor="let item of navItems" [item]="item"></app-nav-list-item>
@@ -8,10 +8,7 @@
 
 	<mat-sidenav-content>
 		<div class="container-fluid">
-			<ng-content *ngIf="clinic"></ng-content>
-			<div *ngIf="!clinic" class="d-flex justify-content-center mt-5">
-				<mat-spinner></mat-spinner>
-			</div>
+			<ng-content></ng-content>
 		</div>
 	</mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core'
-import { CommonModule } from '@angular/common'
+import { LOCALE_ID, NgModule } from '@angular/core'
+import { CommonModule, registerLocaleData } from '@angular/common'
 import { OverlayModule } from '@angular/cdk/overlay'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatCardModule } from '@angular/material/card'
@@ -18,7 +18,16 @@ import { MatListModule } from '@angular/material/list'
 import { ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { PageHeaderComponent } from './components/page-header/page-header.component'
-import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core'
+import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core'
+import { MatTableModule } from '@angular/material/table'
+import { MAT_PAGINATOR_DEFAULT_OPTIONS, MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import { MatDateFnsModule, DateFnsAdapter } from '@angular/material-date-fns-adapter'
+import { ptBR } from 'date-fns/esm/locale';
+import localePT from '@angular/common/locales/pt';
+import { OrDashPipe } from './pipes/or-dash.pipe'
+import { DeleteConfirmationComponent } from './components/dialogs/delete-confirmation/delete-confirmation.component'
+
+registerLocaleData(localePT);
 
 const materialModules = [
 	OverlayModule,
@@ -28,7 +37,7 @@ const materialModules = [
 	MatFormFieldModule,
 	MatInputModule,
 	MatDatepickerModule,
-	MatNativeDateModule,
+	MatDateFnsModule,
 	MatIconModule,
 	MatToolbarModule,
 	MatSnackBarModule,
@@ -39,28 +48,75 @@ const materialModules = [
 	MatSidenavModule,
 	MatListModule,
 	MatDialogModule,
+	MatTableModule,
+	MatPaginatorModule,
 ]
 
 const components = [
 	PageHeaderComponent,
+	DeleteConfirmationComponent,
+]
+
+const pipes = [
+	OrDashPipe,
 ]
 
 @NgModule({
 	declarations: [
 		...components,
+		...pipes,
 	],
 	imports: [
 		CommonModule,
+		ReactiveFormsModule,
+		HttpClientModule,
+		...materialModules,
 	],
 	exports: [
 		ReactiveFormsModule,
 		HttpClientModule,
 		...materialModules,
 		...components,
+		...pipes,
 	],
 	providers: [
-		{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+		{ provide: LOCALE_ID, useValue: 'pt-br' },
+		{ provide: MAT_DATE_LOCALE, useValue: ptBR },
+		{ provide: DateAdapter, useClass: DateFnsAdapter, deps: [MAT_DATE_LOCALE] },
 		{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
+		{
+			provide: MAT_PAGINATOR_DEFAULT_OPTIONS, useValue: {
+				pageSizeOptions: [10, 25, 100], showFirstLastButtons: true, formFieldAppearance: 'outline',
+			},
+		},
+		{
+			provide: MatPaginatorIntl,
+			useValue: (() => {
+				const paginatorIntl = new MatPaginatorIntl()
+				paginatorIntl.itemsPerPageLabel = 'Itens por página:'
+				paginatorIntl.firstPageLabel = 'Primeira página'
+				paginatorIntl.previousPageLabel = 'Página anterior'
+				paginatorIntl.nextPageLabel = 'Próxima página'
+				paginatorIntl.lastPageLabel = 'Última página'
+				paginatorIntl.getRangeLabel = (page: number, pageSize: number, length: number) => {
+					if(length === 0 || pageSize === 0) {
+						return `0 de ${length}`
+					}
+
+					length = Math.max(length, 0)
+
+					const startIndex = page * pageSize
+
+					const endIndex = startIndex < length ?
+						Math.min(startIndex + pageSize, length) :
+						startIndex + pageSize
+
+					return `${startIndex + 1} - ${endIndex} de ${length}`
+				}
+
+				return paginatorIntl
+			})(),
+		},
 	],
 })
 export class SharedModule { }

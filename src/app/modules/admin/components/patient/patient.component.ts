@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
-import { PatientService } from 'src/app/services/patient.service'
+import { Store } from '@ngrx/store'
+import { openCreateOrEditDialog } from './store/patient.actions'
 
 @Component({
 	selector: 'app-patient',
@@ -8,9 +9,9 @@ import { PatientService } from 'src/app/services/patient.service'
 })
 export class PatientComponent {
 
-	constructor(private patientService: PatientService) {}
+	constructor(private store: Store) {}
 
 	addPatient() {
-		// this.patientService.openPatientDialog({ clinicId: this.clinicId })
+		this.store.dispatch(openCreateOrEditDialog({}))
 	}
 }

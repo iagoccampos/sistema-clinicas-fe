@@ -17,6 +17,8 @@ import { ClinicComponent } from './components/clinic/clinic.component'
 import { PatientComponent } from './components/patient/patient.component'
 import { FindPatientComponent } from './components/patient/find-patient/find-patient.component'
 import { PatientDialogComponent } from './components/patient/patient-dialog/patient-dialog.component'
+import { PatientEffects } from './components/patient/store/patient.effects'
+import { patientReducer } from './components/patient/store/patient.reducer'
 
 @NgModule({
 	declarations: [
@@ -36,8 +38,9 @@ import { PatientDialogComponent } from './components/patient/patient-dialog/pati
 		SharedModule,
 		AdminRoutingModule,
 		StoreModule.forFeature('newClinic', newClinicReducer),
+		StoreModule.forFeature('patient', patientReducer),
 		EffectsModule.forFeature([
-			NewClinicEffects,
+			NewClinicEffects, PatientEffects,
 		]),
 	],
 })

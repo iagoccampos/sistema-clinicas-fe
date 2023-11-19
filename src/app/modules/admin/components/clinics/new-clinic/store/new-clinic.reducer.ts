@@ -15,7 +15,7 @@ const initialState: NewClinicState = {
 	clinic: null,
 	status: 'pending',
 	errorMsg: null,
-}
+} as const
 
 export const newClinicReducer = createReducer<NewClinicState>(
 	initialState,
