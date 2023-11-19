@@ -3,7 +3,7 @@ export enum UserLevel {
 	Regular = 'Regular'
 }
 
-export interface User {
+export interface IUser {
 	_id: string
 	username: string
 	level: UserLevel

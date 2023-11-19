@@ -1,8 +1,8 @@
-export interface Clinic {
+export interface IClinic {
 	_id: string
 	name: string
 }
 
-export type NewClinic = Omit<Clinic, '_id'>
+export type NewClinic = Omit<IClinic, '_id'>
 
-export type ClinicQuery = Partial<Clinic>
+export type ClinicQuery = Partial<IClinic>

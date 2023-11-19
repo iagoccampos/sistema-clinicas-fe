@@ -1,7 +1,7 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store"
-import { AuthState } from "./auth.reducer"
+import { createFeatureSelector, createSelector } from '@ngrx/store'
+import { IAuthState } from './auth.reducer'
 
-export const selectAuth = createFeatureSelector<AuthState>('auth')
+export const selectAuth = createFeatureSelector<IAuthState>('auth')
 
 export const selectHidePass = createSelector(
 	selectAuth,

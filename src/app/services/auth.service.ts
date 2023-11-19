@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router'
-import { User, UserLevel } from '../models/user.model'
+import { IUser, UserLevel } from '../models/user.model'
 import { JwtHelperService } from '@auth0/angular-jwt'
 import { LocalStorageService } from './local-storage.service'
 import { map } from 'rxjs'
@@ -17,7 +17,7 @@ export class AuthService {
 		const token = this.localStorageService.getSetToken()
 
 		if(token && !this.helper.isTokenExpired(token)) {
-			const currentUser = this.helper.decodeToken<User>(token)
+			const currentUser = this.helper.decodeToken<IUser>(token)
 
 			if(currentUser) {
 				return { currentUser, token }
@@ -33,7 +33,7 @@ export class AuthService {
 		return this.http.post<{ auth: boolean, token?: string, error?: string}>(this.loginUrl, form).pipe(
 			map((res) => {
 				if(res.token) {
-					const user = this.helper.decodeToken<User>(res.token)
+					const user = this.helper.decodeToken<IUser>(res.token)
 
 					if(user) {
 						this.localStorageService.getSetToken(res.token)
@@ -52,7 +52,7 @@ export class AuthService {
 		this.router.navigate(['login'])
 	}
 
-	redirect(user: User) {
+	redirect(user: IUser) {
 		switch (user.level) {
 			case UserLevel.Admin:
 				this.router.navigate(['/admin'])

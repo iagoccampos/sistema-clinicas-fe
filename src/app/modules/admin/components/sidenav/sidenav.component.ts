@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core'
 import { NavService } from 'src/app/services/nav.service'
-import { NavItem } from './nav-list-item/nav-list-item.component'
-import { Clinic } from 'src/app/models/clinic.model'
+import { INavItem } from './nav-list-item/nav-list-item.component'
+import { IClinic } from 'src/app/models/clinic.model'
 
 @Component({
 	selector: 'app-sidenav',
@@ -10,16 +10,16 @@ import { Clinic } from 'src/app/models/clinic.model'
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidenavComponent implements OnInit, OnDestroy {
-	@Input({ required: true }) clinic: Clinic | null = null
+	@Input({ required: true }) clinic: IClinic | null = null
 
-	navItems: NavItem[] = [{
+	navItems: INavItem[] = [{
 		displayName: 'Visão geral',
 		iconName: 'dashboard',
 		route: './dashboard',
 	}, {
 		displayName: 'Pacientes',
 		iconName: 'person',
-		route: `./pacientes`,
+		route: './pacientes',
 	}]
 
 	constructor(public navService: NavService) { }

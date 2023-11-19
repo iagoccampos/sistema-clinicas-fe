@@ -3,7 +3,7 @@ import { FormStatus } from 'src/app/models/form-status.model'
 import { IFindPatient, INewPatient, IPatientsResponse } from 'src/app/models/patient.model'
 import { createPatientError, createPatient, createPatientSuccess, editPatient, editPatientError, editPatientSuccess, findPatients, findPatientsSuccess, findPatientsError, openCreateOrEditDialog, openDeleteDialog, deletePatient, deletePatientError, deletePatientSuccess } from './patient.actions'
 
-export interface PatientState {
+export interface IPatientState {
 	editOrCreateForm: INewPatient | null
 	findForm: IFindPatient | null
 	editOrCreateStatus: FormStatus
@@ -13,7 +13,7 @@ export interface PatientState {
 	errorMsg: string | null
 }
 
-const initialState: PatientState = {
+const initialState: IPatientState = {
 	editOrCreateForm: null,
 	findForm: null,
 	editOrCreateStatus: 'pending',
@@ -25,37 +25,37 @@ const initialState: PatientState = {
 
 export const patientReducer = createReducer(
 	initialState,
-	on(openCreateOrEditDialog, (state): PatientState => {
+	on(openCreateOrEditDialog, (state): IPatientState => {
 		return { ...state, editOrCreateStatus: 'pending' }
 	}),
-	on(openDeleteDialog, (state): PatientState => {
+	on(openDeleteDialog, (state): IPatientState => {
 		return { ...state, deleteStatus: 'pending' }
 	}),
-	on(createPatient, editPatient, (state, action): PatientState => {
+	on(createPatient, editPatient, (state, action): IPatientState => {
 		return { ...state, editOrCreateStatus: 'loading', editOrCreateForm: action.patient }
 	}),
-	on(createPatientError, editPatientError, (state, action): PatientState => {
+	on(createPatientError, editPatientError, (state, action): IPatientState => {
 		return { ...state, editOrCreateStatus: 'error', errorMsg: action.error.errorMsg }
 	}),
-	on(createPatientSuccess, editPatientSuccess, (state): PatientState => {
+	on(createPatientSuccess, editPatientSuccess, (state): IPatientState => {
 		return { ...state, editOrCreateStatus: 'success' }
 	}),
-	on(findPatients, (state, action): PatientState => {
+	on(findPatients, (state, action): IPatientState => {
 		return { ...state, findStatus: 'loading', findForm: action.search, patients: null }
 	}),
-	on(findPatientsSuccess, (state, action): PatientState => {
+	on(findPatientsSuccess, (state, action): IPatientState => {
 		return { ...state, findStatus: 'success', patients: action.patients }
 	}),
-	on(findPatientsError, (state): PatientState => {
+	on(findPatientsError, (state): IPatientState => {
 		return { ...state, findStatus: 'error' }
 	}),
-	on(deletePatient, (state): PatientState => {
+	on(deletePatient, (state): IPatientState => {
 		return { ...state, deleteStatus: 'loading' }
 	}),
-	on(deletePatientError, (state): PatientState => {
+	on(deletePatientError, (state): IPatientState => {
 		return { ...state, deleteStatus: 'error' }
 	}),
-	on(deletePatientSuccess, (state): PatientState => {
+	on(deletePatientSuccess, (state): IPatientState => {
 		return { ...state, deleteStatus: 'success' }
 	}),
 )

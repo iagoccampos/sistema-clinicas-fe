@@ -4,12 +4,12 @@ import { NavigationEnd, Router } from '@angular/router'
 import { BehaviorSubject, merge } from 'rxjs'
 import { filter, map, tap } from 'rxjs/operators'
 
-export interface NavItem {
+export interface INavItem {
 	displayName: string
 	disabled?: boolean
 	iconName: string
 	route?: string
-	children?: NavItem[]
+	children?: INavItem[]
 }
 
 @Component({
@@ -28,7 +28,7 @@ export interface NavItem {
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavListItemComponent implements OnInit {
-	@Input() item: NavItem = { displayName: '', iconName: '' }
+	@Input() item: INavItem = { displayName: '', iconName: '' }
 	@Input() depth = 0
 	@Output() expand = new EventEmitter<void>(true)
 
@@ -57,7 +57,7 @@ export class NavListItemComponent implements OnInit {
 		}
 	}
 
-	onItemSelected(item: NavItem) {
+	onItemSelected(item: INavItem) {
 		if(item.children?.length) {
 			this.expanded$.next(!this.expanded$.getValue())
 		}

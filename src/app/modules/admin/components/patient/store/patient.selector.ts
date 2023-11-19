@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store'
-import { PatientState } from './patient.reducer'
+import { IPatientState } from './patient.reducer'
 
-export const selectPatient = createFeatureSelector<PatientState>('patient')
+export const selectPatient = createFeatureSelector<IPatientState>('patient')
 
 export const selectEditOrCreateStatus = createSelector(
 	selectPatient,

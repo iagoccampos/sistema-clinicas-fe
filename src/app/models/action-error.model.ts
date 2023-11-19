@@ -1,3 +1,3 @@
-export interface ActionError {
+export interface IActionError {
 	errorMsg: string
 }

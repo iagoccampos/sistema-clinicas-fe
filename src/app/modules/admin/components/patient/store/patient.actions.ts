@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store'
-import { ActionError } from 'src/app/models/action-error.model'
+import { IActionError } from 'src/app/models/action-error.model'
 import { IEditPatient, IFindPatient, INewPatient, IPatient, IPatientsResponse } from 'src/app/models/patient.model'
 
 export const openCreateOrEditDialog = createAction(
@@ -14,7 +14,7 @@ export const createPatient = createAction(
 
 export const createPatientError = createAction(
 	'[Patient] CreateError',
-	props<{ error: ActionError }>(),
+	props<{ error: IActionError }>(),
 )
 
 export const createPatientSuccess = createAction(
@@ -29,7 +29,7 @@ export const editPatient = createAction(
 
 export const editPatientError = createAction(
 	'[Patient] EditError',
-	props<{ error: ActionError }>(),
+	props<{ error: IActionError }>(),
 )
 
 export const editPatientSuccess = createAction(
@@ -44,7 +44,7 @@ export const findPatients = createAction(
 
 export const findPatientsError = createAction(
 	'[Patient] FindError',
-	props<{ error: ActionError }>(),
+	props<{ error: IActionError }>(),
 )
 
 export const findPatientsSuccess = createAction(
@@ -64,7 +64,7 @@ export const deletePatient = createAction(
 
 export const deletePatientError = createAction(
 	'[Patient] DeleteError',
-	props<{ error: ActionError }>(),
+	props<{ error: IActionError }>(),
 )
 
 export const deletePatientSuccess = createAction(

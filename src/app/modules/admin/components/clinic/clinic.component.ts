@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core'
 import { Observable } from 'rxjs'
-import { Clinic } from 'src/app/models/clinic.model'
+import { IClinic } from 'src/app/models/clinic.model'
 import { ClinicService } from 'src/app/services/clinic.service'
 
 @Component({
@@ -11,7 +11,7 @@ import { ClinicService } from 'src/app/services/clinic.service'
 export class ClinicComponent implements OnInit {
 	@Input({ required: true }) clinicId: string | null = null
 
-	clinic$: Observable<Clinic | null> | null = null
+	clinic$: Observable<IClinic | null> | null = null
 
 	constructor(private clinicService: ClinicService) {}
 

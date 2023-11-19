@@ -4,7 +4,7 @@ import { Action, MemoizedSelector, Store } from '@ngrx/store'
 import { Observable, Subject, map, takeUntil, takeWhile } from 'rxjs'
 import { FormStatus } from 'src/app/models/form-status.model'
 
-export interface DialogData {
+export interface IDialogData {
 	dispatch?: { action: Action, selector: MemoizedSelector<any, FormStatus> }
 	entityName?: string
 	entityValue?: string
@@ -22,7 +22,7 @@ export class DeleteConfirmationComponent implements OnDestroy {
 	constructor(
 		private store: Store,
 		private dialogRef: MatDialogRef<DeleteConfirmationComponent, boolean>,
-		@Inject(MAT_DIALOG_DATA) public data: DialogData) {
+		@Inject(MAT_DIALOG_DATA) public data: IDialogData) {
 		if(this.data.dispatch) {
 			this.loading$ = this.store.select(this.data.dispatch.selector).pipe(
 				takeUntil(this.unsubscribe$),

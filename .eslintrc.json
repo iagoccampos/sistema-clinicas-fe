@@ -15,6 +15,18 @@
 				"plugin:@angular-eslint/template/process-inline-templates"
 			],
 			"rules": {
+				"@typescript-eslint/naming-convention": [
+					"error",
+					{
+						"selector": "interface",
+						"format": [
+							"PascalCase"
+						],
+						"prefix": [
+							"I"
+						]
+					}
+				],
 				"quotes": [
 					"error",
 					"single"

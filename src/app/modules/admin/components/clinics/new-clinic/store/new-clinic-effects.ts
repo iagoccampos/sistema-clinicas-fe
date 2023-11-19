@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core"
-import { Actions, createEffect, ofType } from "@ngrx/effects"
-import { ClinicService } from "src/app/services/clinic.service"
-import { Router } from "@angular/router"
-import { catchError, map, of, switchMap, tap } from "rxjs"
-import { createClinic, createClinicError, createClinicSuccess } from "./new-clinic.actions"
-import { SnackbarService } from "src/app/services/snackbar.service"
+import { Injectable } from '@angular/core'
+import { Actions, createEffect, ofType } from '@ngrx/effects'
+import { ClinicService } from 'src/app/services/clinic.service'
+import { Router } from '@angular/router'
+import { catchError, map, of, switchMap, tap } from 'rxjs'
+import { createClinic, createClinicError, createClinicSuccess } from './new-clinic.actions'
+import { SnackbarService } from 'src/app/services/snackbar.service'
 
 @Injectable()
 export class NewClinicEffects {
