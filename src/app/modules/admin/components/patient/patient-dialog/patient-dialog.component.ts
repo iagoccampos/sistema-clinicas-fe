@@ -12,7 +12,6 @@ export type DialogData = { patient?: IPatient } | null
 @Component({
 	selector: 'app-new-user-dialog',
 	templateUrl: './patient-dialog.component.html',
-	styleUrls: ['./patient-dialog.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PatientDialogComponent {

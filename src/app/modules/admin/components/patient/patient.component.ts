@@ -5,7 +5,6 @@ import { openCreateOrEditDialog } from './store/patient.actions'
 @Component({
 	selector: 'app-patient',
 	templateUrl: './patient.component.html',
-	styleUrls: ['./patient.component.scss'],
 })
 export class PatientComponent {
 

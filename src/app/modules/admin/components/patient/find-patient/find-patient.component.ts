@@ -12,7 +12,6 @@ import { findPatients, openCreateOrEditDialog, openDeleteDialog } from '../store
 @Component({
 	selector: 'app-find-patient',
 	templateUrl: './find-patient.component.html',
-	styleUrls: ['./find-patient.component.scss'],
 	animations: [
 		trigger('detailExpand', [
 			state('collapsed', style({ height: '0px', minHeight: '0' })),
