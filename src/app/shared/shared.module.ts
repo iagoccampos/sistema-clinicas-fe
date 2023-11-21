@@ -26,6 +26,8 @@ import { ptBR } from 'date-fns/esm/locale';
 import localePT from '@angular/common/locales/pt';
 import { OrDashPipe } from './pipes/or-dash.pipe'
 import { DeleteConfirmationComponent } from './components/dialogs/delete-confirmation/delete-confirmation.component'
+import { InputMaskModule } from '@ngneat/input-mask'
+import { MaskDirective } from './directives/mask.directive'
 
 registerLocaleData(localePT);
 
@@ -61,23 +63,31 @@ const pipes = [
 	OrDashPipe,
 ]
 
+const directives = [
+	MaskDirective,
+]
+
 @NgModule({
 	declarations: [
 		...components,
 		...pipes,
+		...directives,
 	],
 	imports: [
 		CommonModule,
 		ReactiveFormsModule,
 		HttpClientModule,
+		InputMaskModule,
 		...materialModules,
 	],
 	exports: [
 		ReactiveFormsModule,
 		HttpClientModule,
+		InputMaskModule,
 		...materialModules,
 		...components,
 		...pipes,
+		...directives,
 	],
 	providers: [
 		{ provide: LOCALE_ID, useValue: 'pt-br' },

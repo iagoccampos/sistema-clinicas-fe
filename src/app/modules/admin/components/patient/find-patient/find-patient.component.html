@@ -9,7 +9,7 @@
 		<div class="col">
 			<mat-form-field>
 				<mat-label>Data de nascimento</mat-label>
-				<input matInput appMask="00/00/0000" [matDatepicker]="picker2" formControlName="birthday">
+				<input matInput [matDatepicker]="picker2" formControlName="birthday">
 				<mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
 				<mat-datepicker #picker2></mat-datepicker>
 			</mat-form-field>
@@ -20,13 +20,13 @@
 		<div class="col">
 			<mat-form-field>
 				<mat-label>RG</mat-label>
-				<input matInput appMask="0.000.000" formControlName="rg">
+				<input matInput appMask="rg" formControlName="rg">
 			</mat-form-field>
 		</div>
 		<div class="col">
 			<mat-form-field>
 				<mat-label>CPF</mat-label>
-				<input matInput appMask="000.000.000-00" formControlName="cpf">
+				<input matInput appMask="cpf" formControlName="cpf">
 			</mat-form-field>
 		</div>
 		<div class="col">

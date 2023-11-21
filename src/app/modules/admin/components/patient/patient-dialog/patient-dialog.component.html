@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>{{ data?.patient ? 'Editar Paciente' : 'Adicionar Paciente' }}</h2>
 <mat-dialog-content>
-	<form [formGroup]="patientForm" (ngSubmit)="submit()" autocomplete="off" id="form">
+	<form [formGroup]="patientForm" autocomplete="off" id="form">
 		<div class="row">
 			<div class="col">
 				<mat-form-field>
@@ -22,13 +22,13 @@
 			<div class="col">
 				<mat-form-field>
 					<mat-label>RG</mat-label>
-					<input matInput formControlName="rg">
+					<input matInput formControlName="rg" appMask="rg">
 				</mat-form-field>
 			</div>
 			<div class="col">
 				<mat-form-field>
 					<mat-label>CPF</mat-label>
-					<input matInput formControlName="cpf">
+					<input matInput formControlName="cpf" appMask="cpf">
 				</mat-form-field>
 			</div>
 		</div>
@@ -39,7 +39,7 @@
 				<div *ngFor="let phones of phonesControl.controls; let i = index;">
 					<mat-form-field>
 						<mat-label>Telefone {{ i + 1 }}</mat-label>
-						<input matInput [formControlName]="i">
+						<input matInput [formControlName]="i" appMask="phone">
 						<button *ngIf="phonesControl.controls.length > 1" type="button" mat-icon-button matSuffix
 							(click)="removePhone(i)">
 							<mat-icon>remove</mat-icon>
