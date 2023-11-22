@@ -7,6 +7,16 @@ import { InputMaskDirective, InputmaskOptions, createMask } from '@ngneat/input-
 const basicMaskConfig: InputmaskOptions<any> = { autoUnmask: true }
 
 const masks = {
+	currency: createMask({
+		...basicMaskConfig,
+		alias: 'numeric',
+		groupSeparator: ',',
+		digits: 2,
+		digitsOptional: false,
+		prefix: 'R$ ',
+		placeholder: '0',
+		unmaskAsNumber: true,
+	}),
 	rg: createMask({ ...basicMaskConfig, mask: '9.999.999' }),
 	cpf: createMask({ ...basicMaskConfig, mask: '999.999.999-99' }),
 	phone: createMask({ ...basicMaskConfig, mask: '(99) 99999-9999' }),
