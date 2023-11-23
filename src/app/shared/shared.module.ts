@@ -24,10 +24,12 @@ import { MAT_PAGINATOR_DEFAULT_OPTIONS, MatPaginatorIntl, MatPaginatorModule } f
 import { MatDateFnsModule, DateFnsAdapter } from '@angular/material-date-fns-adapter'
 import { ptBR } from 'date-fns/esm/locale';
 import localePT from '@angular/common/locales/pt';
+import { InputMaskModule } from '@ngneat/input-mask'
+import { CurrencyMaskModule } from 'ng2-currency-mask'
 import { OrDashPipe } from './pipes/or-dash.pipe'
 import { DeleteConfirmationComponent } from './components/dialogs/delete-confirmation/delete-confirmation.component'
-import { InputMaskModule } from '@ngneat/input-mask'
 import { MaskDirective } from './directives/mask.directive'
+import { CurrencyMaskDirective } from './directives/currencyMask.directive'
 
 registerLocaleData(localePT);
 
@@ -65,6 +67,7 @@ const pipes = [
 
 const directives = [
 	MaskDirective,
+	CurrencyMaskDirective,
 ]
 
 @NgModule({
@@ -78,12 +81,14 @@ const directives = [
 		ReactiveFormsModule,
 		HttpClientModule,
 		InputMaskModule,
+		CurrencyMaskModule,
 		...materialModules,
 	],
 	exports: [
 		ReactiveFormsModule,
 		HttpClientModule,
 		InputMaskModule,
+		CurrencyMaskModule,
 		...materialModules,
 		...components,
 		...pipes,
