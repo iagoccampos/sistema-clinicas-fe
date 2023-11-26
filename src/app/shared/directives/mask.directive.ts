@@ -41,7 +41,7 @@ export class MaskDirective extends InputMaskDirective {
 		}),
 		rg: createMask({ ...basicMaskConfig, mask: '9.999.999' }),
 		cpf: createMask({ ...basicMaskConfig, mask: '999.999.999-99' }),
-		phone: createMask({ ...basicMaskConfig, mask: '(99) 99999-9999' }),
+		phone: createMask({ ...basicMaskConfig, mask: ['(99) 9999-9999', '(99) 9 9999-9999'], keepStatic: true }),
 	} as const
 
 	@Input() set appMask(appMask: MaskNames) {
