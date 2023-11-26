@@ -57,12 +57,12 @@
 
 		<ng-container matColumnDef="rg">
 			<th mat-header-cell *matHeaderCellDef> RG </th>
-			<td mat-cell *matCellDef="let patient"> {{ patient.rg | orDash }} </td>
+			<td mat-cell *matCellDef="let patient"> {{ patient.rg | rg | orDash }} </td>
 		</ng-container>
 
 		<ng-container matColumnDef="cpf">
 			<th mat-header-cell *matHeaderCellDef> CPF </th>
-			<td mat-cell *matCellDef="let patient"> {{ patient.cpf | orDash }} </td>
+			<td mat-cell *matCellDef="let patient"> {{ patient.cpf | cpf | orDash }} </td>
 		</ng-container>
 
 		<ng-container matColumnDef="birthday">
@@ -95,6 +95,12 @@
 		<ng-container matColumnDef="expandedDetail">
 			<td mat-cell *matCellDef="let patient" [attr.colspan]="columnsToDisplayWithExpand.length">
 				<div [@detailExpand]="patient === expandedPatient ? 'expanded' : 'collapsed'">
+					Telefones:
+					<div class="row">
+						<div class="col-3" *ngFor="let phone of patient.phones">
+							<p>{{ phone | phone }}</p>
+						</div>
+					</div>
 						<div class="row">
 							<div class="col-3">
 								<p>Criado em: {{ patient.createdAt | date }}</p>

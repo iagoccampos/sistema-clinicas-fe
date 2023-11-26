@@ -5,8 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class OrDashPipe implements PipeTransform {
 
-	transform(value: string | null | undefined): unknown {
+	transform(value: string | null | undefined): string {
 		return value || '-'
 	}
-
 }

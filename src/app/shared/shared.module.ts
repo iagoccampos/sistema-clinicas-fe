@@ -30,6 +30,9 @@ import { OrDashPipe } from './pipes/or-dash.pipe'
 import { DeleteConfirmationComponent } from './components/dialogs/delete-confirmation/delete-confirmation.component'
 import { MaskDirective } from './directives/mask.directive'
 import { CurrencyMaskDirective } from './directives/currencyMask.directive'
+import { RgPipe } from './pipes/rg.pipe'
+import { CpfPipe } from './pipes/cpf.pipe'
+import { PhonePipe } from './pipes/phone.pipe'
 
 registerLocaleData(localePT);
 
@@ -63,6 +66,9 @@ const components = [
 
 const pipes = [
 	OrDashPipe,
+	RgPipe,
+	CpfPipe,
+	PhonePipe,
 ]
 
 const directives = [
