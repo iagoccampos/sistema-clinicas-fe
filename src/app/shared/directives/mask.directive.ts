@@ -4,7 +4,6 @@ import { formatDate } from '@angular/common'
 import { Directive, ElementRef, Inject, Input, NgZone, Optional, PLATFORM_ID, Renderer2, Self } from '@angular/core';
 import { NgControl } from '@angular/forms'
 import { MatDatepickerInput } from '@angular/material/datepicker'
-import { MatInput } from '@angular/material/input'
 import { InputMaskDirective, InputmaskOptions, createMask } from '@ngneat/input-mask'
 
 const basicMaskConfig: InputmaskOptions<any> = { autoUnmask: true }
@@ -15,8 +14,6 @@ type MaskNames = 'rg' | 'cpf' | 'phone' | 'date'
 	selector: 'input[appMask]',
 })
 export class MaskDirective extends InputMaskDirective {
-	readonly matDatePickerInput: MatDatepickerInput<Date> | null = null
-
 	readonly masks: {[key in MaskNames]: InputmaskOptions<any>} = {
 		date: createMask<Date>({
 			alias: 'datetime',
@@ -48,14 +45,12 @@ export class MaskDirective extends InputMaskDirective {
 		this.inputMask = this.masks[appMask]
 	}
 
-	constructor(@Inject(PLATFORM_ID) platformId: string, elementRef: ElementRef<any>, renderer: Renderer2, @Optional() @Self()ngControl: NgControl | null, ngZone: NgZone, matInput: MatInput) {
+	constructor(@Inject(PLATFORM_ID) platformId: string, elementRef: ElementRef<any>, renderer: Renderer2, @Optional() @Self()ngControl: NgControl | null, ngZone: NgZone, @Optional() private matDatePickerInput: MatDatepickerInput<Date>) {
 		super(platformId, elementRef, renderer, ngControl, { inputSelector: 'input', isAsync: false }, ngZone)
 
-		const inputValueAccessor = matInput['_inputValueAccessor']
-
-		if(inputValueAccessor instanceof MatDatepickerInput) {
-			this.matDatePickerInput = inputValueAccessor
-			this.matDatePickerInput.dateChange.subscribe((val) => {
+		if(matDatePickerInput) {
+			matDatePickerInput.value = null
+			matDatePickerInput.dateChange.subscribe((val) => {
 				if(val.value) {
 					ngControl?.control?.setValue(val.value, { emitEvent: false })
 				}
