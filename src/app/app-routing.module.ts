@@ -8,7 +8,7 @@ import { isNotAuth } from './shared/guards/is-not-auth.guard'
 const routes: Routes = [
 	{ path: '', pathMatch: 'full', redirectTo: '/login' },
 	{ path: 'login', title: 'Login', component: AuthComponent, canActivate: [isNotAuth] },
-	{ path: 'admin', canActivate: [isAuth, isAdmin], loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule) },
+	{ path: 'admin', canActivate: [isAuth, isAdmin], canActivateChild: [isAuth, isAdmin], loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule) },
 ]
 
 @NgModule({
