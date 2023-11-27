@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
 import { AdminComponent } from './components/admin/admin.component'
 import { ClinicsComponent } from './components/clinics/clinics.component'
 import { ClinicComponent } from './components/clinic/clinic.component'
@@ -14,7 +14,7 @@ const routes: Routes = [
 			{ path: 'pacientes', component: PatientComponent },
 		] },
 	] },
-];
+]
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],

@@ -10,7 +10,7 @@ import { environment } from '../environments/environment'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { AuthComponent } from './components/auth/auth.component'
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from './shared/shared.module'
 import { AuthEffects } from './components/auth/store/auth.effects'
 import { authReducer } from './components/auth/store/auth.reducer'
 import { provideHttpClient, withInterceptors } from '@angular/common/http'

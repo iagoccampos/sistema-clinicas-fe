@@ -15,6 +15,11 @@
 				"plugin:@angular-eslint/template/process-inline-templates"
 			],
 			"rules": {
+				"semi": [
+					"error",
+					"never"
+				],
+				"eqeqeq": "error",
 				"@typescript-eslint/naming-convention": [
 					"error",
 					{

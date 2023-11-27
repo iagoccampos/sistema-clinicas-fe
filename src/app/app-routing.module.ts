@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
 import { AuthComponent } from './components/auth/auth.component'
 import { isAuth } from './shared/guards/is-auth.guard'
 import { isAdmin } from './shared/guards/is-admin.guard'
@@ -9,7 +9,7 @@ const routes: Routes = [
 	{ path: '', pathMatch: 'full', redirectTo: '/login' },
 	{ path: 'login', title: 'Login', component: AuthComponent, canActivate: [isNotAuth] },
 	{ path: 'admin', canActivate: [isAuth, isAdmin], loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule) },
-];
+]
 
 @NgModule({
 	imports: [RouterModule.forRoot(routes, { bindToComponentInputs: true })],

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { formatDate } from '@angular/common'
-import { Directive, ElementRef, Inject, Input, NgZone, Optional, PLATFORM_ID, Renderer2, Self } from '@angular/core';
+import { Directive, ElementRef, Inject, Input, NgZone, Optional, PLATFORM_ID, Renderer2, Self } from '@angular/core'
 import { NgControl } from '@angular/forms'
 import { MatDatepickerInput } from '@angular/material/datepicker'
 import { InputMaskDirective, InputmaskOptions, createMask } from '@ngneat/input-mask'
@@ -19,12 +19,12 @@ export class MaskDirective extends InputMaskDirective {
 			alias: 'datetime',
 			inputFormat: 'dd/mm/yyyy',
 			parser: (value: string) => {
-				const values = value.split('/');
-				const year = +values[2];
-				const month = +values[1] - 1;
-				const date = +values[0];
+				const values = value.split('/')
+				const year = +values[2]
+				const month = +values[1] - 1
+				const date = +values[0]
 
-				return new Date(year, month, date);
+				return new Date(year, month, date)
 			},
 			formatter: (value: string) => {
 				const date = new Date(value)
@@ -33,7 +33,7 @@ export class MaskDirective extends InputMaskDirective {
 					this.matDatePickerInput.writeValue(date)
 				}
 
-				return formatDate(date, 'dd/MM/yyyy', 'pt-BR');
+				return formatDate(date, 'dd/MM/yyyy', 'pt-BR')
 			},
 		}),
 		rg: createMask({ ...basicMaskConfig, mask: '9.999.999' }),

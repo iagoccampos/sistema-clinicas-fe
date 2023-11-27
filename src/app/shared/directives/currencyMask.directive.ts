@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Directive, ElementRef, HostListener, KeyValueDiffers, forwardRef } from '@angular/core';
+import { Directive, ElementRef, HostListener, KeyValueDiffers, forwardRef } from '@angular/core'
 import { NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms'
 import { CurrencyMaskDirective as Ng2CurrencyMaskDirective, CurrencyMaskConfig } from 'ng2-currency-mask'
 
@@ -8,7 +8,7 @@ export const CURRENCYMASKDIRECTIVE_VALUE_ACCESSOR: any = {
 	provide: NG_VALUE_ACCESSOR,
 	useExisting: forwardRef(() => CurrencyMaskDirective),
 	multi: true,
-};
+}
 
 @Directive({
 	selector: '[appCurrencyMask]',

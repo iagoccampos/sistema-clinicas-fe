@@ -16,14 +16,14 @@ import { MatExpansionModule } from '@angular/material/expansion'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list'
 import { ReactiveFormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http'
 import { PageHeaderComponent } from './components/page-header/page-header.component'
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core'
 import { MatTableModule } from '@angular/material/table'
-import { MAT_PAGINATOR_DEFAULT_OPTIONS, MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import { MAT_PAGINATOR_DEFAULT_OPTIONS, MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator'
 import { MatDateFnsModule, DateFnsAdapter } from '@angular/material-date-fns-adapter'
-import { ptBR } from 'date-fns/esm/locale';
-import localePT from '@angular/common/locales/pt';
+import { ptBR } from 'date-fns/esm/locale'
+import localePT from '@angular/common/locales/pt'
 import { InputMaskModule } from '@ngneat/input-mask'
 import { CurrencyMaskModule } from 'ng2-currency-mask'
 import { OrDashPipe } from './pipes/or-dash.pipe'
@@ -34,7 +34,7 @@ import { RgPipe } from './pipes/rg.pipe'
 import { CpfPipe } from './pipes/cpf.pipe'
 import { PhonePipe } from './pipes/phone.pipe'
 
-registerLocaleData(localePT);
+registerLocaleData(localePT)
 
 const materialModules = [
 	OverlayModule,

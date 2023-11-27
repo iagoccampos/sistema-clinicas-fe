@@ -1,5 +1,5 @@
 import { OverlayContainer } from '@angular/cdk/overlay'
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 import { ThemeService } from './services/theme.service'
 import { Store } from '@ngrx/store'
 import { getTokenFromStore } from './components/auth/store/auth.actions'

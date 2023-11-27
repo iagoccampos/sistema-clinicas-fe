@@ -1,4 +1,4 @@
-import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
+import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http'
 import { inject } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { catchError, throwError } from 'rxjs'
@@ -13,5 +13,5 @@ export const tokenExpiredInterceptor: HttpInterceptorFn = (req, next) => {
 		}
 
 		return throwError(() => err)
-	}));
-};
+	}))
+}

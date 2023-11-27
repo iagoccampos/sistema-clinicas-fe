@@ -1,4 +1,4 @@
-import { Pipe, type PipeTransform } from '@angular/core';
+import { Pipe, type PipeTransform } from '@angular/core'
 
 @Pipe({
 	name: 'phone',
@@ -17,6 +17,6 @@ export class PhonePipe implements PipeTransform {
 
 		const ddd = arr.splice(-2).join('')
 
-		return `(${ddd}) ${startDigit ? startDigit + ' ': ''} ${midChunk}-${lastChunk}`;
+		return `(${ddd}) ${startDigit ? startDigit + ' ': ''} ${midChunk}-${lastChunk}`
 	}
 }

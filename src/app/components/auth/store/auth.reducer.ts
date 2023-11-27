@@ -39,4 +39,4 @@ export const authReducer = createReducer<IAuthState>(
 	on(logout, (state): IAuthState => {
 		return { ...state, status: 'pending', currentUser: null, token: null }
 	}),
-);
+)
