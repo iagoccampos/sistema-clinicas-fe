@@ -1,0 +1,22 @@
+<app-page-header [hideHr]="true" title="Configuração"></app-page-header>
+
+<mat-expansion-panel>
+	<mat-expansion-panel-header>
+		<mat-panel-title>
+			<span class="material-icons">
+				warning
+			</span>
+			Área de perigo!
+		</mat-panel-title>
+	</mat-expansion-panel-header>
+
+	<div class="box d-flex justify-content-between align-items-center">
+		<div class="">
+			<p class="title">Deletar clínica</p>
+			<p>O processo é irreversível. Assim que deletar sua clínica você não terá mais acesso nenhum a ela.</p>
+		</div>
+		<div>
+			<button mat-flat-button color="warn" (click)="deleteClinic()">Deletar</button>
+		</div>
+	</div>
+</mat-expansion-panel>

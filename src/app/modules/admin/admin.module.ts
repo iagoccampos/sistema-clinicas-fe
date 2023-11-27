@@ -19,6 +19,9 @@ import { FindPatientComponent } from './components/patient/find-patient/find-pat
 import { PatientDialogComponent } from './components/patient/patient-dialog/patient-dialog.component'
 import { PatientEffects } from './components/patient/store/patient.effects'
 import { patientReducer } from './components/patient/store/patient.reducer'
+import { ConfigComponent } from './components/config/config.component'
+import { ConfigEffects } from './components/config/store/config.effects'
+import { configReducer } from './components/config/store/config.reducer'
 
 @NgModule({
 	declarations: [
@@ -32,6 +35,7 @@ import { patientReducer } from './components/patient/store/patient.reducer'
 		PatientComponent,
 		PatientDialogComponent,
 		FindPatientComponent,
+		ConfigComponent,
 	],
 	imports: [
 		CommonModule,
@@ -39,8 +43,9 @@ import { patientReducer } from './components/patient/store/patient.reducer'
 		AdminRoutingModule,
 		StoreModule.forFeature('newClinic', newClinicReducer),
 		StoreModule.forFeature('patient', patientReducer),
+		StoreModule.forFeature('config', configReducer),
 		EffectsModule.forFeature([
-			NewClinicEffects, PatientEffects,
+			NewClinicEffects, PatientEffects, ConfigEffects,
 		]),
 	],
 })

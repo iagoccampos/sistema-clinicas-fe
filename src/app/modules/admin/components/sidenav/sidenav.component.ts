@@ -20,6 +20,10 @@ export class SidenavComponent implements OnInit, OnDestroy {
 		displayName: 'Pacientes',
 		iconName: 'person',
 		route: './pacientes',
+	}, {
+		displayName: 'Configuração',
+		iconName: 'settings',
+		route: './configuracao',
 	}]
 
 	constructor(public navService: NavService) { }

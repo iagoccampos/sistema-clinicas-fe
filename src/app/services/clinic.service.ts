@@ -30,7 +30,6 @@ export class ClinicService {
 			tap((val) => {
 				if(setCurrentClinic) {
 					this._currentClinic = val
-
 				}
 			}),
 		)
@@ -38,5 +37,9 @@ export class ClinicService {
 
 	addClinic(newClinic: Omit<IClinic, '_id'>) {
 		return this.http.post<IClinic>(this.clinicUrl, newClinic)
+	}
+
+	deleteClinic() {
+		return this.http.delete<IClinic>(`${this.clinicUrl}/${this.currentClinicId}`)
 	}
 }
