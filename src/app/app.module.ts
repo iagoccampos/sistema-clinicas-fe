@@ -13,6 +13,8 @@ import { AuthComponent } from './components/auth/auth.component'
 import { SharedModule } from './shared/shared.module';
 import { AuthEffects } from './components/auth/store/auth.effects'
 import { authReducer } from './components/auth/store/auth.reducer'
+import { provideHttpClient, withInterceptors } from '@angular/common/http'
+import { tokenExpiredInterceptor } from './shared/token-expired.interceptor'
 
 @NgModule({
 	declarations: [
@@ -40,6 +42,11 @@ import { authReducer } from './components/auth/store/auth.reducer'
 		EffectsModule.forRoot([
 			AuthEffects,
 		]),
+	],
+	providers: [
+		provideHttpClient(
+			withInterceptors([tokenExpiredInterceptor]),
+		),
 	],
 	bootstrap: [AppComponent],
 })
