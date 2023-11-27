@@ -8,6 +8,7 @@ export interface IDialogData {
 	dispatch?: { action: Action, selector: MemoizedSelector<any, FormStatus> }
 	entityName?: string
 	entityValue?: string
+	irreversible?: boolean
 }
 
 @Component({

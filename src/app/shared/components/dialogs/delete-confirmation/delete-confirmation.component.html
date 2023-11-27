@@ -1,5 +1,11 @@
 <h2 mat-dialog-title>Deletar {{ data.entityName }}</h2>
-<mat-dialog-content>Tem certeza de que deseja deletar {{ data.entityName ? ' ' + data.entityName : '' }} {{ data.entityValue ? ' ' + data.entityValue : '' }}?</mat-dialog-content>
+<mat-dialog-content>
+	Tem certeza de que deseja deletar {{ data.entityName ? ' ' + data.entityName : '' }} {{ data.entityValue ? ' ' + data.entityValue : '' }}?
+	<ng-container *ngIf="data.irreversible">
+		<br>
+		Lembre-se que o processo é <strong>irreversível</strong>.
+	</ng-container>
+</mat-dialog-content>
 <mat-dialog-actions align="end">
 	<button mat-raised-button mat-dialog-close [disabled]="loading$ | async">Cancelar</button>
 	<button mat-raised-button color="warn" [disabled]="loading$ | async" (click)="confirm()">
