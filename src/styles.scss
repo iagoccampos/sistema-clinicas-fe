@@ -101,6 +101,30 @@ mat-panel-title {
 
 	.expanded-detail {
 		overflow: hidden;
-		//display: flex;
+	}
+}
+
+// Custom snackbar
+.snackbar {
+	$text-color: whitesmoke;
+
+	position: relative !important;
+	top: 68px;
+	right: 24px;
+
+	&.success > :first-child {
+		background: #48b04b !important;
+
+		> :first-child {
+			color: $text-color;
+		}
+	}
+
+	&.error > :first-child {
+		background: #f7412d !important;
+
+		> :first-child {
+			color: $text-color;
+		}
 	}
 }

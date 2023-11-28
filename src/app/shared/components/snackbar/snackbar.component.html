@@ -1,0 +1,7 @@
+<div class="d-flex align-items-center">
+	<mat-icon class="pe-3">{{ data.type === 'success' ? 'done' : 'error' }}</mat-icon>
+	<span>{{ data.msg }}</span>
+	<button mat-icon-button class="ms-auto" (click)="close()">
+		<mat-icon>close</mat-icon>
+	</button>
+</div>

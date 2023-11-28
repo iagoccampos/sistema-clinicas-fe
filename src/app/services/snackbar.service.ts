@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar'
+import { ISnackbarData, SnackbarComponent } from '../shared/components/snackbar/snackbar.component'
 
 @Injectable({
 	providedIn: 'root',
@@ -7,16 +8,30 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar'
 export class SnackbarService {
 
 	private readonly config: MatSnackBarConfig = {
-		horizontalPosition: 'right', verticalPosition: 'top', duration: 5000,
+		horizontalPosition: 'right', verticalPosition: 'top',
 	} as const
 
 	constructor(private snackBar: MatSnackBar) { }
 
-	success(msg: string) {
-		this.snackBar.open(msg, '', this.config)
+	error(msg: string) {
+		this.snackBar.openFromComponent<SnackbarComponent, ISnackbarData>(SnackbarComponent, {
+			...this.config,
+			duration: this.calculateTime(msg),
+			data: { msg: msg, type: 'error' },
+			panelClass: ['snackbar', 'error'],
+		})
 	}
 
-	error(msg: string) {
-		this.snackBar.open(msg, '', this.config)
+	success(msg: string) {
+		this.snackBar.openFromComponent<SnackbarComponent, ISnackbarData>(SnackbarComponent, {
+			...this.config,
+			duration: this.calculateTime(msg),
+			data: { msg, type: 'success' },
+			panelClass: ['snackbar', 'success'],
+		})
+	}
+
+	private calculateTime(msg: string) {
+		return msg.split(' ').length * 0.8 * 1000
 	}
 }

@@ -33,6 +33,7 @@ import { CurrencyMaskDirective } from './directives/currencyMask.directive'
 import { RgPipe } from './pipes/rg.pipe'
 import { CpfPipe } from './pipes/cpf.pipe'
 import { PhonePipe } from './pipes/phone.pipe'
+import { SnackbarComponent } from './components/snackbar/snackbar.component'
 
 registerLocaleData(localePT)
 
@@ -62,6 +63,7 @@ const materialModules = [
 const components = [
 	PageHeaderComponent,
 	DeleteConfirmationComponent,
+	SnackbarComponent,
 ]
 
 const pipes = [
