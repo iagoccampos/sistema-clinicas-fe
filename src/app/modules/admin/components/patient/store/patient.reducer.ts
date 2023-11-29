@@ -1,10 +1,10 @@
 import { createReducer, on } from '@ngrx/store'
 import { FormStatus } from 'src/app/models/form-status.model'
-import { IFindPatient, INewPatient, IPatientsResponse } from 'src/app/models/patient.model'
+import { IFindPatient, INewUpdatePatient, IPatientsResponse } from 'src/app/models/patient.model'
 import { createPatientError, createPatient, createPatientSuccess, editPatient, editPatientError, editPatientSuccess, findPatients, findPatientsSuccess, findPatientsError, openCreateOrEditDialog, openDeleteDialog, deletePatient, deletePatientError, deletePatientSuccess } from './patient.actions'
 
 export interface IPatientState {
-	editOrCreateForm: INewPatient | null
+	editOrCreateForm: INewUpdatePatient | null
 	findForm: IFindPatient | null
 	editOrCreateStatus: FormStatus
 	findStatus: FormStatus

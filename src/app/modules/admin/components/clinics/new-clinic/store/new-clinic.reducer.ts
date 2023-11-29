@@ -1,10 +1,10 @@
 import { createReducer, on } from '@ngrx/store'
-import { IClinic, NewOrUpdateClinic } from 'src/app/models/clinic.model'
+import { IClinic, INewUpdateClinic } from 'src/app/models/clinic.model'
 import { FormStatus } from 'src/app/models/form-status.model'
 import { createClinic, createClinicError, createClinicSuccess } from './new-clinic.actions'
 
 export interface INewClinicState {
-	form: NewOrUpdateClinic | null
+	form: INewUpdateClinic | null
 	clinic: IClinic | null
 	status: FormStatus
 	errorMsg: string | null

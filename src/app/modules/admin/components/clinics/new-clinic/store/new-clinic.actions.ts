@@ -1,10 +1,10 @@
 import { createAction, props } from '@ngrx/store'
 import { IActionError } from 'src/app/models/action-error.model'
-import { IClinic, NewOrUpdateClinic } from 'src/app/models/clinic.model'
+import { IClinic, INewUpdateClinic } from 'src/app/models/clinic.model'
 
 export const createClinic = createAction(
 	'[NewClinic] Create',
-	props<{clinicForm: NewOrUpdateClinic}>(),
+	props<{clinicForm: INewUpdateClinic}>(),
 )
 
 export const createClinicError = createAction(

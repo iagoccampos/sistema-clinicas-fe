@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { IEditPatient, INewPatient, IPatient } from '../models/patient.model'
+import { INewUpdatePatient, IPatient } from '../models/patient.model'
 import { MatDialog } from '@angular/material/dialog'
 import { ClinicService } from './clinic.service'
 import { DialogData, PatientDialogComponent } from '../modules/admin/components/patient/patient-dialog/patient-dialog.component'
@@ -16,11 +16,11 @@ export class PatientService {
 		return this.http.get<{ total: number, items: IPatient[] }>(this.generateUrl(), { params: { ...filter, page, limit } })
 	}
 
-	createPatient(patient: INewPatient) {
+	createPatient(patient: INewUpdatePatient) {
 		return this.http.post<IPatient>(this.generateUrl(), patient)
 	}
 
-	editPatient(patientId: string, patient: IEditPatient) {
+	editPatient(patientId: string, patient: INewUpdatePatient) {
 		return this.http.put<IPatient>(this.generateUrl(patientId), patient)
 	}
 

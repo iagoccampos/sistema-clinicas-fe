@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { tap } from 'rxjs'
-import { IClinic, ClinicQuery, NewOrUpdateClinic } from '../models/clinic.model'
+import { IClinic, ClinicQuery, INewUpdateClinic } from '../models/clinic.model'
 
 @Injectable({
 	providedIn: 'root',
@@ -35,11 +35,11 @@ export class ClinicService {
 		)
 	}
 
-	addClinic(newClinic: NewOrUpdateClinic) {
+	addClinic(newClinic: INewUpdateClinic) {
 		return this.http.post<IClinic>(this.clinicUrl, newClinic)
 	}
 
-	updateClinic(clinic: NewOrUpdateClinic) {
+	updateClinic(clinic: INewUpdateClinic) {
 		return this.http.put<IClinic>(`${this.clinicUrl}/${this.currentClinicId}`, clinic).pipe(
 			tap((val) => {
 				this._currentClinic = val

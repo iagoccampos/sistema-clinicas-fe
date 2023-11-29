@@ -1,5 +1,6 @@
-export interface IClinic {
-	_id: string
+import { ITimestamps } from './common.model'
+
+export interface INewUpdateClinic {
 	name: string
 	address?: {
 		street: string
@@ -13,6 +14,8 @@ export interface IClinic {
 	}
 }
 
-export type NewOrUpdateClinic = Omit<IClinic, '_id'>
+export interface IClinic extends INewUpdateClinic, ITimestamps {
+	_id: string
+}
 
 export type ClinicQuery = { name: string }

@@ -1,4 +1,6 @@
-export interface INewPatient {
+import { ITimestamps } from './common.model'
+
+export interface INewUpdatePatient {
 	name: string
 	birthday?: string
 	rg?: string
@@ -6,25 +8,16 @@ export interface INewPatient {
 	phones?: string[]
 }
 
-export interface IEditPatient extends INewPatient {}
-
 export interface IFindPatient {
-	filter: INewPatient
+	filter: INewUpdatePatient
 	page: number
 	limit: number
 }
 
-export interface IPatient {
+export interface IPatient extends INewUpdatePatient, ITimestamps {
 	_id: string
-	name: string
 	card: number
-	rg?: string
-	cpf?: string
-	birthday?: string
-	phones: string[]
 	clinic: string
-	createdAt: string
-	updatedAt: string
 }
 
 export interface IPatientsResponse { total: number, items: IPatient[] }
