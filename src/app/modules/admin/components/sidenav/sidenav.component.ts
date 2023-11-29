@@ -21,7 +21,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
 		iconName: 'person',
 		route: './pacientes',
 	}, {
-		displayName: 'Configuração',
+		displayName: 'Configurações',
 		iconName: 'settings',
 		route: './configuracao',
 	}]

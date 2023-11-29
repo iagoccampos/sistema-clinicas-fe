@@ -13,7 +13,7 @@
 			<mat-label>Nome</mat-label>
 			<input matInput formControlName="name" maxlength="50">
 		</mat-form-field>
-		<button mat-flat-button color="primary" text="Adicionar" [disabled]="clinicForm.invalid || (loading$ | async)">Adicionar
+		<button mat-flat-button color="primary" [disabled]="clinicForm.invalid || (loading$ | async)">Adicionar
 			<mat-icon *ngIf="loading$ | async"><mat-spinner color="primary" diameter="18"></mat-spinner></mat-icon>
 		</button>
 	</form>

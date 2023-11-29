@@ -1,22 +1,93 @@
 <app-page-header [hideHr]="true" title="Configuração"></app-page-header>
 
-<mat-expansion-panel>
-	<mat-expansion-panel-header>
-		<mat-panel-title>
-			<span class="material-icons">
-				warning
-			</span>
-			Área de perigo!
-		</mat-panel-title>
-	</mat-expansion-panel-header>
+<mat-accordion>
+	<mat-expansion-panel>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				<span class="material-icons">
+					settings
+				</span>
+				Configuração Geral da Clínica
+			</mat-panel-title>
+		</mat-expansion-panel-header>
 
-	<div class="box d-flex justify-content-between align-items-center">
-		<div class="">
-			<p class="title">Deletar clínica</p>
-			<p>O processo é irreversível. Assim que deletar sua clínica você não terá mais acesso nenhum a ela.</p>
+		<form [formGroup]="clinciDataForm">
+			<div class="row">
+				<div class="col">
+					<mat-form-field>
+						<mat-label>Nome</mat-label>
+						<input matInput formControlName="name">
+					</mat-form-field>
+				</div>
+			</div>
+			<div class="row" formGroupName="address">
+				<div class="col-6">
+					<mat-form-field>
+						<mat-label>Endereço</mat-label>
+						<input matInput formControlName="street">
+					</mat-form-field>
+				</div>
+				<div class="col-3">
+					<mat-form-field>
+						<mat-label>Cidade</mat-label>
+						<input matInput formControlName="city">
+					</mat-form-field>
+				</div>
+				<div class="col-1">
+					<mat-form-field>
+						<mat-label>UF</mat-label>
+						<mat-select formControlName="uf">
+							<mat-option *ngFor="let uf of ufs" [value]="uf">{{ uf }}</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+				<div class="col-2">
+					<mat-form-field>
+						<mat-label>CEP</mat-label>
+						<input matInput formControlName="cep" appMask="cep">
+					</mat-form-field>
+				</div>
+			</div>
+			<div class="row" formGroupName="company">
+				<div class="col">
+					<mat-form-field>
+						<mat-label>Razão Social</mat-label>
+						<input matInput formControlName="name">
+					</mat-form-field>
+				</div>
+				<div class="col">
+					<mat-form-field>
+						<mat-label>CNPJ</mat-label>
+						<input matInput formControlName="cnpj" appMask="cnpj">
+					</mat-form-field>
+				</div>
+			</div>
+		</form>
+		<button mat-flat-button color="primary" [disabled]="clinciDataForm.invalid || (loading$ | async)" (click)="updateClinic()"> Salvar
+			<mat-icon *ngIf="loading$ | async"><mat-spinner color="primary" diameter="18"></mat-spinner></mat-icon>
+		</button>
+	</mat-expansion-panel>
+
+	<mat-expansion-panel>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				<span class="material-icons">
+					warning
+				</span>
+				Área de perigo!
+			</mat-panel-title>
+		</mat-expansion-panel-header>
+
+		<div class="box d-flex justify-content-between align-items-center">
+			<div>
+				<p class="title">Deletar clínica</p>
+				<p>O processo é irreversível. Assim que deletar sua clínica você não terá mais acesso nenhum a ela.</p>
+			</div>
+			<div>
+				<button mat-flat-button color="warn" (click)="deleteClinic()">Deletar</button>
+			</div>
 		</div>
-		<div>
-			<button mat-flat-button color="warn" (click)="deleteClinic()">Deletar</button>
-		</div>
-	</div>
-</mat-expansion-panel>
+	</mat-expansion-panel>
+</mat-accordion>
+
+

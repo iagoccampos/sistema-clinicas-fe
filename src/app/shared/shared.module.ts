@@ -34,6 +34,7 @@ import { RgPipe } from './pipes/rg.pipe'
 import { CpfPipe } from './pipes/cpf.pipe'
 import { PhonePipe } from './pipes/phone.pipe'
 import { SnackbarComponent } from './components/snackbar/snackbar.component'
+import { MatSelectModule } from '@angular/material/select'
 
 registerLocaleData(localePT)
 
@@ -46,6 +47,7 @@ const materialModules = [
 	MatInputModule,
 	MatDatepickerModule,
 	MatDateFnsModule,
+	MatSelectModule,
 	MatIconModule,
 	MatToolbarModule,
 	MatSnackBarModule,

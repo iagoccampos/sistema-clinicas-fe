@@ -8,7 +8,7 @@ import { InputMaskDirective, InputmaskOptions, createMask } from '@ngneat/input-
 
 const basicMaskConfig: InputmaskOptions<any> = { autoUnmask: true }
 
-type MaskNames = 'rg' | 'cpf' | 'phone' | 'date'
+type MaskNames = 'rg' | 'cpf' | 'phone' | 'date' | 'cep' | 'cnpj'
 
 @Directive({
 	selector: 'input[appMask]',
@@ -39,6 +39,8 @@ export class MaskDirective extends InputMaskDirective {
 		rg: createMask({ ...basicMaskConfig, mask: '9.999.999' }),
 		cpf: createMask({ ...basicMaskConfig, mask: '999.999.999-99' }),
 		phone: createMask({ ...basicMaskConfig, mask: ['(99) 9999-9999', '(99) 9 9999-9999'], keepStatic: true }),
+		cep: createMask({ ...basicMaskConfig, mask: '99999-999' }),
+		cnpj: createMask({ ...basicMaskConfig, mask: '99.999.999/9999-99' }),
 	} as const
 
 	@Input() set appMask(appMask: MaskNames) {
