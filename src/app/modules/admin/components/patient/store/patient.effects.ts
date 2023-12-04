@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { catchError, map, of, switchMap, tap } from 'rxjs'
 import { PatientService } from 'src/app/services/patient.service'
-import { createPatientError, createPatient, createPatientSuccess, editPatient, editPatientSuccess, editPatientError, findPatients, findPatientsSuccess, findPatientsError, openCreateOrEditDialog, deletePatient, openDeleteDialog, deletePatientSuccess, deletePatientError } from './patient.actions'
+import { createPatientError, createPatient, createPatientSuccess, updatePatient, updatePatientSuccess, updatePatientError, findPatients, findPatientsSuccess, findPatientsError, openCreateOrUpdateDialog, deletePatient, openDeleteDialog, deletePatientSuccess, deletePatientError } from './patient.actions'
 import { SnackbarService } from 'src/app/services/snackbar.service'
 import { DialogService } from 'src/app/services/dialog.service'
 import { selectDeleteStatus } from './patient.selector'
 
 @Injectable()
 export class PatientEffects {
-	private readonly openCreateOrEditDialog = createEffect(() => {
+	private readonly openCreateOrUpdateDialog = createEffect(() => {
 		return this.actions.pipe(
-			ofType(openCreateOrEditDialog),
+			ofType(openCreateOrUpdateDialog),
 			tap((val) => {
 				this.patientService.openPatientDialog(val.patient)
 			}),
@@ -34,16 +34,16 @@ export class PatientEffects {
 		)
 	})
 
-	private readonly editPatient = createEffect(() => {
+	private readonly updatePatient = createEffect(() => {
 		return this.actions.pipe(
-			ofType(editPatient),
+			ofType(updatePatient),
 			switchMap((val) => {
-				return this.patientService.editPatient(val.id, val.patient).pipe(
+				return this.patientService.updatePatient(val.id, val.patient).pipe(
 					map((res) => {
-						return editPatientSuccess({ patient: res })
+						return updatePatientSuccess({ patient: res })
 					}),
 					catchError((err) => {
-						return of(editPatientError({ error: { errorMsg: err.error.message } }))
+						return of(updatePatientError({ error: { errorMsg: err.error.message } }))
 					}),
 				)
 			}),
@@ -97,7 +97,7 @@ export class PatientEffects {
 
 	private readonly patientError = createEffect(() => {
 		return this.actions.pipe(
-			ofType(createPatientError, editPatientError, findPatientsError, deletePatientError),
+			ofType(createPatientError, updatePatientError, findPatientsError, deletePatientError),
 			tap((val) => {
 				this.snackbarService.error(val.error.errorMsg)
 			}),
@@ -106,7 +106,7 @@ export class PatientEffects {
 
 	private readonly patientSuccess = createEffect(() => {
 		return this.actions.pipe(
-			ofType(createPatientSuccess, editPatientSuccess, deletePatientSuccess),
+			ofType(createPatientSuccess, updatePatientSuccess, deletePatientSuccess),
 			tap((val) => {
 				let message = ''
 
@@ -114,7 +114,7 @@ export class PatientEffects {
 					case '[Patient] CreateSuccess':
 						message = 'Paciente criado com sucesso.'
 						break
-					case '[Patient] EditSuccess':
+					case '[Patient] UpdateSuccess':
 						message = 'Paciente editado com sucesso.'
 						break
 					case '[Patient] DeleteSuccess':

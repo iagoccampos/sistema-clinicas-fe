@@ -4,8 +4,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { map, tap } from 'rxjs'
 import { Store } from '@ngrx/store'
 import { IPatient } from 'src/app/models/patient.model'
-import { createPatient, editPatient } from '../store/patient.actions'
-import { selectEditOrCreateStatus } from '../store/patient.selector'
+import { createPatient, updatePatient } from '../store/patient.actions'
+import { selectCreateOrUpdateStatus } from '../store/patient.selector'
 
 export type DialogData = { patient?: IPatient } | null
 
@@ -15,7 +15,7 @@ export type DialogData = { patient?: IPatient } | null
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PatientDialogComponent {
-	loading$ = this.store.select(selectEditOrCreateStatus).pipe(
+	loading$ = this.store.select(selectCreateOrUpdateStatus).pipe(
 		tap((val) => {
 			if(val === 'loading') {
 				this.patientForm.disable()
@@ -63,7 +63,7 @@ export class PatientDialogComponent {
 
 	submit() {
 		if(this.data?.patient) {
-			this.store.dispatch(editPatient({ id: this.data.patient._id, patient: this.patientForm.getRawValue() }))
+			this.store.dispatch(updatePatient({ id: this.data.patient._id, patient: this.patientForm.getRawValue() }))
 		} else {
 			this.store.dispatch(createPatient({ patient: this.patientForm.getRawValue() }))
 		}

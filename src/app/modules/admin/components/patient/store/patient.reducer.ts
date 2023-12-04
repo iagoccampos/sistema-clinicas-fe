@@ -1,12 +1,12 @@
 import { createReducer, on } from '@ngrx/store'
 import { FormStatus } from 'src/app/models/form-status.model'
 import { IFindPatient, INewUpdatePatient, IPatientsResponse } from 'src/app/models/patient.model'
-import { createPatientError, createPatient, createPatientSuccess, editPatient, editPatientError, editPatientSuccess, findPatients, findPatientsSuccess, findPatientsError, openCreateOrEditDialog, openDeleteDialog, deletePatient, deletePatientError, deletePatientSuccess } from './patient.actions'
+import { createPatientError, createPatient, createPatientSuccess, updatePatient, updatePatientError, updatePatientSuccess, findPatients, findPatientsSuccess, findPatientsError, openCreateOrUpdateDialog, openDeleteDialog, deletePatient, deletePatientError, deletePatientSuccess } from './patient.actions'
 
 export interface IPatientState {
-	editOrCreateForm: INewUpdatePatient | null
+	updateOrCreateForm: INewUpdatePatient | null
 	findForm: IFindPatient | null
-	editOrCreateStatus: FormStatus
+	updateOrCreateStatus: FormStatus
 	findStatus: FormStatus
 	deleteStatus: FormStatus
 	patients: IPatientsResponse | null
@@ -14,9 +14,9 @@ export interface IPatientState {
 }
 
 const initialState: IPatientState = {
-	editOrCreateForm: null,
+	updateOrCreateForm: null,
 	findForm: null,
-	editOrCreateStatus: 'pending',
+	updateOrCreateStatus: 'pending',
 	findStatus: 'pending',
 	deleteStatus: 'pending',
 	patients: null,
@@ -25,20 +25,20 @@ const initialState: IPatientState = {
 
 export const patientReducer = createReducer(
 	initialState,
-	on(openCreateOrEditDialog, (state): IPatientState => {
-		return { ...state, editOrCreateStatus: 'pending' }
+	on(openCreateOrUpdateDialog, (state): IPatientState => {
+		return { ...state, updateOrCreateStatus: 'pending' }
 	}),
 	on(openDeleteDialog, (state): IPatientState => {
 		return { ...state, deleteStatus: 'pending' }
 	}),
-	on(createPatient, editPatient, (state, action): IPatientState => {
-		return { ...state, editOrCreateStatus: 'loading', editOrCreateForm: action.patient }
+	on(createPatient, updatePatient, (state, action): IPatientState => {
+		return { ...state, updateOrCreateStatus: 'loading', updateOrCreateForm: action.patient }
 	}),
-	on(createPatientError, editPatientError, (state, action): IPatientState => {
-		return { ...state, editOrCreateStatus: 'error', errorMsg: action.error.errorMsg }
+	on(createPatientError, updatePatientError, (state, action): IPatientState => {
+		return { ...state, updateOrCreateStatus: 'error', errorMsg: action.error.errorMsg }
 	}),
-	on(createPatientSuccess, editPatientSuccess, (state): IPatientState => {
-		return { ...state, editOrCreateStatus: 'success' }
+	on(createPatientSuccess, updatePatientSuccess, (state): IPatientState => {
+		return { ...state, updateOrCreateStatus: 'success' }
 	}),
 	on(findPatients, (state, action): IPatientState => {
 		return { ...state, findStatus: 'loading', findForm: action.search, patients: null }

@@ -73,7 +73,7 @@
 		<ng-container matColumnDef="actions">
 			<th mat-header-cell *matHeaderCellDef> Ações </th>
 			<td mat-cell *matCellDef="let patient">
-				<button mat-icon-button type="button" color="accent" (click)="$event.stopPropagation(); editPatient(patient)">
+				<button mat-icon-button type="button" color="accent" (click)="$event.stopPropagation(); updatePatient(patient)">
 					<mat-icon>edit</mat-icon>
 				</button>
 				<button mat-icon-button type="button" color="warn" (click)="$event.stopPropagation(); deletePatient(patient)">

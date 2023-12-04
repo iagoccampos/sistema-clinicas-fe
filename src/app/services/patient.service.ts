@@ -20,7 +20,7 @@ export class PatientService {
 		return this.http.post<IPatient>(this.generateUrl(), patient)
 	}
 
-	editPatient(patientId: string, patient: INewUpdatePatient) {
+	updatePatient(patientId: string, patient: INewUpdatePatient) {
 		return this.http.put<IPatient>(this.generateUrl(patientId), patient)
 	}
 

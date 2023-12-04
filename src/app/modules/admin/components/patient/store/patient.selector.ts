@@ -3,9 +3,9 @@ import { IPatientState } from './patient.reducer'
 
 export const selectPatient = createFeatureSelector<IPatientState>('patient')
 
-export const selectEditOrCreateStatus = createSelector(
+export const selectCreateOrUpdateStatus = createSelector(
 	selectPatient,
-	(state) => state.editOrCreateStatus,
+	(state) => state.updateOrCreateStatus,
 )
 
 export const selectFindStatus = createSelector(

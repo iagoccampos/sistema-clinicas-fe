@@ -37,18 +37,18 @@ export const addUserSuccess = createAction(
 )
 
 // Update
-export const editUser = createAction(
-	'[User] EditUser',
+export const updateUser = createAction(
+	'[User] UpdateUser',
 	props<{ id: string, user: IUpdateUser }>(),
 )
 
-export const editUserError = createAction(
-	'[User] EditUserError',
+export const updateUserError = createAction(
+	'[User] UpdateUserError',
 	props<{ error: IActionError }>(),
 )
 
-export const editUserSuccess = createAction(
-	'[User] EditUserSuccess',
+export const updateUserSuccess = createAction(
+	'[User] UpdateUserSuccess',
 )
 
 // Update Password

@@ -3,7 +3,7 @@ import { MAT_SNACK_BAR_DATA, MatSnackBar } from '@angular/material/snack-bar'
 
 export interface ISnackbarData {
 	type: 'success' | 'error'
-	msg:string
+	msg: string
 }
 
 @Component({

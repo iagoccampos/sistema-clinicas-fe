@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { switchMap, map, catchError, of, tap } from 'rxjs'
 import { SnackbarService } from 'src/app/services/snackbar.service'
 import { DialogService } from 'src/app/services/dialog.service'
-import { addUser, addUserError, addUserSuccess, deleteUser, deleteUserError, deleteUserSuccess, editUser, editUserError, editUserSuccess, getUsers, getUsersError, getUsersSuccess, openDeleteUserDialog, openUpdateUserPassDialog, openUserDialog, updateUserPass, updateUserPassError, updateUserPassSuccess } from './user.actions'
+import { addUser, addUserError, addUserSuccess, deleteUser, deleteUserError, deleteUserSuccess, updateUser, updateUserError, updateUserSuccess, getUsers, getUsersError, getUsersSuccess, openDeleteUserDialog, openUpdateUserPassDialog, openUserDialog, updateUserPass, updateUserPassError, updateUserPassSuccess } from './user.actions'
 import { UserService } from 'src/app/services/user.service'
 import { selectDeleteUserStatus } from './user.selector'
 
@@ -43,14 +43,14 @@ export class UserEffects {
 
 	private readonly updateUser = createEffect(() => {
 		return this.actions$.pipe(
-			ofType(editUser),
+			ofType(updateUser),
 			switchMap((val) => {
 				return this.userService.updateUser(val.id, val.user).pipe(
 					map(() => {
-						return editUserSuccess()
+						return updateUserSuccess()
 					}),
 					catchError((err) => {
-						return of(editUserError({ error: { errorMsg: err.error.message } }))
+						return of(updateUserError({ error: { errorMsg: err.error.message } }))
 					}),
 				)
 			}),
@@ -103,7 +103,7 @@ export class UserEffects {
 		)
 	})
 
-	private readonly openCreateEditDialog = createEffect(() => {
+	private readonly openCreateUpdateDialog = createEffect(() => {
 		return this.actions$.pipe(
 			ofType(openUserDialog),
 			tap((val) => {
@@ -123,7 +123,7 @@ export class UserEffects {
 
 	private readonly userError = createEffect(() => {
 		return this.actions$.pipe(
-			ofType(getUsersError, addUserError, editUserError, updateUserPassError, deleteUserError),
+			ofType(getUsersError, addUserError, updateUserError, updateUserPassError, deleteUserError),
 			tap((val) => {
 				this.snackbarService.error(val.error.errorMsg)
 			}),
@@ -132,10 +132,10 @@ export class UserEffects {
 
 	private readonly userSuccess = createEffect(() => {
 		return this.actions$.pipe(
-			ofType(addUserSuccess, editUserSuccess, updateUserPassSuccess, deleteUserSuccess),
+			ofType(addUserSuccess, updateUserSuccess, updateUserPassSuccess, deleteUserSuccess),
 			map((val) => {
 				switch (val.type) {
-					case '[User] EditUserSuccess':
+					case '[User] UpdateUserSuccess':
 						this.snackbarService.success('Usuário alterado com sucesso.')
 						break
 					case '[User] AddUserSuccess':

@@ -6,8 +6,8 @@ import { interval, merge } from 'rxjs'
 import { debounce, filter, map, tap } from 'rxjs/operators'
 import { Store } from '@ngrx/store'
 import { IPatient, IPatientsResponse } from 'src/app/models/patient.model'
-import { selectDeleteStatus, selectEditOrCreateStatus, selectFindStatus, selectPatients } from '../store/patient.selector'
-import { findPatients, openCreateOrEditDialog, openDeleteDialog } from '../store/patient.actions'
+import { selectDeleteStatus, selectCreateOrUpdateStatus, selectFindStatus, selectPatients } from '../store/patient.selector'
+import { findPatients, openCreateOrUpdateDialog, openDeleteDialog } from '../store/patient.actions'
 
 @Component({
 	selector: 'app-find-patient',
@@ -66,7 +66,7 @@ export class FindPatientComponent implements AfterViewInit {
 
 		merge(
 			this.paginator.page,
-			this.store.select(selectEditOrCreateStatus).pipe(filter((val) => val === 'success')),
+			this.store.select(selectCreateOrUpdateStatus).pipe(filter((val) => val === 'success')),
 			this.store.select(selectDeleteStatus).pipe(filter((val) => val === 'success')),
 			this.findPatientsForm.valueChanges.pipe(debounce(() => interval(1000))),
 		).subscribe(() => this.store.dispatch(findPatients({ search: this.searchForm })))
@@ -77,8 +77,8 @@ export class FindPatientComponent implements AfterViewInit {
 		this.store.dispatch(findPatients({ search: this.searchForm }))
 	}
 
-	editPatient(patient: IPatient) {
-		this.store.dispatch(openCreateOrEditDialog({ patient }))
+	updatePatient(patient: IPatient) {
+		this.store.dispatch(openCreateOrUpdateDialog({ patient }))
 	}
 
 	deletePatient(patient: IPatient) {

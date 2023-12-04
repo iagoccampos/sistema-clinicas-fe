@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store'
-import { INewEditUserState } from './user.reducer'
+import { INewOrUpdateUserState } from './user.reducer'
 
-export const selectConfig = createFeatureSelector<INewEditUserState>('user')
+export const selectConfig = createFeatureSelector<INewOrUpdateUserState>('user')
 
 export const selectGetUsersStatus = createSelector(
 	selectConfig,
@@ -13,7 +13,7 @@ export const selectUsers = createSelector(
 	(user) => user.users,
 )
 
-export const selectAddEditUserStatus = createSelector(
+export const selectAddOrUpdateUserStatus = createSelector(
 	selectConfig,
 	(user) => user.addUpdateUserStatus,
 )
