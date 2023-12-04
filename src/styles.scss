@@ -102,6 +102,11 @@ mat-panel-title {
 	.expanded-detail {
 		overflow: hidden;
 	}
+
+	.mat-mdc-no-data-row td {
+		padding: 8px;
+		text-align: center;
+	}
 }
 
 // Custom snackbar

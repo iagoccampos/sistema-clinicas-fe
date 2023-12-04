@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { Store } from '@ngrx/store'
-import { openDeleteClinicDialog, updateClinic } from './store/config.actions'
+import { openDeleteClinicDialog, updateClinic } from './store/config/config.actions'
 import { ClinicService } from 'src/app/services/clinic.service'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { states } from 'src/app/constants/constants'
-import { selectUpdateClinicStatus } from './store/config.selector'
-import { map, tap } from 'rxjs'
+import { selectUpdateClinicStatus } from './store/config/config.selector'
+import { map } from 'rxjs'
 
 @Component({
 	selector: 'app-config',
@@ -17,14 +17,8 @@ export class ConfigComponent {
 	readonly ufs = states.map((val) => val.uf)
 
 	readonly loading$ = this.store.select(selectUpdateClinicStatus).pipe(
-		tap((val) => {
-			if(val === 'loading') {
-				this.clinciDataForm.disable()
-			} else {
-				this.clinciDataForm.enable()
-			}
-		}),
 		map((val) => {
+			val === 'loading'? this.clinciDataForm.disable() : this.clinciDataForm.enable()
 			return val === 'loading'
 		}),
 	)

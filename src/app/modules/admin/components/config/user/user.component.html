@@ -1,0 +1,44 @@
+<h3>Adicionar usuários a clínica</h3>
+<button mat-flat-button color="primary" (click)="addUser()">Adicionar</button>
+
+<h3>Usuários cadastrados</h3>
+
+<app-center-spinner [loading$]="loading$"></app-center-spinner>
+
+<div class="mat-elevation-z8" [hidden]="loading$ | async">
+	<table mat-table [dataSource]="users$">
+		<ng-container matColumnDef="name">
+			<th mat-header-cell *matHeaderCellDef> Nome </th>
+			<td mat-cell *matCellDef="let user"> {{ user.name }} </td>
+		</ng-container>
+
+		<ng-container matColumnDef="username">
+			<th mat-header-cell *matHeaderCellDef> Usuário </th>
+			<td mat-cell *matCellDef="let user"> {{ user.username }} </td>
+		</ng-container>
+
+		<ng-container matColumnDef="options">
+			<th mat-header-cell *matHeaderCellDef> Ações </th>
+			<td mat-cell *matCellDef="let user">
+				<button mat-icon-button type="button" color="accent" (click)="updateUser(user)">
+					<mat-icon>edit</mat-icon>
+				</button>
+				<button mat-icon-button type="button" color="accent" (click)="updatePassword(user)">
+					<mat-icon>password</mat-icon>
+				</button>
+				<button mat-icon-button type="button" color="warn" (click)="deleteUser(user)">
+					<mat-icon>delete</mat-icon>
+				</button>
+			</td>
+		</ng-container>
+
+		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+		<tr class="mat-row" *matNoDataRow>
+			<td class="mat-cell" [attr.colspan]="displayedColumns.length">
+				Nenhum usuário encontrado
+			</td>
+		</tr>
+	</table>
+</div>
+

@@ -10,7 +10,7 @@ import { selectEditOrCreateStatus } from '../store/patient.selector'
 export type DialogData = { patient?: IPatient } | null
 
 @Component({
-	selector: 'app-new-user-dialog',
+	selector: 'app-new-patient-dialog',
 	templateUrl: './patient-dialog.component.html',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })

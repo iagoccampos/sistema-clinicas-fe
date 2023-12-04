@@ -20,8 +20,13 @@ import { PatientDialogComponent } from './components/patient/patient-dialog/pati
 import { PatientEffects } from './components/patient/store/patient.effects'
 import { patientReducer } from './components/patient/store/patient.reducer'
 import { ConfigComponent } from './components/config/config.component'
-import { ConfigEffects } from './components/config/store/config.effects'
-import { configReducer } from './components/config/store/config.reducer'
+import { ConfigEffects } from './components/config/store/config/config.effects'
+import { configReducer } from './components/config/store/config/config.reducer'
+import { UserDialogComponent } from './components/config/user/user-dialog/user-dialog.component'
+import { userReducer } from './components/config/user/store/user.reducer'
+import { UserEffects } from './components/config/user/store/user.effects'
+import { UserComponent } from './components/config/user/user.component'
+import { UserPassDialogComponent } from './components/config/user/user-password/user-pass.component'
 
 @NgModule({
 	declarations: [
@@ -36,6 +41,9 @@ import { configReducer } from './components/config/store/config.reducer'
 		PatientDialogComponent,
 		FindPatientComponent,
 		ConfigComponent,
+		UserComponent,
+		UserDialogComponent,
+		UserPassDialogComponent,
 	],
 	imports: [
 		CommonModule,
@@ -44,8 +52,12 @@ import { configReducer } from './components/config/store/config.reducer'
 		StoreModule.forFeature('newClinic', newClinicReducer),
 		StoreModule.forFeature('patient', patientReducer),
 		StoreModule.forFeature('config', configReducer),
+		StoreModule.forFeature('user', userReducer),
 		EffectsModule.forFeature([
-			NewClinicEffects, PatientEffects, ConfigEffects,
+			NewClinicEffects,
+			PatientEffects,
+			ConfigEffects,
+			UserEffects,
 		]),
 	],
 })

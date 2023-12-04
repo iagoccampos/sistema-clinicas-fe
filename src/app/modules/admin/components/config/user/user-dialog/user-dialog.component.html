@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>{{ data?.user ? 'Editar Paciente' : 'Adicionar Paciente' }}</h2>
+<mat-dialog-content>
+	<form [formGroup]="userForm" autocomplete="off" id="form">
+		<mat-form-field>
+			<mat-label>Nome:</mat-label>
+			<input matInput formControlName="name" maxlength="30" autocomplete="one-time-code">
+		</mat-form-field>
+		<mat-form-field>
+			<mat-label>Usuário</mat-label>
+			<input matInput formControlName="username" maxlength="30" autocomplete="one-time-code">
+		</mat-form-field>
+		<ng-container *ngIf="!data?.user" [formGroup]="passForm">
+			<mat-form-field>
+				<mat-label>Senha</mat-label>
+				<input matInput [type]="hidePass ? 'password' : 'text'" formControlName="password" autocomplete="one-time-code" maxlength="30">
+				<button mat-icon-button matSuffix type="button" tabindex="-1" (click)="toggleHidePass()">
+					<mat-icon>{{ hidePass ? 'visibility_off' : 'visibility' }}</mat-icon>
+				</button>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>Repita a senha</mat-label>
+				<input matInput [type]="hideConfPass ? 'password' : 'text'" formControlName="passwordConf" autocomplete="one-time-code" maxlength="30" [errorStateMatcher]="matcher">
+				<button mat-icon-button matSuffix type="button" tabindex="-1" (click)="toggleHideConfPass()">
+					<mat-icon>{{ hideConfPass ? 'visibility_off' : 'visibility' }}</mat-icon>
+				</button>
+				<mat-error *ngIf="passForm.hasError('passwordMismatch')">
+					As senhas não conferem.
+				</mat-error>
+			</mat-form-field>
+		</ng-container>
+	</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button mat-button type="button" mat-dialog-close>Cancelar</button>
+	<button mat-flat-button color="primary" form="form" [disabled]="userForm.invalid || (loading$ | async)" (click)="submit()">
+		{{ data?.user ? 'Editar' : 'Adicionar' }}
+		<mat-icon *ngIf="loading$ | async"><mat-spinner color="primary" diameter="18"></mat-spinner></mat-icon>
+	</button>
+</mat-dialog-actions>

@@ -35,6 +35,7 @@ import { CpfPipe } from './pipes/cpf.pipe'
 import { PhonePipe } from './pipes/phone.pipe'
 import { SnackbarComponent } from './components/snackbar/snackbar.component'
 import { MatSelectModule } from '@angular/material/select'
+import { CenterSpinnerComponent } from './components/center-spinner/center-spinner.component'
 
 registerLocaleData(localePT)
 
@@ -66,6 +67,7 @@ const components = [
 	PageHeaderComponent,
 	DeleteConfirmationComponent,
 	SnackbarComponent,
+	CenterSpinnerComponent,
 ]
 
 const pipes = [
