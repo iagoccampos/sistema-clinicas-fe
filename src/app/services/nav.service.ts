@@ -1,24 +1,20 @@
 import { Injectable } from '@angular/core'
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject, Subject } from 'rxjs'
 
 @Injectable({
 	providedIn: 'root',
 })
 export class NavService {
-	private sidenavOpenSub$ = new BehaviorSubject(true)
+	private sidenavToggleSub$ = new Subject<void>()
 	private showSidenavToggleSub$ = new BehaviorSubject(false)
 
-	sidenavOpen$ = this.sidenavOpenSub$.asObservable()
+	sidenavToggle$ = this.sidenavToggleSub$.asObservable()
 	showSidenavToggle$ = this.showSidenavToggleSub$.asObservable()
 
 	constructor() { }
 
 	toggleSidenav() {
-		this.sidenavOpenSub$.next(!this.sidenavOpenSub$.getValue())
-	}
-
-	showSidenav() {
-		this.sidenavOpenSub$.next(true)
+		this.sidenavToggleSub$.next()
 	}
 
 	showSidenavToggle(show: boolean) {

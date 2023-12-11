@@ -2,15 +2,15 @@
 	flex: 1 1 auto;
 }
 
+.selected {
+	background: rgba(0, 0, 0, 0.2) !important;
+}
+
 mat-toolbar {
 	button {
 		height: 100%;
 		border-radius: 0px;
 		box-shadow: none !important;
-
-		&.selected {
-			background: rgba(0, 0, 0, 0.2) !important;
-		}
 
 		::ng-deep .mat-mdc-button-persistent-ripple::before {
 			border-radius: 0px !important;
@@ -19,5 +19,17 @@ mat-toolbar {
 
 	> span {
 		margin-right: 16px;
+	}
+}
+
+mat-divider {
+	margin: 8px 8px;
+}
+
+.button-group {
+	display: flex;
+
+	mat-icon {
+		margin: 0px !important;
 	}
 }
