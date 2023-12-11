@@ -4,7 +4,7 @@ import { Observable } from 'rxjs'
 @Component({
 	selector: 'app-center-spinner',
 	template: `
-		<div class="d-flex justify-content-center my-3" *ngIf="loading$ |async">
+		<div class="d-flex justify-content-center my-3" *ngIf="loading$ | async">
 			<mat-spinner></mat-spinner>
 		</div>
 	`,
