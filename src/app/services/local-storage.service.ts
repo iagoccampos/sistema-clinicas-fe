@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core'
 })
 export class LocalStorageService {
 	private readonly tokenKey = 'token'
-	private readonly darkModeKey = 'darkMode'
+	private readonly themeKey = 'prefers-color'
 
 	constructor() { }
 
@@ -21,11 +21,11 @@ export class LocalStorageService {
 		localStorage.removeItem(this.tokenKey)
 	}
 
-	getSetDarkTheme(darkMode?: boolean) {
-		if(darkMode !== undefined) {
-			localStorage.setItem(this.darkModeKey, darkMode ? 't' : 'f')
+	getSetTheme(theme?: string) {
+		if(theme !== undefined) {
+			localStorage.setItem(this.themeKey, theme)
 		}
 
-		return localStorage.getItem(this.darkModeKey) === 't'
+		return localStorage.getItem(this.themeKey)
 	}
 }

@@ -43,7 +43,7 @@ export class NavbarComponent implements OnDestroy {
 	}
 
 	toggleLightMode() {
-		this.themeService.toggleIsDarkThemeMode()
+		this.themeService.toggleTheme()
 	}
 
 	ngOnDestroy() {

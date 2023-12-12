@@ -32,7 +32,7 @@ $light-theme: mat.define-light-theme(
 @include mat.all-component-themes($light-theme);
 @include styles-component-themes.themes($light-theme);
 
-:is(.main-div, .cdk-overlay-container).dark-theme {
+.color-scheme-dark {
 	@include mat.all-component-colors($dark-theme);
 	@include styles-component-themes.themes($dark-theme);
 }
@@ -40,13 +40,8 @@ $light-theme: mat.define-light-theme(
 /* You can add global styles to this file, and also import other style files */
 
 html,
-body,
-app-root {
-	min-height: 100vh;
-}
-
-app-root {
-	display: grid;
+body {
+	height: 100svh;
 }
 
 body {
@@ -63,7 +58,7 @@ table.mat-table {
 
 .container-fluid {
 	width: auto !important;
-	padding: 25px !important;
+	// padding: 25px !important;
 }
 
 // Pra colocar icones nos titulos
