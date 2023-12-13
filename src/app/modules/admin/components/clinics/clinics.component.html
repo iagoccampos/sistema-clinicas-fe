@@ -1,6 +1,9 @@
-<div class="container-fluid">
+<div class="mx-3">
 	<app-new-clinic></app-new-clinic>
 	<app-page-header title="Clínicas"></app-page-header>
+</div>
+
+<div class="container-fluid">
 	<ng-container *ngIf="{ clinics: getClinics$ | async, error: getClinicsError$ | async } as data">
 		<div class="row">
 			<ng-container *ngIf="data.error">
