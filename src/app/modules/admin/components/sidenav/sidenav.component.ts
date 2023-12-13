@@ -35,7 +35,8 @@ export class SidenavComponent implements OnInit, OnDestroy {
 			map((val) => val.matches ? 56 : 64),
 		)
 
-	readonly opened$ = new BehaviorSubject(true)
+	private readonly openedSub$ = new BehaviorSubject(true)
+	readonly opened$ = this.openedSub$.asObservable().pipe(tap((val) => this.navService.emitSideNavOpen(val)))
 
 	readonly navItems: INavItem[] = [{
 		displayName: 'Visão geral',
@@ -75,15 +76,15 @@ export class SidenavComponent implements OnInit, OnDestroy {
 	}
 
 	private open() {
-		this.opened$.next(true)
+		this.openedSub$.next(true)
 	}
 
 	public close() {
-		this.opened$.next(false)
+		this.openedSub$.next(false)
 	}
 
 	private toggle() {
-		this.opened$.next(!this.opened$.value)
+		this.openedSub$.next(!this.openedSub$.value)
 	}
 
 	ngOnDestroy() {

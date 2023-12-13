@@ -5,11 +5,13 @@ import { BehaviorSubject, Subject } from 'rxjs'
 	providedIn: 'root',
 })
 export class NavService {
-	private sidenavToggleSub$ = new Subject<void>()
-	private showSidenavToggleSub$ = new BehaviorSubject(false)
+	private readonly sidenavToggleSub$ = new Subject<void>()
+	private readonly sidenavOpenSub$ = new BehaviorSubject(true)
+	private readonly showSidenavToggleSub$ = new BehaviorSubject(false)
 
-	sidenavToggle$ = this.sidenavToggleSub$.asObservable()
-	showSidenavToggle$ = this.showSidenavToggleSub$.asObservable()
+	readonly sidenavToggle$ = this.sidenavToggleSub$.asObservable()
+	readonly sidenavOpen$ = this.sidenavOpenSub$.asObservable()
+	readonly showSidenavToggle$ = this.showSidenavToggleSub$.asObservable()
 
 	constructor() { }
 
@@ -19,5 +21,9 @@ export class NavService {
 
 	showSidenavToggle(show: boolean) {
 		this.showSidenavToggleSub$.next(show)
+	}
+
+	emitSideNavOpen(open: boolean) {
+		this.sidenavOpenSub$.next(open)
 	}
 }

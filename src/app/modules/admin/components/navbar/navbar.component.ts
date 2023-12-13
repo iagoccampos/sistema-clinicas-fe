@@ -32,6 +32,8 @@ export class NavbarComponent implements OnDestroy {
 			map((val) => val.matches ? true : false),
 		)
 
+	readonly sideNavOpen$ = this.navService.sidenavOpen$
+
 	constructor(public navService: NavService, public themeService: ThemeService, private breakpointObserver: BreakpointObserver, public store: Store) {}
 
 	logout() {
