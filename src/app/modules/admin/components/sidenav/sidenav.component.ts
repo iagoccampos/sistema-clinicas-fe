@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { MatSidenav } from '@angular/material/sidenav'
-import { NavigationEnd, Router } from '@angular/router'
+import { NavigationEnd, NavigationSkipped, Router } from '@angular/router'
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
-import { BehaviorSubject, Subject, distinctUntilChanged, filter, from, last, map, switchMap, takeUntil } from 'rxjs'
+import { BehaviorSubject, Subject, distinctUntilChanged, filter, map, takeUntil, tap } from 'rxjs'
 import { NavService } from 'src/app/services/nav.service'
 import { INavItem } from './nav-list-item/nav-list-item.component'
 import { IClinic } from 'src/app/models/clinic.model'
@@ -61,7 +61,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
 		// Se a rota for selecionada, fecha se for do modo 'over'
 		router.events.pipe(
 			takeUntil(this.destroy$),
-			filter((val) => val instanceof NavigationEnd),
+			filter((val) => val instanceof NavigationEnd || val instanceof NavigationSkipped),
 		).subscribe(() => {
 			if(this.sideNav?.mode === 'over') {
 				this.close()
