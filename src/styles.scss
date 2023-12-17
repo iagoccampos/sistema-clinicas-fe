@@ -56,6 +56,10 @@ table.mat-table {
 	width: 100%;
 }
 
+.mat-table-container {
+	overflow-x: auto;
+}
+
 .container-fluid {
 	width: auto !important;
 	// padding: 25px !important;
