@@ -3,10 +3,10 @@
 
 <h3>Usuários cadastrados</h3>
 
-<app-center-spinner [loading$]="loading$"></app-center-spinner>
+<app-center-spinner [loading$]="loading$" [hideTarget]="target"></app-center-spinner>
 
-<div class="row">
-	<div class="mat-elevation-z8 col-xl-6 col-lg-8 col-md-10" [hidden]="loading$ | async">
+<div class="row" #target>
+	<div class="mat-elevation-z8 col-xl-6 col-lg-8 col-md-10">
 		<table mat-table [dataSource]="users$">
 			<ng-container matColumnDef="name">
 				<th mat-header-cell *matHeaderCellDef> Nome </th>

@@ -39,11 +39,9 @@
 	<button type="button" mat-flat-button color="accent" class="mb-3" (click)="clearForm()">Limpar</button>
 </form>
 
-<div class="d-flex justify-content-center my-3" *ngIf="loading$ |async">
-	<mat-spinner></mat-spinner>
-</div>
+<app-center-spinner [loading$]="loading$" [hideTarget]="table"></app-center-spinner>
 
-<div class="mat-elevation-z8" [hidden]="loading$ | async">
+<div class="mat-elevation-z8" #table>
 	<div class="mat-table-container">
 		<table mat-table [dataSource]="patients$" multiTemplateDataRows>
 			<ng-container matColumnDef="card">
