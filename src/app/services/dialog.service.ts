@@ -12,4 +12,8 @@ export class DialogService {
 	openDeleteConfirmationDialog(data: IDialogData) {
 		return this.dialog.open<DeleteConfirmationComponent, IDialogData, boolean>(DeleteConfirmationComponent, { data	})
 	}
+
+	closeAll() {
+		this.dialog.closeAll()
+	}
 }
