@@ -14,6 +14,10 @@ export class SnackbarService {
 	constructor(private snackBar: MatSnackBar) { }
 
 	error(msg: string) {
+		if(!msg) {
+			return
+		}
+
 		this.snackBar.openFromComponent<SnackbarComponent, ISnackbarData>(SnackbarComponent, {
 			...this.config,
 			duration: this.calculateTime(msg),
@@ -23,6 +27,10 @@ export class SnackbarService {
 	}
 
 	success(msg: string) {
+		if(!msg) {
+			return
+		}
+
 		this.snackBar.openFromComponent<SnackbarComponent, ISnackbarData>(SnackbarComponent, {
 			...this.config,
 			duration: this.calculateTime(msg),
