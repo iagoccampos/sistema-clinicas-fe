@@ -1,17 +1,17 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core'
-import { Observable, Subject, takeUntil } from 'rxjs'
+import { Observable, Subject, of, takeUntil } from 'rxjs'
 
 @Component({
 	selector: 'app-center-spinner',
 	template: `
-		<div class="d-flex justify-content-center my-3" *ngIf="loading$ | async">
+		<div class="d-flex justify-content-center my-5" *ngIf="loading$ | async">
 			<mat-spinner></mat-spinner>
 		</div>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CenterSpinnerComponent implements OnInit, OnDestroy {
-	@Input({ required: true }) loading$: Observable<boolean> | null = null
+	@Input() loading$: Observable<boolean> | null = of(true)
 	@Input() hideTarget: HTMLElement | null = null
 
 	private currentTargetDisplay = ''
