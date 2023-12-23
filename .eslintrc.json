@@ -45,6 +45,7 @@
 						"SwitchCase": 1
 					}
 				],
+				"space-infix-ops": "error",
 				"no-multi-spaces": "error",
 				"spaced-comment": "error",
 				"no-trailing-spaces": "error",

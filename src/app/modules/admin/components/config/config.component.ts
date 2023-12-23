@@ -18,7 +18,7 @@ export class ConfigComponent {
 
 	readonly loading$ = this.store.select(selectUpdateClinicStatus).pipe(
 		map((val) => {
-			val === 'loading'? this.clinciDataForm.disable() : this.clinciDataForm.enable()
+			val === 'loading' ? this.clinciDataForm.disable() : this.clinciDataForm.enable()
 			return val === 'loading'
 		}),
 	)
