@@ -47,7 +47,6 @@ export class AuthEffects {
 		return this.actions$.pipe(
 			ofType(logout),
 			tap(() => {
-				this.dialogService.closeAll()
 				this.authService.logoutAndRedirect()
 			}),
 		)
@@ -62,5 +61,5 @@ export class AuthEffects {
 		)
 	}, { dispatch: false })
 
-	constructor(private actions$: Actions, private authService: AuthService, private snackbarService: SnackbarService, private dialogService: DialogService) {}
+	constructor(private actions$: Actions, private authService: AuthService, private snackbarService: SnackbarService) {}
 }
