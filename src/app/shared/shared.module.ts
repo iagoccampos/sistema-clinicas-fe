@@ -36,6 +36,7 @@ import { PhonePipe } from './pipes/phone.pipe'
 import { SnackbarComponent } from './components/snackbar/snackbar.component'
 import { MatSelectModule } from '@angular/material/select'
 import { CenterSpinnerComponent } from './components/center-spinner/center-spinner.component'
+import { ButtonLoadingDirective } from './directives/mat-button-loading.directive'
 
 registerLocaleData(localePT)
 
@@ -80,6 +81,7 @@ const pipes = [
 const directives = [
 	MaskDirective,
 	CurrencyMaskDirective,
+	ButtonLoadingDirective,
 ]
 
 @NgModule({

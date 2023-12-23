@@ -24,8 +24,7 @@
 								</button>
 							</mat-form-field>
 						</div>
-						<button mat-flat-button color="primary" type="submit" [disabled]="(loginForm.invalid && loginForm.touched) || loginForm.disabled">
-							<mat-icon *ngIf="loading$ | async"><mat-spinner color="primary" diameter="18"></mat-spinner></mat-icon>
+						<button mat-flat-button [appButtonLoading]="loading$ | async" color="primary" type="submit" [disabled]="loginForm.invalid && loginForm.touched">
 							Entrar
 						</button>
 					</form>

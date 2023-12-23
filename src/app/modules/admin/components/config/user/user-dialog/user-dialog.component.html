@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>{{ data?.user ? 'Editar Paciente' : 'Adicionar Paciente' }}</h2>
 <mat-dialog-content>
-	<form [formGroup]="userForm" autocomplete="off" id="form">
+	<form [formGroup]="userForm" autocomplete="off" id="form" (ngSubmit)="submit()">
 		<mat-form-field>
 			<mat-label>Nome:</mat-label>
 			<input matInput formControlName="name" maxlength="30" autocomplete="one-time-code">
@@ -32,8 +32,7 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
 	<button mat-button type="button" mat-dialog-close>Cancelar</button>
-	<button mat-flat-button color="primary" form="form" [disabled]="userForm.invalid || (loading$ | async)" (click)="submit()">
+	<button mat-flat-button [appButtonLoading]="loading$ | async" color="primary" form="form" [disabled]="userForm.invalid">
 		{{ data?.user ? 'Editar' : 'Adicionar' }}
-		<mat-icon *ngIf="loading$ | async"><mat-spinner color="primary" diameter="18"></mat-spinner></mat-icon>
 	</button>
 </mat-dialog-actions>
