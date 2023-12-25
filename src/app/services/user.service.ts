@@ -35,7 +35,7 @@ export class UserService {
 	}
 
 	updateUserPass(userId: string, password: string) {
-		return this.http.put<IUser>(`/api/user/${userId}/pass`, { password })
+		return this.http.put<IUser>(`/api/user/${userId}`, { password })
 	}
 
 	deleteUser(userId: string) {
