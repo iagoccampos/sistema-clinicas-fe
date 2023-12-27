@@ -6,7 +6,7 @@ import { map } from 'rxjs'
 import { IUser } from 'src/app/models/user.model'
 import { updateUserPass } from '../store/user.actions'
 import { selectUpdateUserPassStatus } from '../store/user.selector'
-import { PassErrorStateMatcher, passConfirmation } from 'src/app/shared/code-templates/reactive-form-validator'
+import { PassErrorStateMatcher, passConf } from 'src/app/shared/code-templates/reactive-form-validator'
 
 export type DialogData = { user: IUser }
 
@@ -28,6 +28,10 @@ export class UserPassDialogComponent {
 				this.passForm.disable()
 			}
 
+			if(val === 'error') {
+				this.passForm.enable()
+			}
+
 			if(val === 'success') {
 				this.dialogRef.close()
 			}
@@ -38,8 +42,8 @@ export class UserPassDialogComponent {
 
 	readonly passForm = new FormGroup({
 		password: new FormControl('', { validators: [Validators.required, Validators.minLength(6), Validators.maxLength(30)], nonNullable: true }),
-		passwordConf: new FormControl('', { nonNullable: true }),
-	}, { validators: passConfirmation })
+		passwordConf: new FormControl('', { validators: passConf, nonNullable: true }),
+	})
 
 	constructor(public dialogRef: MatDialogRef<UserPassDialogComponent, void>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private store: Store) {
 		dialogRef.updateSize('350px')

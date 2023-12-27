@@ -18,7 +18,7 @@ import { MatListModule } from '@angular/material/list'
 import { ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { PageHeaderComponent } from './components/page-header/page-header.component'
-import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core'
+import { DateAdapter, ErrorStateMatcher, MAT_DATE_LOCALE, ShowOnDirtyErrorStateMatcher } from '@angular/material/core'
 import { MatTableModule } from '@angular/material/table'
 import { MAT_PAGINATOR_DEFAULT_OPTIONS, MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator'
 import { MatDateFnsModule, DateFnsAdapter } from '@angular/material-date-fns-adapter'
@@ -37,6 +37,7 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component'
 import { MatSelectModule } from '@angular/material/select'
 import { CenterSpinnerComponent } from './components/center-spinner/center-spinner.component'
 import { ButtonLoadingDirective } from './directives/mat-button-loading.directive'
+import { InputComponent } from './components/input/input.component'
 
 registerLocaleData(localePT)
 
@@ -69,6 +70,7 @@ const components = [
 	DeleteConfirmationComponent,
 	SnackbarComponent,
 	CenterSpinnerComponent,
+	InputComponent,
 ]
 
 const pipes = [
@@ -113,6 +115,7 @@ const directives = [
 		{ provide: MAT_DATE_LOCALE, useValue: ptBR },
 		{ provide: DateAdapter, useClass: DateFnsAdapter, deps: [MAT_DATE_LOCALE] },
 		{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
+		{ provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
 		{
 			provide: MAT_PAGINATOR_DEFAULT_OPTIONS, useValue: {
 				pageSizeOptions: [10, 25, 100], showFirstLastButtons: true, formFieldAppearance: 'outline',

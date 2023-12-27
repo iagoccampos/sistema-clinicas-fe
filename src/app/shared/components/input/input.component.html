@@ -1,0 +1,17 @@
+<mat-form-field *ngIf="control" class="mb-1">
+	<mat-label>{{ label }}</mat-label>
+	<input
+		matInput
+		[formControl]="control"
+		[maxlength]="maxLength"
+		[type]="type === 'password' && !hidePass ? 'text' : type"
+		[autocomplete]="autocomplete">
+
+	<button mat-icon-button matSuffix *ngIf="type === 'password'" type="button" tabindex="-1" (click)="togglePass()">
+		<mat-icon>{{ hidePass ? 'visibility_off' : 'visibility' }}</mat-icon>
+	</button>
+
+	<mat-error *ngIf="currentErrorMsg">
+		{{ currentErrorMsg }}
+	</mat-error>
+</mat-form-field>

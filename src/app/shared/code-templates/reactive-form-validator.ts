@@ -10,11 +10,10 @@ export class PassErrorStateMatcher implements ErrorStateMatcher {
 	}
 }
 
-export const passConfirmation = (control: AbstractControl) => {
-	const password = control.get('password')
-	const passwordConf = control.get('passwordConf')
+export const passConf = (control: AbstractControl) => {
+	const password = control.parent?.get('password')
 
-	if(password?.value !== passwordConf?.value) {
+	if(password?.value !== control.value) {
 		return { passwordMismatch: true }
 	}
 

@@ -6,7 +6,7 @@ import { tap, map } from 'rxjs'
 import { IUser } from 'src/app/models/user.model'
 import { addUser, updateUser } from '../store/user.actions'
 import { selectAddOrUpdateUserStatus } from '../store/user.selector'
-import { PassErrorStateMatcher, passConfirmation } from 'src/app/shared/code-templates/reactive-form-validator'
+import { PassErrorStateMatcher, passConf } from 'src/app/shared/code-templates/reactive-form-validator'
 
 export type DialogData = { user?: IUser } | null
 
@@ -30,6 +30,10 @@ export class UserDialogComponent {
 			}
 
 			if(val === 'success') {
+				this.userForm.enable()
+			}
+
+			if(val === 'success') {
 				this.dialogRef.close()
 			}
 		}),
@@ -39,18 +43,18 @@ export class UserDialogComponent {
 	)
 
 	readonly userForm = new FormGroup({
-		name: new FormControl('', { validators: [Validators.required, Validators.minLength(6), Validators.maxLength(30)], nonNullable: true }),
+		name: new FormControl('', { validators: [Validators.required, Validators.minLength(6), Validators.maxLength(10)], nonNullable: true }),
 		username: new FormControl('', { validators: [Validators.required, Validators.minLength(6), Validators.maxLength(30)], nonNullable: true }),
-	})
-
-	readonly passForm = new FormGroup({
 		password: new FormControl('', { validators: [Validators.required, Validators.minLength(6), Validators.maxLength(30)], nonNullable: true }),
-		passwordConf: new FormControl('', { nonNullable: true }),
-	}, { validators: passConfirmation })
+		passwordConf: new FormControl('', { validators: passConf, nonNullable: true }),
+	})
 
 	constructor(public dialogRef: MatDialogRef<UserDialogComponent, void>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private store: Store) {
 		if(data?.user) {
 			this.userForm.patchValue(data.user)
+
+			this.userForm.controls.password.clearValidators()
+			this.userForm.controls.passwordConf.clearValidators()
 		}
 
 		dialogRef.updateSize('350px')
@@ -66,9 +70,11 @@ export class UserDialogComponent {
 
 	submit() {
 		if(this.data?.user) {
-			this.store.dispatch(updateUser({ id: this.data.user._id, user: this.userForm.getRawValue() }))
+			const user = { ...this.userForm.getRawValue(), password: undefined, passwordConf: undefined }
+			this.store.dispatch(updateUser({ id: this.data.user._id, user }))
 		} else {
-			this.store.dispatch(addUser({ user: { ...this.userForm.getRawValue(), ...this.passForm.getRawValue() } }))
+			const user = { ...this.userForm.getRawValue(), passwordConf: undefined }
+			this.store.dispatch(addUser({ user }))
 		}
 	}
 }
