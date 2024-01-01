@@ -26,3 +26,10 @@
 		{{ currentErrorMsg }}
 	</mat-error>
 </mat-form-field>
+
+<mat-form-field *ngIf="type === 'select'" class="mb-1">
+	<mat-label>{{ label }}</mat-label>
+	<mat-select [formControlName]="controlName">
+		<mat-option *ngFor="let option of _options" [value]="option.value">{{ option.label }}</mat-option>
+	</mat-select>
+</mat-form-field>

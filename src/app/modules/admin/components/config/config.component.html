@@ -25,12 +25,7 @@
 					<app-input label="Cidade" controlName="city"></app-input>
 				</div>
 				<div class="col-md-4 col-xl-2">
-					<mat-form-field>
-						<mat-label>UF</mat-label>
-						<mat-select formControlName="uf">
-							<mat-option *ngFor="let uf of ufs" [value]="uf">{{ uf }}</mat-option>
-						</mat-select>
-					</mat-form-field>
+					<app-input label="UF" type="select" [options]="ufs" controlName="uf"></app-input>
 				</div>
 				<div class="col-md-4 col-xl-2">
 					<app-input label="CEP" controlName="cep" mask="cep"></app-input>

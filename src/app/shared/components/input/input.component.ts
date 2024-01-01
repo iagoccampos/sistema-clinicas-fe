@@ -4,7 +4,9 @@ import { MaskNames } from '../../directives/mask.directive'
 
 type ErrorTypes = 'required' | 'maxlength' | 'minlength' | 'email' | 'passwordMismatch' | 'matDatepickerParse'
 
-type InputType = 'text' | 'password' | 'date'
+type InputType = 'text' | 'password' | 'date' | 'select'
+
+interface ILabelValuePair { label: string, value: string }
 
 @Component({
 	selector: 'app-input',
@@ -24,6 +26,18 @@ export class InputComponent implements AfterViewInit {
 	@Input() autocomplete: HTMLInputElement['autocomplete'] = 'one-time-code'
 	@Input() mask: MaskNames | null = null
 	@Input() controlName: string | null = null
+
+	@Input() set options(val: (ILabelValuePair | string)[]) {
+		this._options = val.map((el) => {
+			if(typeof el === 'string') {
+				return { label: el, value: el }
+			}
+
+			return el
+		})
+	}
+
+	_options: ILabelValuePair[] = []
 
 	@ViewChild(FormControlName) formControl!: FormControlName
 
