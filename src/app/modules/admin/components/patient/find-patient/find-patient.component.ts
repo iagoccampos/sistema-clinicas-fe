@@ -68,7 +68,7 @@ export class FindPatientComponent implements AfterViewInit {
 			this.paginator.page,
 			this.store.select(selectCreateOrUpdateStatus).pipe(filter((val) => val === 'success')),
 			this.store.select(selectDeleteStatus).pipe(filter((val) => val === 'success')),
-			this.findPatientsForm.valueChanges.pipe(debounce(() => interval(1000))),
+			this.findPatientsForm.valueChanges.pipe(filter(() => this.findPatientsForm.valid), debounce(() => interval(1000))),
 		).subscribe(() => this.store.dispatch(findPatients({ search: this.searchForm })))
 	}
 
