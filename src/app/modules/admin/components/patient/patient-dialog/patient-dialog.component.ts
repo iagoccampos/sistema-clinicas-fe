@@ -19,10 +19,14 @@ export class PatientDialogComponent {
 		tap((val) => {
 			if(val === 'loading') {
 				this.patientForm.disable()
-			} else {
-				if(val === 'success') {
-					this.dialogRef.close()
-				}
+			}
+
+			if(val === 'success') {
+				this.dialogRef.close()
+			}
+
+			if(val === 'error') {
+				this.patientForm.disable()
 			}
 		}),
 		map((val) => {
