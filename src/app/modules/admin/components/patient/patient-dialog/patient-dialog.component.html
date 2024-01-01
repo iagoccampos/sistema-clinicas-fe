@@ -3,10 +3,7 @@
 	<form [formGroup]="patientForm" autocomplete="off" id="form" (ngSubmit)="submit()">
 		<div class="row">
 			<div class="col">
-				<mat-form-field>
-					<mat-label>Nome Completo</mat-label>
-					<input matInput formControlName="name" maxlength="40">
-				</mat-form-field>
+				<app-input label="Nome Completo" controlName="name"></app-input>
 			</div>
 			<div class="col">
 				<mat-form-field>
@@ -20,16 +17,10 @@
 
 		<div class="row">
 			<div class="col">
-				<mat-form-field>
-					<mat-label>RG</mat-label>
-					<input matInput formControlName="rg" appMask="rg">
-				</mat-form-field>
+				<app-input label="RG" controlName="rg" mask="rg"></app-input>
 			</div>
 			<div class="col">
-				<mat-form-field>
-					<mat-label>CPF</mat-label>
-					<input matInput formControlName="cpf" appMask="cpf">
-				</mat-form-field>
+				<app-input label="CPF" controlName="cpf" mask="cpf"></app-input>
 			</div>
 		</div>
 

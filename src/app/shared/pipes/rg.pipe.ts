@@ -10,6 +10,10 @@ export class RgPipe implements PipeTransform {
 			return `${value.slice(0, 1)}.${value.slice(1, 4)}.${value.slice(4, 7)}`
 		}
 
+		if(value.length === 8) {
+			return `${value.slice(0, 2)}.${value.slice(2, 5)}.${value.slice(5, 8)}`
+		}
+
 		return ''
 	}
 }

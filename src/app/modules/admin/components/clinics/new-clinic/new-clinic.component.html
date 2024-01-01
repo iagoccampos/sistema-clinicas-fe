@@ -9,10 +9,7 @@
 		</mat-panel-title>
 	</mat-expansion-panel-header>
 	<form [formGroup]="clinicForm" (ngSubmit)="submit()">
-		<mat-form-field>
-			<mat-label>Nome</mat-label>
-			<input matInput formControlName="name" maxlength="50">
-		</mat-form-field>
+		<app-input label="Nome" controlName="name"></app-input>
 		<button mat-flat-button [appButtonLoading]="loading$ | async" color="primary" [disabled]="clinicForm.invalid">Adicionar
 		</button>
 	</form>

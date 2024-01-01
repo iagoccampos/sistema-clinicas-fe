@@ -29,7 +29,7 @@ export class UserDialogComponent {
 				this.userForm.disable()
 			}
 
-			if(val === 'success') {
+			if(val === 'error') {
 				this.userForm.enable()
 			}
 

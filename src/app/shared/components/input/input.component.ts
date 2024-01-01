@@ -1,56 +1,41 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core'
-import { ControlValueAccessor, FormControl, FormControlDirective, FormControlName, NgControl, NgModel } from '@angular/forms'
+import { AfterViewInit, ChangeDetectionStrategy, Component, Input, SkipSelf, ViewChild } from '@angular/core'
+import { ControlContainer, FormControl, FormControlName } from '@angular/forms'
+import { MaskNames } from '../../directives/mask.directive'
 
 type ErrorTypes = 'required' | 'maxlength' | 'minlength' | 'email' | 'passwordMismatch'
 
 type InputType = 'text' | 'password'
 
-class NoopValueAccessor implements ControlValueAccessor {
-	writeValue() {}
-	registerOnChange() {}
-	registerOnTouched() {}
-}
-
-function injectNgControl() {
-	const ngControl = inject(NgControl, { self: true, optional: true })
-
-	if(!ngControl) {
-		throw new Error('Nenhum formControlName inserido.')
-	}
-
-	if(
-		ngControl instanceof FormControlDirective ||
-    ngControl instanceof FormControlName ||
-    ngControl instanceof NgModel
-	) {
-		ngControl.valueAccessor = new NoopValueAccessor()
-		return ngControl
-	}
-
-	throw new Error('...')
-}
-
 @Component({
 	selector: 'app-input',
 	templateUrl: './input.component.html',
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	viewProviders: [
+		{
+			provide: ControlContainer,
+			useFactory: (container: ControlContainer) => container,
+			deps: [[new SkipSelf(), ControlContainer]],
+		},
+	],
 })
-export class InputComponent implements OnInit {
+export class InputComponent implements AfterViewInit {
 	@Input({ required: true }) label = ''
 	@Input() type: InputType = 'text'
 	@Input() autocomplete: HTMLInputElement['autocomplete'] = 'one-time-code'
+	@Input() mask: MaskNames | null = null
+	@Input() controlName: string | null = null
 
-	private ngControl = injectNgControl()
+	@ViewChild(FormControlName) formControl!: FormControlName
 
-	control: FormControl | null = null
+	control!: FormControl
 	currentErrorMsg = ''
 	maxLength = Number.MAX_SAFE_INTEGER
 	hidePass = true
 
 	constructor() {}
 
-	ngOnInit() {
-		this.control = this.ngControl.control
+	ngAfterViewInit() {
+		this.control = this.formControl.control
 
 		this.checkMaxLength()
 
@@ -84,17 +69,15 @@ export class InputComponent implements OnInit {
 	}
 
 	private checkMaxLength() {
-		if(this.control) {
-			const currentValue = this.control.value
+		const currentValue = this.control.value
 
-			this.control.setValue(new Array(1000).fill('a').join(), { emitEvent: false })
+		this.control.setValue(new Array(1000).fill('a').join(), { emitEvent: false, emitModelToViewChange: false, emitViewToModelChange: false })
 
-			if(this.control.errors?.['maxlength']) {
-				this.maxLength = this.control.errors['maxlength'].requiredLength
-			}
-
-			this.control.setValue(currentValue, { emitEvent: false })
+		if(this.control.errors?.['maxlength']) {
+			this.maxLength = this.control.errors['maxlength'].requiredLength
 		}
+
+		this.control.setValue(currentValue, { emitEvent: false, emitModelToViewChange: false, emitViewToModelChange: false })
 	}
 
 	togglePass() {

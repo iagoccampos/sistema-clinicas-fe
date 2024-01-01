@@ -8,13 +8,13 @@ import { InputMaskDirective, InputmaskOptions, createMask } from '@ngneat/input-
 
 const basicMaskConfig: InputmaskOptions<any> = { autoUnmask: true }
 
-type MaskNames = 'rg' | 'cpf' | 'phone' | 'date' | 'cep' | 'cnpj'
+export type MaskNames = 'rg' | 'cpf' | 'phone' | 'date' | 'cep' | 'cnpj'
 
 @Directive({
 	selector: 'input[appMask]',
 })
 export class MaskDirective extends InputMaskDirective {
-	readonly masks: {[key in MaskNames]: InputmaskOptions<any>} = {
+	readonly masks: {[key in MaskNames]: InputmaskOptions<any> | null} = {
 		date: createMask<Date>({
 			alias: 'datetime',
 			inputFormat: 'dd/mm/yyyy',
@@ -36,15 +36,17 @@ export class MaskDirective extends InputMaskDirective {
 				return formatDate(date, 'dd/MM/yyyy', 'pt-BR')
 			},
 		}),
-		rg: createMask({ ...basicMaskConfig, mask: '9.999.999' }),
+		rg: createMask({ ...basicMaskConfig, mask: ['9.999.999', '99.999.999'], keepStatic: true }),
 		cpf: createMask({ ...basicMaskConfig, mask: '999.999.999-99' }),
 		phone: createMask({ ...basicMaskConfig, mask: ['(99) 9999-9999', '(99) 9 9999-9999'], keepStatic: true }),
 		cep: createMask({ ...basicMaskConfig, mask: '99999-999' }),
 		cnpj: createMask({ ...basicMaskConfig, mask: '99.999.999/9999-99' }),
 	} as const
 
-	@Input() set appMask(appMask: MaskNames) {
-		this.inputMask = this.masks[appMask]
+	@Input() set appMask(appMask: MaskNames | null) {
+		if(appMask !== null) {
+			this.inputMask = this.masks[appMask]
+		}
 	}
 
 	constructor(@Inject(PLATFORM_ID) platformId: string, elementRef: ElementRef<any>, renderer: Renderer2, @Optional() @Self()ngControl: NgControl | null, ngZone: NgZone, @Optional() private matDatePickerInput: MatDatepickerInput<Date>) {

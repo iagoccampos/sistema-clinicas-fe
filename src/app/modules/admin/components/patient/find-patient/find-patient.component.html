@@ -1,15 +1,12 @@
 <form [formGroup]="findPatientsForm" autocomplete="off">
 	<div class="row">
 		<div class="col">
-			<mat-form-field>
-				<mat-label>Nome</mat-label>
-				<input matInput formControlName="name" maxlength="40">
-			</mat-form-field>
+			<app-input label="Nome" controlName="name"></app-input>
 		</div>
 		<div class="col">
 			<mat-form-field>
 				<mat-label>Data de nascimento</mat-label>
-				<input matInput [matDatepicker]="picker2" formControlName="birthday">
+				<input matInput [matDatepicker]="picker2" formControlName="birthday" appMask="date">
 				<mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
 				<mat-datepicker #picker2></mat-datepicker>
 			</mat-form-field>
@@ -18,22 +15,13 @@
 
 	<div class="row">
 		<div class="col">
-			<mat-form-field>
-				<mat-label>RG</mat-label>
-				<input matInput appMask="rg" formControlName="rg">
-			</mat-form-field>
+			<app-input label="RG" controlName="rg" mask="rg"></app-input>
 		</div>
 		<div class="col">
-			<mat-form-field>
-				<mat-label>CPF</mat-label>
-				<input matInput appMask="cpf" formControlName="cpf">
-			</mat-form-field>
+			<app-input label="CPF" controlName="cpf" mask="cpf"></app-input>
 		</div>
 		<div class="col">
-			<mat-form-field>
-				<mat-label>Ficha</mat-label>
-				<input matInput formControlName="card">
-			</mat-form-field>
+			<app-input label="Ficha" controlName="card"></app-input>
 		</div>
 	</div>
 	<button type="button" mat-flat-button color="accent" class="mb-3" (click)="clearForm()">Limpar</button>
