@@ -2,9 +2,9 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, Input, SkipSelf, Vie
 import { ControlContainer, FormControl, FormControlName } from '@angular/forms'
 import { MaskNames } from '../../directives/mask.directive'
 
-type ErrorTypes = 'required' | 'maxlength' | 'minlength' | 'email' | 'passwordMismatch'
+type ErrorTypes = 'required' | 'maxlength' | 'minlength' | 'email' | 'passwordMismatch' | 'matDatepickerParse'
 
-type InputType = 'text' | 'password'
+type InputType = 'text' | 'password' | 'date'
 
 @Component({
 	selector: 'app-input',
@@ -58,6 +58,9 @@ export class InputComponent implements AfterViewInit {
 						break
 					case 'passwordMismatch':
 						this.currentErrorMsg = 'As senhas não conferem.'
+						break
+					case 'matDatepickerParse':
+						this.currentErrorMsg = 'Data inválida.'
 						break
 					default:
 						this.currentErrorMsg = 'Campo inválido.'

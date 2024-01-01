@@ -1,4 +1,4 @@
-<mat-form-field class="mb-1">
+<mat-form-field *ngIf="type === 'text' || type === 'password'" class="mb-1">
 	<mat-label>{{ label }}</mat-label>
 	<input
 		matInput
@@ -12,6 +12,16 @@
 		<mat-icon>{{ hidePass ? 'visibility_off' : 'visibility' }}</mat-icon>
 	</button>
 
+	<mat-error *ngIf="currentErrorMsg">
+		{{ currentErrorMsg }}
+	</mat-error>
+</mat-form-field>
+
+<mat-form-field *ngIf="type === 'date'" class="mb-1">
+	<mat-label>{{ label }}</mat-label>
+	<input matInput [matDatepicker]="picker" [formControlName]="controlName" appMask="date">
+	<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+	<mat-datepicker #picker></mat-datepicker>
 	<mat-error *ngIf="currentErrorMsg">
 		{{ currentErrorMsg }}
 	</mat-error>
