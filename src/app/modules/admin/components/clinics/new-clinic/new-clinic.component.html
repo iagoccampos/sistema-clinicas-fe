@@ -1,4 +1,4 @@
-<app-page-header title="Adicionar Clínicas" [hideHr]="true"></app-page-header>
+<app-page-header title="Adicionar Clínicas" [hideHr]="true" />
 <mat-expansion-panel>
 	<mat-expansion-panel-header>
 		<mat-panel-title>
@@ -9,7 +9,7 @@
 		</mat-panel-title>
 	</mat-expansion-panel-header>
 	<form [formGroup]="clinicForm" (ngSubmit)="submit()">
-		<app-input label="Nome" controlName="name"></app-input>
+		<app-input label="Nome" controlName="name" />
 		<button mat-flat-button [appButtonLoading]="loading$ | async" color="primary" [disabled]="clinicForm.invalid">Adicionar
 		</button>
 	</form>

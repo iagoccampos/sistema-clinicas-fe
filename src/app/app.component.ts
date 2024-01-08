@@ -5,7 +5,7 @@ import { getTokenFromStore } from './components/auth/store/auth.actions'
 
 @Component({
 	selector: 'app-root',
-	template: '<router-outlet></router-outlet>',
+	template: '<router-outlet />',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {

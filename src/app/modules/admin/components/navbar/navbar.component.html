@@ -42,7 +42,7 @@
 			<button mat-menu-item *ngFor="let item of menuItems" [routerLink]="item.route" routerLinkActive="selected">
 				{{ item.label }}
 			</button>
-			<mat-divider></mat-divider>
+			<mat-divider />
 			<div class="button-group">
 				<button mat-menu-item (click)="toggleLightMode()">
 					<mat-icon>

@@ -2,7 +2,7 @@
 	<mat-sidenav #sidenav [mode]="(mode$ | async) || 'side'" class="container-fluid" [opened]="opened$ | async">
 		<h1>{{ clinic?.name }}</h1>
 		<mat-nav-list>
-			<app-nav-list-item *ngFor="let item of navItems" [item]="item"></app-nav-list-item>
+			<app-nav-list-item *ngFor="let item of navItems" [item]="item" />
 		</mat-nav-list>
 	</mat-sidenav>
 

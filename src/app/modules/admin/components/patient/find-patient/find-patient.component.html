@@ -1,28 +1,28 @@
 <form [formGroup]="findPatientsForm" autocomplete="off">
 	<div class="row">
 		<div class="col">
-			<app-input label="Nome" controlName="name"></app-input>
+			<app-input label="Nome" controlName="name" />
 		</div>
 		<div class="col">
-			<app-input label="Data de nascimento" type="date" controlName="birthday"></app-input>
+			<app-input label="Data de nascimento" type="date" controlName="birthday" />
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col">
-			<app-input label="RG" controlName="rg" mask="rg"></app-input>
+			<app-input label="RG" controlName="rg" mask="rg" />
 		</div>
 		<div class="col">
-			<app-input label="CPF" controlName="cpf" mask="cpf"></app-input>
+			<app-input label="CPF" controlName="cpf" mask="cpf" />
 		</div>
 		<div class="col">
-			<app-input label="Ficha" controlName="card"></app-input>
+			<app-input label="Ficha" controlName="card" />
 		</div>
 	</div>
 	<button type="button" mat-flat-button color="accent" class="mb-3" (click)="clearForm()">Limpar</button>
 </form>
 
-<app-center-spinner [loading$]="loading$" [hideTarget]="table"></app-center-spinner>
+<app-center-spinner [loading$]="loading$" [hideTarget]="table" />
 
 <div class="mat-elevation-z8" #table>
 	<div class="mat-table-container">
@@ -110,5 +110,5 @@
 		</table>
 	</div>
 
-	<mat-paginator></mat-paginator>
+	<mat-paginator />
 </div>

@@ -12,7 +12,8 @@
 				"eslint:recommended",
 				"plugin:@typescript-eslint/recommended",
 				"plugin:@angular-eslint/recommended",
-				"plugin:@angular-eslint/template/process-inline-templates"
+				"plugin:@angular-eslint/template/process-inline-templates",
+				"plugin:@ngrx/all-requiring-type-checking"
 			],
 			"rules": {
 				"new-parens": "error",
@@ -105,6 +106,7 @@
 				],
 				"@typescript-eslint/no-empty-function": "off",
 				"@angular-eslint/prefer-on-push-component-change-detection": "error",
+				"@ngrx/avoid-mapping-selectors": "off",
 				"@angular-eslint/directive-selector": [
 					"error",
 					{
@@ -131,17 +133,10 @@
 				"plugin:@angular-eslint/template/recommended",
 				"plugin:@angular-eslint/template/accessibility"
 			],
-			"rules": {}
-		},
-		{
-			"files": [
-				"*.ts"
-			],
-			"extends": [
-				"plugin:@ngrx/all-requiring-type-checking"
-			],
 			"rules": {
-				"@ngrx/avoid-mapping-selectors": "off"
+				"@angular-eslint/template/prefer-self-closing-tags": [
+					"error"
+				]
 			}
 		}
 	]

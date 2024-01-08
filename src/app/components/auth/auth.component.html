@@ -10,8 +10,8 @@
 				<mat-card-content>
 					<form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
 						<div fxLayout="column">
-							<app-input label="Usuário" controlName="username" autocomplete="username"></app-input>
-							<app-input label="Senha" controlName="password" type="password" autocomplete="current-password"></app-input>
+							<app-input label="Usuário" controlName="username" autocomplete="username"/>
+							<app-input label="Senha" controlName="password" type="password" autocomplete="current-password" />
 						</div>
 						<button mat-flat-button [appButtonLoading]="loading$ | async" color="primary" type="submit" [disabled]="loginForm.invalid && loginForm.touched">
 							Entrar

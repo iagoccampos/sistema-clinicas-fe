@@ -5,7 +5,7 @@ import { Observable, Subject, of, takeUntil } from 'rxjs'
 	selector: 'app-center-spinner',
 	template: `
 		<div class="d-flex justify-content-center my-5" *ngIf="loading$ | async">
-			<mat-spinner></mat-spinner>
+			<mat-spinner />
 		</div>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,

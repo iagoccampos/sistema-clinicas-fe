@@ -12,6 +12,5 @@
 	</span>
 </a>
 <div [hidden]="(expandedObs$ | async) === false">
-	<app-nav-list-item *ngFor="let child of item.children" [item]="child" [depth]="depth+1" (expand)="onChildExpand()">
-	</app-nav-list-item>
+	<app-nav-list-item *ngFor="let child of item.children" [item]="child" [depth]="depth+1" (expand)="onChildExpand()" />
 </div>

@@ -1,9 +1,9 @@
 <ng-container *ngIf="clinic$ | async; else elseCase">
 	<app-sidenav>
-		<router-outlet></router-outlet>
+		<router-outlet />
 	</app-sidenav>
 </ng-container>
 
 <ng-template #elseCase>
-	<app-center-spinner></app-center-spinner>
+	<app-center-spinner />
 </ng-template>

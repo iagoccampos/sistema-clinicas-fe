@@ -3,19 +3,19 @@
 	<form [formGroup]="patientForm" autocomplete="off" id="form" (ngSubmit)="submit()">
 		<div class="row">
 			<div class="col">
-				<app-input label="Nome Completo" controlName="name"></app-input>
+				<app-input label="Nome Completo" controlName="name" />
 			</div>
 			<div class="col">
-				<app-input label="Data de nascimento" type="date" controlName="birthday"></app-input>
+				<app-input label="Data de nascimento" type="date" controlName="birthday" />
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col">
-				<app-input label="RG" controlName="rg" mask="rg"></app-input>
+				<app-input label="RG" controlName="rg" mask="rg" />
 			</div>
 			<div class="col">
-				<app-input label="CPF" controlName="cpf" mask="cpf"></app-input>
+				<app-input label="CPF" controlName="cpf" mask="cpf" />
 			</div>
 		</div>
 

@@ -1,4 +1,4 @@
-<app-page-header [hideHr]="true" title="Configuração"></app-page-header>
+<app-page-header [hideHr]="true" title="Configuração" />
 
 <mat-accordion>
 	<mat-expansion-panel>
@@ -14,29 +14,29 @@
 		<form [formGroup]="clinciDataForm" (ngSubmit)="updateClinic()">
 			<div class="row">
 				<div class="col-12">
-					<app-input label="Name" controlName="name"></app-input>
+					<app-input label="Name" controlName="name" />
 				</div>
 			</div>
 			<div class="row" formGroupName="address">
 				<div class="col-md-12 col-xl-6">
-					<app-input label="Endereço" controlName="street"></app-input>
+					<app-input label="Endereço" controlName="street" />
 				</div>
 				<div class="col-md-4 col-xl-2">
-					<app-input label="Cidade" controlName="city"></app-input>
+					<app-input label="Cidade" controlName="city" />
 				</div>
 				<div class="col-md-4 col-xl-2">
-					<app-input label="UF" type="select" [options]="ufs" controlName="uf"></app-input>
+					<app-input label="UF" type="select" [options]="ufs" controlName="uf" />
 				</div>
 				<div class="col-md-4 col-xl-2">
-					<app-input label="CEP" controlName="cep" mask="cep"></app-input>
+					<app-input label="CEP" controlName="cep" mask="cep" />
 				</div>
 			</div>
 			<div class="row" formGroupName="company">
 				<div class="col">
-					<app-input label="Razão Social" controlName="name"></app-input>
+					<app-input label="Razão Social" controlName="name" />
 				</div>
 				<div class="col">
-					<app-input label="CNPJ" controlName="cnpj" mask="cnpj"></app-input>
+					<app-input label="CNPJ" controlName="cnpj" mask="cnpj" />
 				</div>
 			</div>
 			<button mat-flat-button [appButtonLoading]="loading$ | async" color="primary" [disabled]="clinciDataForm.invalid">
@@ -56,7 +56,7 @@
 			</mat-panel-title>
 		</mat-expansion-panel-header>
 
-		<app-user></app-user>
+		<app-user />
 
 	</mat-expansion-panel>
 

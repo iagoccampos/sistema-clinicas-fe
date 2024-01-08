@@ -1,11 +1,11 @@
 <h2 mat-dialog-title>{{ data?.user ? 'Editar Paciente' : 'Adicionar Paciente' }}</h2>
 <mat-dialog-content>
 	<form [formGroup]="userForm" autocomplete="off" id="form" (ngSubmit)="submit()">
-		<app-input label="Nome" controlName="name"></app-input>
-		<app-input label="Usuário" controlName="username"></app-input>
+		<app-input label="Nome" controlName="name" />
+		<app-input label="Usuário" controlName="username" />
 		<ng-container *ngIf="!data?.user">
-			<app-input label="Senha" controlName="password" type="password"></app-input>
-			<app-input label="Repita a senha" controlName="passwordConf" type="password"></app-input>
+			<app-input label="Senha" controlName="password" type="password" />
+			<app-input label="Repita a senha" controlName="passwordConf" type="password" />
 		</ng-container>
 	</form>
 </mat-dialog-content>

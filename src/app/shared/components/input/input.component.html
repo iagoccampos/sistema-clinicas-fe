@@ -20,8 +20,8 @@
 <mat-form-field *ngIf="type === 'date'" class="mb-1">
 	<mat-label>{{ label }}</mat-label>
 	<input matInput [matDatepicker]="picker" [formControlName]="controlName" appMask="date">
-	<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-	<mat-datepicker #picker></mat-datepicker>
+	<mat-datepicker-toggle matSuffix [for]="picker" />
+	<mat-datepicker #picker />
 	<mat-error *ngIf="currentErrorMsg">
 		{{ currentErrorMsg }}
 	</mat-error>
