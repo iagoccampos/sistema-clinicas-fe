@@ -23,7 +23,7 @@ interface ILabelValuePair { label: string, value: string }
 export class InputComponent implements AfterViewInit {
 	@Input({ required: true }) label = ''
 	@Input() type: InputType = 'text'
-	@Input() autocomplete: HTMLInputElement['autocomplete'] = 'one-time-code'
+	@Input() autocomplete: HTMLInputElement['autocomplete'] = 'on'
 	@Input() mask: MaskNames | null = null
 	@Input() controlName: string | null = null
 

@@ -10,19 +10,8 @@
 				<mat-card-content>
 					<form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
 						<div fxLayout="column">
-							<mat-form-field>
-								<mat-label>Usuário:</mat-label>
-								<input matInput placeholder="Placeholder" formControlName="username" autocomplete="username" maxlength="20">
-							</mat-form-field>
-							<mat-form-field>
-								<mat-label>Senha:</mat-label>
-								<input matInput [type]="(hidePass$ | async) ? 'password' : 'text'" placeholder="Placeholder"
-									formControlName="password" autocomplete="current-password" maxlength="20">
-								<button type="button" mat-icon-button matSuffix (click)="toggleHidePass()"
-									[attr.aria-label]="'Hide password'" [attr.aria-pressed]="(hidePass$ | async)">
-									<mat-icon>{{ (hidePass$ | async) ? 'visibility_off' : 'visibility' }}</mat-icon>
-								</button>
-							</mat-form-field>
+							<app-input label="Usuário" controlName="username" autocomplete="username"></app-input>
+							<app-input label="Senha" controlName="password" type="password" autocomplete="current-password"></app-input>
 						</div>
 						<button mat-flat-button [appButtonLoading]="loading$ | async" color="primary" type="submit" [disabled]="loginForm.invalid && loginForm.touched">
 							Entrar
