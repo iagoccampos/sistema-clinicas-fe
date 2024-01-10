@@ -2,13 +2,12 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { tap } from 'rxjs'
 import { IClinic, ClinicQuery, INewUpdateClinic } from '../models/clinic.model'
-import { environment } from 'src/environments/environment'
 
 @Injectable({
 	providedIn: 'root',
 })
 export class ClinicService {
-	private readonly clinicUrl = `${environment.apiV1}/api/clinic`
+	private readonly clinicUrl = '/api/clinic'
 
 	private _currentClinic: IClinic | null = null
 

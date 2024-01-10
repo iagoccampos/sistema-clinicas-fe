@@ -4,7 +4,6 @@ import { INewUpdatePatient, IPatient } from '../models/patient.model'
 import { MatDialog } from '@angular/material/dialog'
 import { ClinicService } from './clinic.service'
 import { DialogData, PatientDialogComponent } from '../modules/admin/components/patient/patient-dialog/patient-dialog.component'
-import { environment } from 'src/environments/environment'
 
 @Injectable({
 	providedIn: 'root',
@@ -38,6 +37,6 @@ export class PatientService {
 			throw new Error('Id da clínica nulo.')
 		}
 
-		return `${environment.apiV1}/api/clinic/${this.clinicService.currentClinicId}/patient${patientId ? `/${patientId}` : ''}`
+		return `/api/clinic/${this.clinicService.currentClinicId}/patient${patientId ? `/${patientId}` : ''}`
 	}
 }

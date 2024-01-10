@@ -5,12 +5,11 @@ import { IUser, UserLevel } from '../models/user.model'
 import { JwtHelperService } from '@auth0/angular-jwt'
 import { LocalStorageService } from './local-storage.service'
 import { map } from 'rxjs'
-import { environment } from 'src/environments/environment'
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 	private readonly helper = new JwtHelperService()
-	private readonly loginUrl = `${environment.apiV1}/api/auth/login`
+	private readonly loginUrl = '/api/auth/login'
 
 	constructor(private http: HttpClient, private router: Router, private localStorageService: LocalStorageService) {}
 
