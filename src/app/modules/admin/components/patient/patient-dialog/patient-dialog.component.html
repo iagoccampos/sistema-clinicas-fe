@@ -42,7 +42,7 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
 	<button mat-button type="button" mat-dialog-close>Cancelar</button>
-	<button mat-flat-button [appButtonLoading]="loading$ | async" color="primary" form="form" [disabled]="patientForm.invalid ">
+	<button mat-flat-button [appButtonLoading]="loading$ | ngrxPush" color="primary" form="form" [disabled]="patientForm.invalid ">
 		{{ data?.patient ? 'Editar' : 'Adicionar' }}
 	</button>
 </mat-dialog-actions>

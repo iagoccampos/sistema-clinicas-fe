@@ -1,4 +1,4 @@
-<ng-container *ngIf="clinic$ | async; else elseCase">
+<ng-container *ngIf="clinic$ | ngrxPush; else elseCase">
 	<app-sidenav>
 		<router-outlet />
 	</app-sidenav>

@@ -39,7 +39,7 @@
 					<app-input label="CNPJ" controlName="cnpj" mask="cnpj" />
 				</div>
 			</div>
-			<button mat-flat-button [appButtonLoading]="loading$ | async" color="primary" [disabled]="clinciDataForm.invalid">
+			<button mat-flat-button [appButtonLoading]="loading$ | ngrxPush" color="primary" [disabled]="clinciDataForm.invalid">
 				Salvar
 			</button>
 		</form>

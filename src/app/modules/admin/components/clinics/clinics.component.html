@@ -4,7 +4,7 @@
 </div>
 
 <div class="container-fluid">
-	<ng-container *ngIf="{ clinics: getClinics$ | async } as data">
+	<ng-container *ngIf="{ clinics: getClinics$ | ngrxPush } as data">
 		<div class="row">
 			<ng-container *ngIf="data.clinics; else loading">
 				<div *ngFor="let clinic of data.clinics" class="col-lg-3 col-md-4 col-sm-6 mb-4">

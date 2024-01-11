@@ -14,6 +14,7 @@ import { MatMenuModule } from '@angular/material/menu'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatExpansionModule } from '@angular/material/expansion'
 import { MatSidenavModule } from '@angular/material/sidenav'
+import { MatSelectModule } from '@angular/material/select'
 import { MatListModule } from '@angular/material/list'
 import { ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
@@ -26,6 +27,7 @@ import { ptBR } from 'date-fns/esm/locale'
 import localePT from '@angular/common/locales/pt'
 import { InputMaskModule } from '@ngneat/input-mask'
 import { CurrencyMaskModule } from 'ng2-currency-mask'
+import { PushPipe } from '@ngrx/component'
 import { OrDashPipe } from './pipes/or-dash.pipe'
 import { DeleteConfirmationComponent } from './components/dialogs/delete-confirmation/delete-confirmation.component'
 import { MaskDirective } from './directives/mask.directive'
@@ -34,7 +36,6 @@ import { RgPipe } from './pipes/rg.pipe'
 import { CpfPipe } from './pipes/cpf.pipe'
 import { PhonePipe } from './pipes/phone.pipe'
 import { SnackbarComponent } from './components/snackbar/snackbar.component'
-import { MatSelectModule } from '@angular/material/select'
 import { CenterSpinnerComponent } from './components/center-spinner/center-spinner.component'
 import { ButtonLoadingDirective } from './directives/mat-button-loading.directive'
 import { InputComponent } from './components/input/input.component'
@@ -98,6 +99,7 @@ const directives = [
 		HttpClientModule,
 		InputMaskModule,
 		CurrencyMaskModule,
+		PushPipe,
 		...materialModules,
 	],
 	exports: [
@@ -105,6 +107,7 @@ const directives = [
 		HttpClientModule,
 		InputMaskModule,
 		CurrencyMaskModule,
+		PushPipe,
 		...materialModules,
 		...components,
 		...pipes,

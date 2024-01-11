@@ -7,8 +7,8 @@
 	</ng-container>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-	<button mat-raised-button mat-dialog-close [disabled]="loading$ | async">Cancelar</button>
-	<button mat-raised-button [appButtonLoading]="loading$ | async" color="warn" (click)="confirm()">
+	<button mat-raised-button mat-dialog-close [disabled]="loading$ | ngrxPush">Cancelar</button>
+	<button mat-raised-button [appButtonLoading]="loading$ | ngrxPush" color="warn" (click)="confirm()">
 		Deletar
 	</button>
 </mat-dialog-actions>

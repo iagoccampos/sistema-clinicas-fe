@@ -1,16 +1,16 @@
 <a mat-list-item [ngStyle]="{'padding-left': (depth * 12) + 'px'}" (click)="onItemSelected(item)"
-	[class.expanded]="expandedObs$ | async" [routerLink]="item.route ? item.route : null" routerLinkActive="active">
+	[class.expanded]="expandedObs$ | ngrxPush" [routerLink]="item.route ? item.route : null" routerLinkActive="active">
 
 	<mat-icon matListItemIcon>{{ item.iconName }}</mat-icon>
 	<span matListItemTitle>{{ item.displayName }}</span>
 
 	<span fxFlex *ngIf="item.children && item.children.length">
 		<span fxFlex></span>
-		<mat-icon [@indicatorRotate]="(expandedObs$ | async) ? 'expanded': 'collapsed'">
+		<mat-icon [@indicatorRotate]="(expandedObs$ | ngrxPush) ? 'expanded': 'collapsed'">
 			expand_more
 		</mat-icon>
 	</span>
 </a>
-<div [hidden]="(expandedObs$ | async) === false">
+<div [hidden]="(expandedObs$ | ngrxPush) === false">
 	<app-nav-list-item *ngFor="let child of item.children" [item]="child" [depth]="depth+1" (expand)="onChildExpand()" />
 </div>

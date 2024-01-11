@@ -25,6 +25,7 @@
 		"@angular/router": "^16.2.0",
 		"@auth0/angular-jwt": "^5.2.0",
 		"@ngneat/input-mask": "^6.1.0",
+		"@ngrx/component": "^16.3.0",
 		"@ngrx/effects": "^16.3.0",
 		"@ngrx/store": "^16.3.0",
 		"@ngrx/store-devtools": "^16.3.0",
