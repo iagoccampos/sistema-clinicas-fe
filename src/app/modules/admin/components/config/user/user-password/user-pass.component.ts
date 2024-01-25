@@ -7,6 +7,7 @@ import { IUser } from 'src/app/models/user.model'
 import { updateUserPass } from '../store/user.actions'
 import { selectUpdateUserPassStatus } from '../store/user.selector'
 import { PassErrorStateMatcher, passConf } from 'src/app/shared/code-templates/reactive-form-validator'
+import { BaseComponent } from 'src/app/shared/components/base/base.component'
 
 export type DialogData = { user: IUser }
 
@@ -14,7 +15,7 @@ export type DialogData = { user: IUser }
 	templateUrl: './user-pass.component.html',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserPassDialogComponent {
+export class UserPassDialogComponent extends BaseComponent {
 	hidePass = true
 	hideConfPass = true
 
@@ -46,6 +47,7 @@ export class UserPassDialogComponent {
 	})
 
 	constructor(public dialogRef: MatDialogRef<UserPassDialogComponent, void>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private store: Store) {
+		super()
 		dialogRef.updateSize('350px')
 	}
 

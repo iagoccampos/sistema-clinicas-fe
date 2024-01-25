@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
 import { DeleteConfirmationComponent, IDialogData } from '../shared/components/dialogs/delete-confirmation/delete-confirmation.component'
 import { NavigationEnd, NavigationSkipped, Router } from '@angular/router'
-import { filter, takeUntil } from 'rxjs'
+import { filter } from 'rxjs'
 
 @Injectable({
 	providedIn: 'root',

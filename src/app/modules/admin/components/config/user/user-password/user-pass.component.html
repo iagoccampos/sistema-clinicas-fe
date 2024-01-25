@@ -1,13 +1,13 @@
-<h2 mat-dialog-title>Atualizar senha</h2>
+<h2 mat-dialog-title>{{ textProvider.users.updatePass }}</h2>
 <mat-dialog-content>
 	<form [formGroup]="passForm" autocomplete="off" id="form" (ngSubmit)="submit()">
-		<app-input label="Senha" controlName="password" type="password" />
-		<app-input label="Repita a senha" controlName="passwordConf" type="password" />
+		<app-input [label]="textProvider.users.pass" controlName="password" type="password" />
+		<app-input [label]="textProvider.users.repeatPass" controlName="passwordConf" type="password" />
 	</form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-	<button mat-button type="button" mat-dialog-close>Cancelar</button>
+	<button mat-button type="button" mat-dialog-close>{{ textProvider.buttons.cancel }}</button>
 	<button mat-flat-button [appButtonLoading]="loading$ | ngrxPush" color="primary" form="form" [disabled]="passForm.invalid">
-		Editar
+		{{ textProvider.buttons.edit }}
 	</button>
 </mat-dialog-actions>

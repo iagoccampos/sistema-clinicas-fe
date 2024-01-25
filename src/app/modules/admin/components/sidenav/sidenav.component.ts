@@ -1,12 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core'
 import { MatSidenav } from '@angular/material/sidenav'
 import { NavigationEnd, NavigationSkipped, Router } from '@angular/router'
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
-import { BehaviorSubject, Subject, distinctUntilChanged, filter, map, takeUntil, tap } from 'rxjs'
+import { BehaviorSubject, distinctUntilChanged, filter, map, takeUntil, tap } from 'rxjs'
 import { NavService } from 'src/app/services/nav.service'
 import { INavItem } from './nav-list-item/nav-list-item.component'
 import { IClinic } from 'src/app/models/clinic.model'
 import { ClinicService } from 'src/app/services/clinic.service'
+import { BaseComponent } from 'src/app/shared/components/base/base.component'
 
 @Component({
 	selector: 'app-sidenav',
@@ -14,11 +15,10 @@ import { ClinicService } from 'src/app/services/clinic.service'
 	styleUrls: ['./sidenav.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SidenavComponent implements OnInit, OnDestroy {
+export class SidenavComponent extends BaseComponent implements OnInit {
 	@ViewChild(MatSidenav) private sideNav: MatSidenav | null = null
 
 	readonly clinic: IClinic | null = null
-	private readonly destroy$ = new Subject<void>()
 
 	// Quando a tela ficar menor que o Medio, troca para over
 	readonly mode$ = this.breakpointObserver.observe([Breakpoints.Medium, Breakpoints.Small, Breakpoints.XSmall])
@@ -39,20 +39,21 @@ export class SidenavComponent implements OnInit, OnDestroy {
 	readonly opened$ = this.openedSub$.asObservable().pipe(tap((val) => this.navService.emitSideNavOpen(val)))
 
 	readonly navItems: INavItem[] = [{
-		displayName: 'Visão geral',
+		displayName: this.textProvider.sideNav.dashboard,
 		iconName: 'dashboard',
 		route: './dashboard',
 	}, {
-		displayName: 'Pacientes',
+		displayName: this.textProvider.sideNav.patients,
 		iconName: 'person',
 		route: './pacientes',
 	}, {
-		displayName: 'Configurações',
+		displayName: this.textProvider.sideNav.configs,
 		iconName: 'settings',
 		route: './configuracao',
 	}]
 
 	constructor(private navService: NavService, private clinicService: ClinicService, private breakpointObserver: BreakpointObserver, private router: Router) {
+		super()
 		this.clinic = clinicService.currentClinic
 
 		navService.sidenavToggle$.pipe(takeUntil(this.destroy$)).subscribe(() => {
@@ -67,6 +68,10 @@ export class SidenavComponent implements OnInit, OnDestroy {
 			if(this.sideNav?.mode === 'over') {
 				this.close()
 			}
+		})
+
+		this.destroy$.subscribe(() => {
+			this.navService.showSidenavToggle(false)
 		})
 	}
 
@@ -85,12 +90,5 @@ export class SidenavComponent implements OnInit, OnDestroy {
 
 	private toggle() {
 		this.openedSub$.next(!this.openedSub$.value)
-	}
-
-	ngOnDestroy() {
-		this.navService.showSidenavToggle(false)
-
-		this.destroy$.next()
-		this.destroy$.complete()
 	}
 }

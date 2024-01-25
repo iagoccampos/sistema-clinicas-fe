@@ -6,6 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { states } from 'src/app/constants/constants'
 import { selectUpdateClinicStatus } from './store/config/config.selector'
 import { map } from 'rxjs'
+import { BaseComponent } from 'src/app/shared/components/base/base.component'
 
 @Component({
 	selector: 'app-config',
@@ -13,7 +14,7 @@ import { map } from 'rxjs'
 	styleUrls: ['./config.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ConfigComponent {
+export class ConfigComponent extends BaseComponent {
 	readonly ufs = states.map((val) => val.uf)
 
 	readonly loading$ = this.store.select(selectUpdateClinicStatus).pipe(
@@ -38,6 +39,7 @@ export class ConfigComponent {
 	})
 
 	constructor(private store: Store, private clinicService: ClinicService) {
+		super()
 		this.clinciDataForm.patchValue(clinicService.currentClinic, { emitEvent: false })
 	}
 

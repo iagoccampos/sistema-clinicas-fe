@@ -4,7 +4,6 @@ import { catchError, map, of, switchMap, tap } from 'rxjs'
 import { getTokenFromStore, login, loginError, loginSuccess, logout } from './auth.actions'
 import { AuthService } from 'src/app/services/auth.service'
 import { SnackbarService } from 'src/app/services/snackbar.service'
-import { DialogService } from 'src/app/services/dialog.service'
 
 @Injectable()
 export class AuthEffects {

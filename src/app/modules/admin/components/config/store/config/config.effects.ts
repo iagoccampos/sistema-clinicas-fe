@@ -49,7 +49,7 @@ export class ConfigEffects {
 			tap((val) => {
 				this.dialogService.openDeleteConfirmationDialog({
 					dispatch: { action: deleteClinic(), selector: selectDeleteClinicStatus },
-					entityName: 'clínica',
+					entityName: $localize `clínica`,
 					entityValue: val.clinic.name,
 					irreversible: true,
 				})

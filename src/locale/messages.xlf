@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="pt" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="4758685145926320026" datatype="html">
+        <source>clínica</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/admin/components/config/store/config/config.effects.ts</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8847965814527406545" datatype="html">
+        <source>usuário</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/admin/components/config/user/store/user.effects.ts</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6647456137927374494" datatype="html">
+        <source>paciente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/admin/components/patient/store/patient.effects.ts</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="600376029726528115" datatype="html">
+        <source>Entrar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5954338936032655558" datatype="html">
+        <source>Salvar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2145082911125334103" datatype="html">
+        <source>Adicionar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2153980152639237955" datatype="html">
+        <source>Editar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8451457792876367617" datatype="html">
+        <source>Deletar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6402951927316857780" datatype="html">
+        <source>Cancelar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7793893377849274835" datatype="html">
+        <source>Limpar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="696967978292310388" datatype="html">
+        <source>Sistema Clínicas</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4785801357911424772" datatype="html">
+        <source>Usuário</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="150555469217751648" datatype="html">
+        <source>Senha</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7029482846388343014" datatype="html">
+        <source>Clínicas</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1748265488226315945" datatype="html">
+        <source>Acessar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="535452406778005118" datatype="html">
+        <source>Configuração</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7040618028510996833" datatype="html">
+        <source>Adicionar Clínicas</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2332180001770133395" datatype="html">
+        <source>Nome</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4360351327676000154" datatype="html">
+        <source>Visão geral</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="202672472292620975" datatype="html">
+        <source>Pacientes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8486008966550715052" datatype="html">
+        <source>Configurações</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="97620308143440337" datatype="html">
+        <source>Procurar Pacientes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1093132430043872740" datatype="html">
+        <source>Adicionar Paciente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6422432465213025281" datatype="html">
+        <source>Editar Paciente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2671490181848311385" datatype="html">
+        <source>Nome Completo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="460043811050137920" datatype="html">
+        <source>Data de nascimento</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3230229779320437927" datatype="html">
+        <source>RG</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5392932170099216623" datatype="html">
+        <source>CPF</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6433088312845101462" datatype="html">
+        <source>Telefones</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6499251675131147754" datatype="html">
+        <source>Telefone</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3458192438304044559" datatype="html">
+        <source>Ficha</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3611424112654872270" datatype="html">
+        <source>Ações</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1097860133813248884" datatype="html">
+        <source>Nenhum paciente cadastrado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2823715739369636389" datatype="html">
+        <source>Configuração Geral da Clínica</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1062451746118734631" datatype="html">
+        <source>Nome da clínica</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7175743608890729232" datatype="html">
+        <source>Endereço</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1368387173409336978" datatype="html">
+        <source>Cidade</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="791305780302364662" datatype="html">
+        <source>UF</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3216115424885524622" datatype="html">
+        <source>CEP</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3876019644995940064" datatype="html">
+        <source>Razão Social</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2167764137958137730" datatype="html">
+        <source>CNPJ</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6035395064112583354" datatype="html">
+        <source>Ajuste dos usuários</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3059495419966949088" datatype="html">
+        <source>Área de perigo!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8351334489647044652" datatype="html">
+        <source>Deletar Clínica</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3908058954780339711" datatype="html">
+        <source>O processo é irreversível. Assim que deletar sua clínica você não terá mais acesso nenhum a ela.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7499096764112799957" datatype="html">
+        <source>Adicionar usuários a clínica</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6158703807484275445" datatype="html">
+        <source>Usuários cadastrados</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1320637180224322628" datatype="html">
+        <source>Nenhum usuário encontrado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6486505891129711989" datatype="html">
+        <source>Atualizar senha</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="186449273587793054" datatype="html">
+        <source>Repita a senha</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="610851332117426906" datatype="html">
+        <source>Adicionar Usuário</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2808320804545084512" datatype="html">
+        <source>Editar Usuário</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/text-provider.service.ts</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3670754448257087230" datatype="html">
+        <source>Tem certeza de que deseja deletar <x id="INTERPOLATION" equiv-text="{{ data.entityName ? &apos; &apos; + data.entityName : &apos;&apos; }}"/> <x id="INTERPOLATION_1" equiv-text="{{ data.entityValue ? &apos; &apos; + data.entityValue : &apos;&apos; }}"/>?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/dialogs/delete-confirmation/delete-confirmation.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6334552240702890286" datatype="html">
+        <source>Lembre-se que o processo é <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>irreversível<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/dialogs/delete-confirmation/delete-confirmation.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4098552401437934588" datatype="html">
+        <source>Campo é requerido.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/input/input.component.ts</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7828013873839734858" datatype="html">
+        <source>Campo deve conter no mínimo <x id="PH" equiv-text="this.control.errors[firstKey].requiredLength"/> caracteres.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/input/input.component.ts</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8870865571824262406" datatype="html">
+        <source>Campo deve conter no máximo <x id="PH" equiv-text="this.control.errors[firstKey].requiredLength"/> caracteres.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/input/input.component.ts</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3049336940346610176" datatype="html">
+        <source>Campo deve conter um e-mail válido.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/input/input.component.ts</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5380316872963981800" datatype="html">
+        <source>As senhas não conferem.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/input/input.component.ts</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="153376326695121538" datatype="html">
+        <source>Data inválida.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/input/input.component.ts</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8675851443639862529" datatype="html">
+        <source>Campo inválido.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/input/input.component.ts</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3864348498175505881" datatype="html">
+        <source>Itens por página:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared.module.ts</context>
+          <context context-type="linenumber">131</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4879987991214263275" datatype="html">
+        <source>Primeira página</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared.module.ts</context>
+          <context context-type="linenumber">132</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7537802546126980248" datatype="html">
+        <source>Página anterior</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared.module.ts</context>
+          <context context-type="linenumber">133</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9194919824448822998" datatype="html">
+        <source>Próxima página</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared.module.ts</context>
+          <context context-type="linenumber">134</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7424389819116583729" datatype="html">
+        <source>Última página</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared.module.ts</context>
+          <context context-type="linenumber">135</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3718120825202528252" datatype="html">
+        <source>0 de <x id="PH" equiv-text="length"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared.module.ts</context>
+          <context context-type="linenumber">138</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5694717364341101246" datatype="html">
+        <source><x id="PH" equiv-text="startIndex + 1"/> - <x id="PH_1" equiv-text="endIndex"/> de <x id="PH_2" equiv-text="length"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared.module.ts</context>
+          <context context-type="linenumber">149</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

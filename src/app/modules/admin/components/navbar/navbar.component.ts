@@ -1,10 +1,11 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { Store } from '@ngrx/store'
-import { takeUntil, distinctUntilChanged, Subject, map } from 'rxjs'
+import { takeUntil, distinctUntilChanged, map } from 'rxjs'
 import { logout } from 'src/app/components/auth/store/auth.actions'
 import { NavService } from 'src/app/services/nav.service'
 import { ThemeService } from 'src/app/services/theme.service'
+import { BaseComponent } from 'src/app/shared/components/base/base.component'
 
 interface IMenuItem {
 	label: string,
@@ -17,13 +18,11 @@ interface IMenuItem {
 	styleUrls: ['./navbar.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavbarComponent implements OnDestroy {
+export class NavbarComponent extends BaseComponent {
 	readonly menuItems: IMenuItem[] = [{
-		label: 'Clínicas',
+		label: this.textProvider.navbar.clinics,
 		route: ['clinicas'],
 	}]
-
-	private readonly destroy$ = new Subject<void>()
 
 	readonly showDropdownMenu$ = this.breakpointObserver.observe([Breakpoints.Medium, Breakpoints.Small, Breakpoints.XSmall])
 		.pipe(
@@ -34,7 +33,9 @@ export class NavbarComponent implements OnDestroy {
 
 	readonly sideNavOpen$ = this.navService.sidenavOpen$
 
-	constructor(public navService: NavService, public themeService: ThemeService, private breakpointObserver: BreakpointObserver, public store: Store) {}
+	constructor(public navService: NavService, public themeService: ThemeService, private breakpointObserver: BreakpointObserver, public store: Store) {
+		super()
+	}
 
 	logout() {
 		this.store.dispatch(logout())
@@ -46,10 +47,5 @@ export class NavbarComponent implements OnDestroy {
 
 	toggleLightMode() {
 		this.themeService.toggleTheme()
-	}
-
-	ngOnDestroy() {
-		this.destroy$.next()
-		this.destroy$.complete()
 	}
 }

@@ -4,13 +4,14 @@ import { getUsers, openDeleteUserDialog, openUpdateUserPassDialog, openUserDialo
 import { selectGetUsersStatus, selectUsers } from './store/user.selector'
 import { map } from 'rxjs'
 import { IUser } from 'src/app/models/user.model'
+import { BaseComponent } from 'src/app/shared/components/base/base.component'
 
 @Component({
 	selector: 'app-user',
 	templateUrl: './user.component.html',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserComponent {
+export class UserComponent extends BaseComponent {
 	readonly displayedColumns = ['name', 'username', 'options']
 
 	readonly loading$ = this.store.select(selectGetUsersStatus).pipe(
@@ -22,6 +23,7 @@ export class UserComponent {
 	readonly users$ = this.store.select(selectUsers)
 
 	constructor(private store: Store) {
+		super()
 		store.dispatch(getUsers())
 	}
 

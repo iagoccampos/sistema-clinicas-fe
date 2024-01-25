@@ -1,6 +1,6 @@
 <div class="mx-3">
 	<app-new-clinic />
-	<app-page-header title="Clínicas" />
+	<app-page-header [title]="textProvider.clinicsPage.title" />
 </div>
 
 <div class="container-fluid">
@@ -16,14 +16,14 @@
 									<mat-icon>more_vert</mat-icon>
 								</button>
 								<mat-menu #menu="matMenu" xPosition="before">
-									<button mat-menu-item [routerLink]="['../', 'clinica', clinic._id]">Ir</button>
-									<button mat-menu-item [routerLink]="['../', 'clinica', clinic._id, 'configuracao']">Configuração</button>
+									<button mat-menu-item [routerLink]="['../', 'clinica', clinic._id]">{{ textProvider.clinicsPage.access }}</button>
+									<button mat-menu-item [routerLink]="['../', 'clinica', clinic._id, 'configuracao']">{{ textProvider.clinicsPage.config }}</button>
 								</mat-menu>
 							</mat-card-title>
 						</mat-card-header>
 
 						<mat-card-content class="dashboard-card-content">
-							<div>Conteúdo...</div>
+							<div>...</div>
 						</mat-card-content>
 					</mat-card>
 				</div>

@@ -7,6 +7,7 @@ import { IUser } from 'src/app/models/user.model'
 import { addUser, updateUser } from '../store/user.actions'
 import { selectAddOrUpdateUserStatus } from '../store/user.selector'
 import { PassErrorStateMatcher, passConf } from 'src/app/shared/code-templates/reactive-form-validator'
+import { BaseComponent } from 'src/app/shared/components/base/base.component'
 
 export type DialogData = { user?: IUser } | null
 
@@ -15,7 +16,7 @@ export type DialogData = { user?: IUser } | null
 	templateUrl: './user-dialog.component.html',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserDialogComponent {
+export class UserDialogComponent extends BaseComponent {
 	hidePass = true
 	hideConfPass = true
 
@@ -50,6 +51,8 @@ export class UserDialogComponent {
 	})
 
 	constructor(public dialogRef: MatDialogRef<UserDialogComponent, void>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private store: Store) {
+		super()
+
 		if(data?.user) {
 			this.userForm.patchValue(data.user)
 

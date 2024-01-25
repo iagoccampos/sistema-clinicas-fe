@@ -1,4 +1,4 @@
-<app-page-header [hideHr]="true" title="Configuração" />
+<app-page-header [hideHr]="true" [title]="textProvider.configs.title" />
 
 <mat-accordion>
 	<mat-expansion-panel>
@@ -7,40 +7,40 @@
 				<mat-icon>
 					settings
 				</mat-icon>
-				Configuração Geral da Clínica
+				{{ textProvider.configs.subTitle1 }}
 			</mat-panel-title>
 		</mat-expansion-panel-header>
 
 		<form [formGroup]="clinciDataForm" (ngSubmit)="updateClinic()">
 			<div class="row">
 				<div class="col-12">
-					<app-input label="Name" controlName="name" />
+					<app-input [label]="textProvider.configs.inputClinicName" controlName="name" />
 				</div>
 			</div>
 			<div class="row" formGroupName="address">
 				<div class="col-md-12 col-xl-6">
-					<app-input label="Endereço" controlName="street" />
+					<app-input [label]="textProvider.configs.inputAddress" controlName="street" />
 				</div>
 				<div class="col-md-4 col-xl-2">
-					<app-input label="Cidade" controlName="city" />
+					<app-input [label]="textProvider.configs.inputCity" controlName="city" />
 				</div>
 				<div class="col-md-4 col-xl-2">
-					<app-input label="UF" type="select" [options]="ufs" controlName="uf" />
+					<app-input [label]="textProvider.configs.inputUF" type="select" [options]="ufs" controlName="uf" />
 				</div>
 				<div class="col-md-4 col-xl-2">
-					<app-input label="CEP" controlName="cep" mask="cep" />
+					<app-input [label]="textProvider.configs.inputCEP" controlName="cep" mask="cep" />
 				</div>
 			</div>
 			<div class="row" formGroupName="company">
 				<div class="col">
-					<app-input label="Razão Social" controlName="name" />
+					<app-input [label]="textProvider.configs.inputCompanyName" controlName="name" />
 				</div>
 				<div class="col">
-					<app-input label="CNPJ" controlName="cnpj" mask="cnpj" />
+					<app-input [label]="textProvider.configs.inputCNPJ" controlName="cnpj" mask="cnpj" />
 				</div>
 			</div>
 			<button mat-flat-button [appButtonLoading]="loading$ | ngrxPush" color="primary" [disabled]="clinciDataForm.invalid">
-				Salvar
+				{{ textProvider.buttons.save }}
 			</button>
 		</form>
 
@@ -52,7 +52,7 @@
 				<mat-icon>
 					person
 				</mat-icon>
-				Ajuste dos usuários
+				{{ textProvider.configs.subTitle2 }}
 			</mat-panel-title>
 		</mat-expansion-panel-header>
 
@@ -66,17 +66,17 @@
 				<mat-icon>
 					warning
 				</mat-icon>
-				Área de perigo!
+				{{ textProvider.configs.subTitle3 }}
 			</mat-panel-title>
 		</mat-expansion-panel-header>
 
 		<div class="box d-flex justify-content-between align-items-center">
 			<div>
-				<p class="title">Deletar clínica</p>
-				<p>O processo é irreversível. Assim que deletar sua clínica você não terá mais acesso nenhum a ela.</p>
+				<p class="title">{{ textProvider.configs.deleteClinic }}</p>
+				<p>{{ textProvider.configs.deleteDesc }}</p>
 			</div>
 			<div>
-				<button mat-flat-button color="warn" (click)="deleteClinic()">Deletar</button>
+				<button mat-flat-button color="warn" (click)="deleteClinic()">{{ textProvider.buttons.delete }}</button>
 			</div>
 		</div>
 	</mat-expansion-panel>

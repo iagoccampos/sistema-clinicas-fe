@@ -4,7 +4,7 @@
 			{{ (sideNavOpen$ | ngrxPush) ? 'keyboard_arrow_left' : 'keyboard_arrow_right'}}
 		</mat-icon>
 	</button>
-	<span>Sistema Clinicas</span>
+	<span>{{ textProvider.navbar.title }}</span>
 
 	<ng-container *ngIf="(showDropdownMenu$ | ngrxPush) === false">
 		<button mat-flat-button color="primary" *ngFor="let item of menuItems" [routerLink]="item.route" routerLinkActive="selected">

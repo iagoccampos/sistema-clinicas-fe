@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, Inject, OnDestroy } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core'
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
 import { Action, MemoizedSelector, Store } from '@ngrx/store'
-import { Observable, Subject, map, takeUntil, takeWhile } from 'rxjs'
+import { Observable, map, takeUntil, takeWhile } from 'rxjs'
 import { FormStatus } from 'src/app/models/form-status.model'
+import { BaseComponent } from '../../base/base.component'
 
 export interface IDialogData {
 	dispatch?: { action: Action, selector: MemoizedSelector<any, FormStatus> }
@@ -16,17 +17,18 @@ export interface IDialogData {
 	templateUrl: './delete-confirmation.component.html',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DeleteConfirmationComponent implements OnDestroy {
+export class DeleteConfirmationComponent extends BaseComponent {
 	loading$: Observable<boolean> | null = null
-	private unsubscribe$ = new Subject<void>()
 
 	constructor(
 		private store: Store,
 		private dialogRef: MatDialogRef<DeleteConfirmationComponent, boolean>,
 		@Inject(MAT_DIALOG_DATA) public data: IDialogData) {
+		super()
+
 		if(this.data.dispatch) {
 			this.loading$ = this.store.select(this.data.dispatch.selector).pipe(
-				takeUntil(this.unsubscribe$),
+				takeUntil(this.destroy$),
 				takeWhile((val) => {
 					if(val === 'error' || val === 'success') {
 						dialogRef.close()
@@ -54,10 +56,5 @@ export class DeleteConfirmationComponent implements OnDestroy {
 		}
 
 		this.dialogRef.close(true)
-	}
-
-	ngOnDestroy() {
-		this.unsubscribe$.next()
-		this.unsubscribe$.complete()
 	}
 }

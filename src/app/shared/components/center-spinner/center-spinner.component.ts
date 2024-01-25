@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core'
-import { Observable, Subject, of, takeUntil } from 'rxjs'
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core'
+import { Observable, of, takeUntil } from 'rxjs'
+import { BaseComponent } from '../base/base.component'
 
 @Component({
 	selector: 'app-center-spinner',
@@ -10,13 +11,15 @@ import { Observable, Subject, of, takeUntil } from 'rxjs'
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CenterSpinnerComponent implements OnInit, OnDestroy {
+export class CenterSpinnerComponent extends BaseComponent implements OnInit {
 	@Input() loading$: Observable<boolean> | null = of(true)
 	@Input() hideTarget: HTMLElement | null = null
 
 	private currentTargetDisplay = ''
 
-	private destroy$ = new Subject<void>()
+	constructor() {
+		super()
+	}
 
 	ngOnInit() {
 		if(this.hideTarget) {
@@ -28,10 +31,5 @@ export class CenterSpinnerComponent implements OnInit, OnDestroy {
 				this.hideTarget.style.display = val ? 'none' : this.currentTargetDisplay
 			}
 		})
-	}
-
-	ngOnDestroy() {
-		this.destroy$.next()
-		this.destroy$.complete()
 	}
 }

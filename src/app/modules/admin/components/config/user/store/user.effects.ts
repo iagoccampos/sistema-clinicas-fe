@@ -79,7 +79,7 @@ export class UserEffects {
 			tap((val) => {
 				this.dialogService.openDeleteConfirmationDialog({
 					dispatch: { action: deleteUser({ userId: val.user._id }), selector: selectDeleteUserStatus },
-					entityName: 'usuário',
+					entityName: $localize `usuário`,
 					entityValue: val.user.name,
 					irreversible: true,
 				})

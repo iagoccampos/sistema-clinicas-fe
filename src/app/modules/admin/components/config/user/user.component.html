@@ -1,7 +1,7 @@
-<h3>Adicionar usuários a clínica</h3>
-<button mat-flat-button color="primary" (click)="addUser()">Adicionar</button>
+<h3>{{ textProvider.users.title }}</h3>
+<button mat-flat-button color="primary" (click)="addUser()">{{ textProvider.buttons.add }}</button>
 
-<h3>Usuários cadastrados</h3>
+<h3>{{ textProvider.users.registeredUsers }}</h3>
 
 <app-center-spinner [loading$]="loading$" [hideTarget]="target" />
 
@@ -9,17 +9,17 @@
 	<div class="mat-elevation-z8 col-xl-6 col-lg-8 col-md-10">
 		<table mat-table [dataSource]="users$">
 			<ng-container matColumnDef="name">
-				<th mat-header-cell *matHeaderCellDef> Nome </th>
+				<th mat-header-cell *matHeaderCellDef>{{ textProvider.users.name }}</th>
 				<td mat-cell *matCellDef="let user"> {{ user.name }} </td>
 			</ng-container>
 
 			<ng-container matColumnDef="username">
-				<th mat-header-cell *matHeaderCellDef> Usuário </th>
-				<td mat-cell *matCellDef="let user"> {{ user.username }} </td>
+				<th mat-header-cell *matHeaderCellDef>{{ textProvider.users.user }}</th>
+				<td mat-cell *matCellDef="let user">{{ user.username }}</td>
 			</ng-container>
 
 			<ng-container matColumnDef="options">
-				<th mat-header-cell *matHeaderCellDef> Ações </th>
+				<th mat-header-cell *matHeaderCellDef>{{ textProvider.users.actions }}</th>
 				<td mat-cell *matCellDef="let user">
 					<button mat-icon-button type="button" color="accent" (click)="updateUser(user)">
 						<mat-icon>edit</mat-icon>
@@ -37,7 +37,7 @@
 			<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 			<tr class="mat-row" *matNoDataRow>
 				<td class="mat-cell" [attr.colspan]="displayedColumns.length">
-					Nenhum usuário encontrado
+					{{ textProvider.users.noUserFound }}
 				</td>
 			</tr>
 		</table>

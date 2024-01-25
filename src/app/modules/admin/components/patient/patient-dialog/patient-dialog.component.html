@@ -1,30 +1,30 @@
-<h2 mat-dialog-title>{{ data?.patient ? 'Editar Paciente' : 'Adicionar Paciente' }}</h2>
+<h2 mat-dialog-title>{{ data?.patient ? textProvider.patients.editPatient : textProvider.patients.addPatient }}</h2>
 <mat-dialog-content>
 	<form [formGroup]="patientForm" autocomplete="off" id="form" (ngSubmit)="submit()">
 		<div class="row">
 			<div class="col">
-				<app-input label="Nome Completo" controlName="name" />
+				<app-input [label]="textProvider.patients.completeName" controlName="name" />
 			</div>
 			<div class="col">
-				<app-input label="Data de nascimento" type="date" controlName="birthday" />
+				<app-input [label]="textProvider.patients.birthday" type="date" controlName="birthday" />
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col">
-				<app-input label="RG" controlName="rg" mask="rg" />
+				<app-input [label]="textProvider.patients.rg" controlName="rg" mask="rg" />
 			</div>
 			<div class="col">
-				<app-input label="CPF" controlName="cpf" mask="cpf" />
+				<app-input [label]="textProvider.patients.cpf" controlName="cpf" mask="cpf" />
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-12" formArrayName="phones">
-				<h3>Telefones:</h3>
+				<h3>{{ textProvider.patients.phones }}</h3>
 				<div *ngFor="let phones of phonesControl.controls; let i = index;">
 					<mat-form-field>
-						<mat-label>Telefone {{ i + 1 }}</mat-label>
+						<mat-label>{{ textProvider.patients.phone }} {{ i + 1 }}</mat-label>
 						<input matInput [formControlName]="i" appMask="phone">
 						<button *ngIf="phonesControl.controls.length > 1" type="button" mat-icon-button matSuffix
 							(click)="removePhone(i)">
@@ -41,8 +41,8 @@
 	</form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-	<button mat-button type="button" mat-dialog-close>Cancelar</button>
+	<button mat-button type="button" mat-dialog-close>{{ textProvider.buttons.cancel }}</button>
 	<button mat-flat-button [appButtonLoading]="loading$ | ngrxPush" color="primary" form="form" [disabled]="patientForm.invalid ">
-		{{ data?.patient ? 'Editar' : 'Adicionar' }}
+		{{ data?.patient ? textProvider.buttons.edit : textProvider.buttons.add }}
 	</button>
 </mat-dialog-actions>

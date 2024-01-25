@@ -128,14 +128,14 @@ const directives = [
 			provide: MatPaginatorIntl,
 			useValue: (() => {
 				const paginatorIntl = new MatPaginatorIntl()
-				paginatorIntl.itemsPerPageLabel = 'Itens por página:'
-				paginatorIntl.firstPageLabel = 'Primeira página'
-				paginatorIntl.previousPageLabel = 'Página anterior'
-				paginatorIntl.nextPageLabel = 'Próxima página'
-				paginatorIntl.lastPageLabel = 'Última página'
+				paginatorIntl.itemsPerPageLabel = $localize `Itens por página:`
+				paginatorIntl.firstPageLabel = $localize `Primeira página`
+				paginatorIntl.previousPageLabel = $localize `Página anterior`
+				paginatorIntl.nextPageLabel = $localize `Próxima página`
+				paginatorIntl.lastPageLabel = $localize `Última página`
 				paginatorIntl.getRangeLabel = (page: number, pageSize: number, length: number) => {
 					if(length === 0 || pageSize === 0) {
-						return `0 de ${length}`
+						return $localize `0 de ${length}`
 					}
 
 					length = Math.max(length, 0)
@@ -146,7 +146,7 @@ const directives = [
 						Math.min(startIndex + pageSize, length) :
 						startIndex + pageSize
 
-					return `${startIndex + 1} - ${endIndex} de ${length}`
+					return $localize `${startIndex + 1} - ${endIndex} de ${length}`
 				}
 
 				return paginatorIntl

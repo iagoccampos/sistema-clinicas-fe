@@ -1,13 +1,12 @@
-<app-page-header title="Pacientes" [hideHr]="true" />
-<button mat-flat-button color="primary" type="button" class="mb-3" (click)="addPatient()">Adicionar
-	Paciente</button>
+<app-page-header [title]="textProvider.patients.title" [hideHr]="true" />
+<button mat-flat-button color="primary" type="button" class="mb-3" (click)="addPatient()">{{ textProvider.buttons.add }}</button>
 <mat-expansion-panel expanded="true">
 	<mat-expansion-panel-header>
 		<mat-panel-title>
 			<mat-icon>
 				person_search
 			</mat-icon>
-			Procurar Pacientes
+			{{ textProvider.patients.subTitle }}
 		</mat-panel-title>
 	</mat-expansion-panel-header>
 	<app-find-patient />

@@ -72,7 +72,7 @@ export class PatientEffects {
 			tap((val) => {
 				this.dialogService.openDeleteConfirmationDialog({
 					dispatch: { action: deletePatient({ patientId: val.patient._id }), selector: selectDeleteStatus },
-					entityName: 'paciente',
+					entityName: $localize `paciente`,
 					entityValue: val.patient.name,
 				})
 			}),

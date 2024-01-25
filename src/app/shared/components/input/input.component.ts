@@ -59,25 +59,25 @@ export class InputComponent implements AfterViewInit {
 
 				switch (firstKey) {
 					case 'required':
-						this.currentErrorMsg = 'Campo é requerido.'
+						this.currentErrorMsg = $localize `Campo é requerido.`
 						break
 					case 'minlength':
-						this.currentErrorMsg = `Campo deve conter no mínimo ${this.control.errors[firstKey].requiredLength} caracteres.`
+						this.currentErrorMsg = $localize `Campo deve conter no mínimo ${this.control.errors[firstKey].requiredLength} caracteres.`
 						break
 					case 'maxlength':
-						this.currentErrorMsg = `Campo deve conter no máximo ${this.control.errors[firstKey].requiredLength} caracteres.`
+						this.currentErrorMsg = $localize `Campo deve conter no máximo ${this.control.errors[firstKey].requiredLength} caracteres.`
 						break
 					case 'email':
-						this.currentErrorMsg = 'Campo deve conter um e-mail válido.'
+						this.currentErrorMsg = $localize `Campo deve conter um e-mail válido.`
 						break
 					case 'passwordMismatch':
-						this.currentErrorMsg = 'As senhas não conferem.'
+						this.currentErrorMsg = $localize `As senhas não conferem.`
 						break
 					case 'matDatepickerParse':
-						this.currentErrorMsg = 'Data inválida.'
+						this.currentErrorMsg = $localize `Data inválida.`
 						break
 					default:
-						this.currentErrorMsg = 'Campo inválido.'
+						this.currentErrorMsg = $localize `Campo inválido.`
 				}
 			} else {
 				this.currentErrorMsg = ''

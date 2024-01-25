@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store'
 import { createClinic } from './store/new-clinic.actions'
 import { selectStatus } from './store/new-clinic.selector'
 import { map, tap } from 'rxjs'
+import { BaseComponent } from 'src/app/shared/components/base/base.component'
 
 @Component({
 	selector: 'app-new-clinic',
@@ -11,7 +12,7 @@ import { map, tap } from 'rxjs'
 	styleUrls: ['./new-clinic.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NewClinicComponent {
+export class NewClinicComponent extends BaseComponent {
 	loading$ = this.store.select(selectStatus).pipe(
 		tap((val) => {
 			if(val === 'loading') {
@@ -29,7 +30,9 @@ export class NewClinicComponent {
 		name: new FormControl('', { validators: [Validators.required, Validators.maxLength(50)], nonNullable: true }),
 	})
 
-	constructor(private store: Store) {}
+	constructor(private store: Store) {
+		super()
+	}
 
 	submit() {
 		this.store.dispatch(createClinic({ clinicForm: this.clinicForm.getRawValue() }))

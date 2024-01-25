@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store'
 import { IPatient } from 'src/app/models/patient.model'
 import { createPatient, updatePatient } from '../store/patient.actions'
 import { selectCreateOrUpdateStatus } from '../store/patient.selector'
+import { BaseComponent } from 'src/app/shared/components/base/base.component'
 
 export type DialogData = { patient?: IPatient } | null
 
@@ -14,7 +15,7 @@ export type DialogData = { patient?: IPatient } | null
 	templateUrl: './patient-dialog.component.html',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PatientDialogComponent {
+export class PatientDialogComponent extends BaseComponent {
 	loading$ = this.store.select(selectCreateOrUpdateStatus).pipe(
 		tap((val) => {
 			if(val === 'loading') {
@@ -48,6 +49,7 @@ export class PatientDialogComponent {
 
 	constructor(public dialogRef: MatDialogRef<PatientDialogComponent, void>, @Inject(MAT_DIALOG_DATA) public data: DialogData,
 		private store: Store) {
+		super()
 		if(data?.patient) {
 			this.patientForm.patchValue(data.patient)
 		}

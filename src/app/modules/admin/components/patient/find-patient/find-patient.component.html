@@ -1,25 +1,25 @@
 <form [formGroup]="findPatientsForm" autocomplete="off">
 	<div class="row">
 		<div class="col">
-			<app-input label="Nome" controlName="name" />
+			<app-input [label]="textProvider.patients.completeName" controlName="name" />
 		</div>
 		<div class="col">
-			<app-input label="Data de nascimento" type="date" controlName="birthday" />
+			<app-input [label]="textProvider.patients.birthday" type="date" controlName="birthday" />
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col">
-			<app-input label="RG" controlName="rg" mask="rg" />
+			<app-input [label]="textProvider.patients.rg" controlName="rg" mask="rg" />
 		</div>
 		<div class="col">
-			<app-input label="CPF" controlName="cpf" mask="cpf" />
+			<app-input [label]="textProvider.patients.cpf" controlName="cpf" mask="cpf" />
 		</div>
 		<div class="col">
-			<app-input label="Ficha" controlName="card" />
+			<app-input [label]="textProvider.patients.card" controlName="card" />
 		</div>
 	</div>
-	<button type="button" mat-flat-button color="accent" class="mb-3" (click)="clearForm()">Limpar</button>
+	<button type="button" mat-flat-button color="accent" class="mb-3" (click)="clearForm()">{{ textProvider.buttons.clear }}</button>
 </form>
 
 <app-center-spinner [loading$]="loading$" [hideTarget]="table" />
@@ -28,32 +28,32 @@
 	<div class="mat-table-container">
 		<table mat-table [dataSource]="patients$" multiTemplateDataRows>
 			<ng-container matColumnDef="card">
-				<th mat-header-cell *matHeaderCellDef> Ficha </th>
+				<th mat-header-cell *matHeaderCellDef> {{ textProvider.patients.card }} </th>
 				<td mat-cell *matCellDef="let patient"> {{ patient.card }} </td>
 			</ng-container>
 
 			<ng-container matColumnDef="name">
-				<th mat-header-cell *matHeaderCellDef> Nome </th>
+				<th mat-header-cell *matHeaderCellDef> {{ textProvider.patients.completeName }} </th>
 				<td mat-cell *matCellDef="let patient"> {{ patient.name }} </td>
 			</ng-container>
 
 			<ng-container matColumnDef="rg">
-				<th mat-header-cell *matHeaderCellDef> RG </th>
+				<th mat-header-cell *matHeaderCellDef> {{ textProvider.patients.rg }} </th>
 				<td mat-cell *matCellDef="let patient"> {{ patient.rg | rg | orDash }} </td>
 			</ng-container>
 
 			<ng-container matColumnDef="cpf">
-				<th mat-header-cell *matHeaderCellDef> CPF </th>
+				<th mat-header-cell *matHeaderCellDef> {{ textProvider.patients.cpf }} </th>
 				<td mat-cell *matCellDef="let patient"> {{ patient.cpf | cpf | orDash }} </td>
 			</ng-container>
 
 			<ng-container matColumnDef="birthday">
-				<th mat-header-cell *matHeaderCellDef> Data nasc. </th>
+				<th mat-header-cell *matHeaderCellDef> {{ textProvider.patients.birthday }} </th>
 				<td mat-cell *matCellDef="let patient"> {{ (patient.birthday | date) | orDash }} </td>
 			</ng-container>
 
 			<ng-container matColumnDef="actions">
-				<th mat-header-cell *matHeaderCellDef> Ações </th>
+				<th mat-header-cell *matHeaderCellDef> {{ textProvider.patients.actions }} </th>
 				<td mat-cell *matCellDef="let patient">
 					<button mat-icon-button type="button" color="accent" (click)="$event.stopPropagation(); updatePatient(patient)">
 						<mat-icon>edit</mat-icon>
@@ -77,20 +77,20 @@
 			<ng-container matColumnDef="expandedDetail">
 				<td mat-cell *matCellDef="let patient" [attr.colspan]="columnsToDisplayWithExpand.length">
 					<div [@detailExpand]="patient === expandedPatient ? 'expanded' : 'collapsed'">
-						Telefones:
-						<div class="row">
+						Telefones
+						<!-- <div class="row">
 							<div class="col-3" *ngFor="let phone of patient.phones">
 								<p>{{ phone | phone }}</p>
 							</div>
 						</div>
-							<div class="row">
-								<div class="col-3">
-									<p>Criado em: {{ patient.createdAt | date }}</p>
-								</div>
-								<div class="col-3">
-									<p>Ultima alteração em: {{ patient.updatedAt | date }}</p>
-								</div>
+						<div class="row">
+							<div class="col-3">
+								<p>Criado em: {{ patient.createdAt | date }}</p>
 							</div>
+							<div class="col-3">
+								<p>Ultima alteração em: {{ patient.updatedAt | date }}</p>
+							</div>
+						</div> -->
 					</div>
 				</td>
 			</ng-container>
@@ -104,7 +104,7 @@
 			<tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
 			<tr class="mat-row" *matNoDataRow>
 				<td class="mat-cell" [attr.colspan]="columnsToDisplay.length">
-					Nenhum paciente cadastrado
+					{{ textProvider.patients.noPatientFound }}
 				</td>
 			</tr>
 		</table>

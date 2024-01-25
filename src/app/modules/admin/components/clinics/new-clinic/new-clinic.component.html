@@ -1,16 +1,17 @@
-<app-page-header title="Adicionar Clínicas" [hideHr]="true" />
+<app-page-header [title]="textProvider.newClinic.title" [hideHr]="true" />
 <mat-expansion-panel>
 	<mat-expansion-panel-header>
 		<mat-panel-title>
 			<mat-icon>
 				add_circle
 			</mat-icon>
-			Adicionar Clínica
+			{{ textProvider.newClinic.addClinic }}
 		</mat-panel-title>
 	</mat-expansion-panel-header>
 	<form [formGroup]="clinicForm" (ngSubmit)="submit()">
-		<app-input label="Nome" controlName="name" />
-		<button mat-flat-button [appButtonLoading]="loading$ | ngrxPush" color="primary" [disabled]="clinicForm.invalid">Adicionar
+		<app-input [label]="textProvider.newClinic.clinicName" controlName="name" />
+		<button mat-flat-button [appButtonLoading]="loading$ | ngrxPush" color="primary" [disabled]="clinicForm.invalid">
+			{{ textProvider.newClinic.addClinicBtn }}
 		</button>
 	</form>
 </mat-expansion-panel>

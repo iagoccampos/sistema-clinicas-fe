@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store'
 import { IPatient, IPatientsResponse } from 'src/app/models/patient.model'
 import { selectDeleteStatus, selectCreateOrUpdateStatus, selectFindStatus, selectPatients } from '../store/patient.selector'
 import { findPatients, openCreateOrUpdateDialog, openDeleteDialog } from '../store/patient.actions'
+import { BaseComponent } from 'src/app/shared/components/base/base.component'
 
 @Component({
 	selector: 'app-find-patient',
@@ -21,7 +22,7 @@ import { findPatients, openCreateOrUpdateDialog, openDeleteDialog } from '../sto
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FindPatientComponent implements AfterViewInit {
+export class FindPatientComponent extends BaseComponent implements AfterViewInit {
 	readonly patients$ = this.store.select(selectPatients).pipe(
 		filter((val): val is IPatientsResponse => !!val),
 		tap((val) => {
@@ -59,7 +60,9 @@ export class FindPatientComponent implements AfterViewInit {
 		return { filter: this.findPatientsForm.getRawValue(), page: this.paginator.pageIndex, limit: this.paginator.pageSize }
 	}
 
-	constructor(private store: Store) {}
+	constructor(private store: Store) {
+		super()
+	}
 
 	ngAfterViewInit() {
 		this.store.dispatch(findPatients({ search: this.searchForm }))

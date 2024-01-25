@@ -4,6 +4,12 @@
 	"newProjectRoot": "projects",
 	"projects": {
 		"clinicas": {
+			"i18n": {
+				"sourceLocale": "pt",
+				"locales": {
+					"en-US": "src/locale/messages.en.xlf"
+				}
+			},
 			"projectType": "application",
 			"schematics": {
 				"@schematics/angular:component": {
@@ -47,8 +53,8 @@
 							"budgets": [
 								{
 									"type": "initial",
-									"maximumWarning": "500kb",
-									"maximumError": "1mb"
+									"maximumWarning": "1mb",
+									"maximumError": "2mb"
 								},
 								{
 									"type": "anyComponentStyle",
@@ -65,6 +71,11 @@
 							"extractLicenses": false,
 							"sourceMap": true,
 							"namedChunks": true
+						},
+						"en-US": {
+							"localize": [
+								"en-US"
+							]
 						}
 					},
 					"defaultConfiguration": "production"
@@ -77,6 +88,9 @@
 						},
 						"development": {
 							"browserTarget": "clinicas:build:development"
+						},
+						"en-development": {
+							"browserTarget": "clinicas:build:development,en-US"
 						}
 					},
 					"defaultConfiguration": "development"

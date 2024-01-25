@@ -1,17 +1,17 @@
-<h2 mat-dialog-title>{{ data?.user ? 'Editar Paciente' : 'Adicionar Paciente' }}</h2>
+<h2 mat-dialog-title>{{ data?.user ? textProvider.users.editUser : textProvider.users.addUser }}</h2>
 <mat-dialog-content>
 	<form [formGroup]="userForm" autocomplete="off" id="form" (ngSubmit)="submit()">
-		<app-input label="Nome" controlName="name" />
-		<app-input label="Usuário" controlName="username" />
+		<app-input [label]="textProvider.users.name" controlName="name" />
+		<app-input [label]="textProvider.users.user" controlName="username" autocomplete="one-time-code" />
 		<ng-container *ngIf="!data?.user">
-			<app-input label="Senha" controlName="password" type="password" />
-			<app-input label="Repita a senha" controlName="passwordConf" type="password" />
+			<app-input [label]="textProvider.users.pass" controlName="password" type="password" autocomplete="one-time-code" />
+			<app-input [label]="textProvider.users.repeatPass" controlName="passwordConf" type="password" autocomplete="one-time-code" />
 		</ng-container>
 	</form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-	<button mat-button mat-dialog-close>Cancelar</button>
+	<button mat-button mat-dialog-close>{{ textProvider.buttons.cancel }}</button>
 	<button mat-flat-button [appButtonLoading]="loading$ | ngrxPush" color="primary" form="form" [disabled]="userForm.invalid">
-		{{ data?.user ? 'Editar' : 'Adicionar' }}
+		{{ data?.user ? textProvider.buttons.edit : textProvider.buttons.add }}
 	</button>
 </mat-dialog-actions>
