@@ -1,4 +1,4 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion'
+import { coerceBooleanProperty } from '@angular/cdk/coercion'
 import { ComponentRef, Directive, Input, Renderer2, ViewContainerRef } from '@angular/core'
 import { MatButton } from '@angular/material/button'
 import { MatProgressSpinner } from '@angular/material/progress-spinner'
@@ -7,14 +7,9 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner'
 	selector: 'button[appButtonLoading]',
 })
 export class ButtonLoadingDirective {
-	@Input() set appButtonLoading(val: BooleanInput) {
-		if(coerceBooleanProperty(val)) {
-			this.show()
-			this.matButton.disabled = true
-		} else {
-			this.hide()
-			this.matButton.disabled = false
-		}
+	@Input({ transform: coerceBooleanProperty }) set appButtonLoading(val: boolean) {
+		val ? this.show() : this.hide()
+		this.matButton.disabled = val
 	}
 
 	private readonly spinner: ComponentRef<MatProgressSpinner>
