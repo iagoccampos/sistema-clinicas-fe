@@ -10,7 +10,7 @@
 	</mat-expansion-panel-header>
 	<form [formGroup]="clinicForm" (ngSubmit)="submit()">
 		<app-input [label]="textProvider.newClinic.clinicName" controlName="name" />
-		<button mat-flat-button [appButtonLoading]="loading$ | ngrxPush" color="primary" [disabled]="clinicForm.invalid">
+		<button mat-flat-button [appButtonLoading]="loading$ | push" color="primary" [disabled]="clinicForm.invalid">
 			{{ textProvider.newClinic.addClinicBtn }}
 		</button>
 	</form>

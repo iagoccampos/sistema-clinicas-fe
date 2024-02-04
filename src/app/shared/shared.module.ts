@@ -27,7 +27,7 @@ import { ptBR } from 'date-fns/esm/locale'
 import localePT from '@angular/common/locales/pt'
 import { InputMaskModule } from '@ngneat/input-mask'
 import { CurrencyMaskModule } from 'ng2-currency-mask'
-import { PushPipe } from '@ngrx/component'
+import { RxPush } from '@rx-angular/template/push'
 import { OrDashPipe } from './pipes/or-dash.pipe'
 import { DeleteConfirmationComponent } from './components/dialogs/delete-confirmation/delete-confirmation.component'
 import { MaskDirective } from './directives/mask.directive'
@@ -39,6 +39,7 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component'
 import { CenterSpinnerComponent } from './components/center-spinner/center-spinner.component'
 import { ButtonLoadingDirective } from './directives/mat-button-loading.directive'
 import { InputComponent } from './components/input/input.component'
+import { PushPipe } from '@ngrx/component'
 
 registerLocaleData(localePT)
 
@@ -99,6 +100,7 @@ const directives = [
 		HttpClientModule,
 		InputMaskModule,
 		CurrencyMaskModule,
+		RxPush,
 		PushPipe,
 		...materialModules,
 	],
@@ -107,6 +109,7 @@ const directives = [
 		HttpClientModule,
 		InputMaskModule,
 		CurrencyMaskModule,
+		RxPush,
 		PushPipe,
 		...materialModules,
 		...components,

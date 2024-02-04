@@ -6,8 +6,8 @@
 	</ng-container>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-	<button mat-raised-button mat-dialog-close [disabled]="loading$ | ngrxPush">{{ textProvider.buttons.delete }}</button>
-	<button mat-raised-button [appButtonLoading]="loading$ | ngrxPush" color="warn" (click)="confirm()">
+	<button mat-raised-button mat-dialog-close [disabled]="loading$ | push">{{ textProvider.buttons.cancel }}</button>
+	<button mat-raised-button [appButtonLoading]="loading$ | push" color="warn" (click)="confirm()">
 		{{ textProvider.buttons.delete }}
 	</button>
 </mat-dialog-actions>

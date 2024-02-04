@@ -7,7 +7,7 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
 	<button mat-button type="button" mat-dialog-close>{{ textProvider.buttons.cancel }}</button>
-	<button mat-flat-button [appButtonLoading]="loading$ | ngrxPush" color="primary" form="form" [disabled]="passForm.invalid">
+	<button mat-flat-button [appButtonLoading]="loading$ | push" color="primary" form="form" [disabled]="passForm.invalid">
 		{{ textProvider.buttons.edit }}
 	</button>
 </mat-dialog-actions>

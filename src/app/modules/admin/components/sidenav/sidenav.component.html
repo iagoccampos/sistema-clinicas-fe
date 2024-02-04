@@ -1,5 +1,5 @@
-<mat-sidenav-container class="side-nav" (backdropClick)="close()" [style.top]="(topGap$ | ngrxPush) + 'px'">
-	<mat-sidenav #sidenav [mode]="(mode$ | ngrxPush) || 'side'" class="container-fluid" [opened]="opened$ | ngrxPush">
+<mat-sidenav-container class="side-nav" (backdropClick)="close()" [style.top]="(topGap$ | push) + 'px'">
+	<mat-sidenav #sidenav [mode]="(mode$ | push) || 'side'" class="container-fluid" [opened]="opened$ | push">
 		<h1>{{ clinic?.name }}</h1>
 		<mat-nav-list>
 			<app-nav-list-item *ngFor="let item of navItems" [item]="item" />

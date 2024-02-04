@@ -13,7 +13,7 @@
 							<app-input [label]="textProvider.loginPage.user" controlName="username" autocomplete="username"/>
 							<app-input [label]="textProvider.loginPage.pass" controlName="password" type="password" autocomplete="current-password" />
 						</div>
-						<button mat-flat-button [appButtonLoading]="loading$ | ngrxPush" color="primary" type="submit" [disabled]="loginForm.invalid && loginForm.touched">
+						<button mat-flat-button [appButtonLoading]="loading$ | push" color="primary" type="submit" [disabled]="loginForm.invalid && loginForm.touched">
 							{{ textProvider.buttons.login }}
 						</button>
 					</form>

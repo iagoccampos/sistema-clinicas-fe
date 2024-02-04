@@ -1,12 +1,12 @@
 <mat-toolbar color="primary">
-	<button mat-fab color="primary" class="me-2" (click)="toggleSidenav()" *ngIf="navService.showSidenavToggle$ | ngrxPush">
+	<button mat-fab color="primary" class="me-2" (click)="toggleSidenav()" *ngIf="navService.showSidenavToggle$ | push">
 		<mat-icon>
-			{{ (sideNavOpen$ | ngrxPush) ? 'keyboard_arrow_left' : 'keyboard_arrow_right'}}
+			{{ (sideNavOpen$ | push) ? 'keyboard_arrow_left' : 'keyboard_arrow_right'}}
 		</mat-icon>
 	</button>
 	<span>{{ textProvider.navbar.title }}</span>
 
-	<ng-container *ngIf="(showDropdownMenu$ | ngrxPush) === false">
+	<ng-container *ngIf="(showDropdownMenu$ | push) === false">
 		<button mat-flat-button color="primary" *ngFor="let item of menuItems" [routerLink]="item.route" routerLinkActive="selected">
 			{{ item.label }}
 		</button>
@@ -14,10 +14,10 @@
 
 	<span class="spacer"></span>
 
-	<ng-container *ngIf="(showDropdownMenu$ | ngrxPush) === false">
+	<ng-container *ngIf="(showDropdownMenu$ | push) === false">
 		<button mat-fab color="primary" (click)="toggleLightMode()">
 			<mat-icon>
-				{{ (themeService.isDarkTheme$ | ngrxPush) ? 'light_mode' : 'dark_mode'}}
+				{{ (themeService.isDarkTheme$ | push) ? 'light_mode' : 'dark_mode'}}
 			</mat-icon>
 		</button>
 		<button mat-fab color="primary">
@@ -32,7 +32,7 @@
 		</button>
 	</ng-container>
 
-	<ng-container *ngIf="showDropdownMenu$ | ngrxPush">
+	<ng-container *ngIf="showDropdownMenu$ | push">
 		<button mat-fab color="primary" [matMenuTriggerFor]="menu">
 			<mat-icon>
 				menu
@@ -46,7 +46,7 @@
 			<div class="button-group">
 				<button mat-menu-item (click)="toggleLightMode()">
 					<mat-icon>
-						{{ (themeService.isDarkTheme$ | ngrxPush) ? 'light_mode' : 'dark_mode'}}
+						{{ (themeService.isDarkTheme$ | push) ? 'light_mode' : 'dark_mode'}}
 					</mat-icon>
 				</button>
 				<button mat-menu-item>

@@ -39,7 +39,7 @@
 					<app-input [label]="textProvider.configs.inputCNPJ" controlName="cnpj" mask="cnpj" />
 				</div>
 			</div>
-			<button mat-flat-button [appButtonLoading]="loading$ | ngrxPush" color="primary" [disabled]="clinciDataForm.invalid">
+			<button mat-flat-button [appButtonLoading]="loading$ | push" color="primary" [disabled]="clinciDataForm.invalid">
 				{{ textProvider.buttons.save }}
 			</button>
 		</form>

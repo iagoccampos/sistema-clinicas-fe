@@ -5,7 +5,7 @@ import { BaseComponent } from '../base/base.component'
 @Component({
 	selector: 'app-center-spinner',
 	template: `
-		<div class="d-flex justify-content-center my-5" *ngIf="loading$ | async">
+		<div class="d-flex justify-content-center my-5" *ngIf="loading$ | push">
 			<mat-spinner />
 		</div>
 	`,
