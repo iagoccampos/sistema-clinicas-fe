@@ -19,7 +19,7 @@ const login = {
 const clinics = {
 	title: $localize `Clínicas`,
 	access: $localize `Acessar`,
-	config: $localize `Configuração`,
+	config: $localize `Configurações`,
 } as const
 
 const newClinic = {
@@ -57,7 +57,7 @@ const patients = {
 } as const
 
 const configs = {
-	title: $localize `Configuração`,
+	title: $localize `Configurações`,
 	subTitle1: $localize `Configuração Geral da Clínica`,
 	inputClinicName: $localize `Nome da clínica`,
 	inputAddress: $localize `Endereço`,
