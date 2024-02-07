@@ -45,8 +45,6 @@ registerLocaleData(localePT)
 
 const materialModules = [
 	OverlayModule,
-	MatDialogModule,
-	MatCardModule,
 	MatButtonModule,
 	MatFormFieldModule,
 	MatInputModule,

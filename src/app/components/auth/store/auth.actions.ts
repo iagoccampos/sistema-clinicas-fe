@@ -2,10 +2,6 @@ import { createAction, props } from '@ngrx/store'
 import { IActionError } from 'src/app/models/action-error.model'
 import { IUser } from 'src/app/models/user.model'
 
-export const toggleHidePass = createAction(
-	'[Auth] ToggleHidePass',
-)
-
 export const getTokenFromStore = createAction(
 	'[Auth] GetToken',
 )

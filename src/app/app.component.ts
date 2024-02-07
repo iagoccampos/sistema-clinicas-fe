@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { ThemeService } from './services/theme.service'
 import { Store } from '@ngrx/store'
 import { getTokenFromStore } from './components/auth/store/auth.actions'
@@ -8,9 +8,11 @@ import { getTokenFromStore } from './components/auth/store/auth.actions'
 	template: '<router-outlet />',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
-	constructor(public themeService: ThemeService, private store: Store) {
-		themeService.load()
-		store.dispatch(getTokenFromStore())
+export class AppComponent implements OnInit {
+	constructor(private themeService: ThemeService, private store: Store) {}
+
+	ngOnInit() {
+		this.themeService.load()
+		this.store.dispatch(getTokenFromStore())
 	}
 }

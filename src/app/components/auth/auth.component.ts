@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { Store } from '@ngrx/store'
-import { toggleHidePass, login } from './store/auth.actions'
-import { selectHidePass, selectStatus } from './store/auth.selector'
 import { map, tap } from 'rxjs'
+import { login } from './store/auth.actions'
+import { selectStatus } from './store/auth.selector'
 import { BaseComponent } from 'src/app/shared/components/base/base.component'
 
 @Component({
@@ -12,7 +12,6 @@ import { BaseComponent } from 'src/app/shared/components/base/base.component'
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthComponent extends BaseComponent {
-	readonly hidePass$ = this.store.select(selectHidePass)
 	readonly loading$ = this.store.select(selectStatus).pipe(tap((val) => {
 		if(val === 'loading') {
 			this.loginForm.disable()
@@ -28,10 +27,6 @@ export class AuthComponent extends BaseComponent {
 
 	constructor(private readonly store: Store) {
 		super()
-	}
-
-	toggleHidePass() {
-		this.store.dispatch(toggleHidePass())
 	}
 
 	login() {

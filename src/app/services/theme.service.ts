@@ -8,16 +8,14 @@ type ThemeType = 'dark' | 'light'
 	providedIn: 'root',
 })
 export class ThemeService {
-	private readonly renderer: Renderer2
+	private readonly renderer = this.rendererFactory.createRenderer(null, null)
 	private colorScheme: ThemeType = 'dark'
 	private readonly colorSchemePrefix = 'color-scheme-'
 
 	private isDarkThemeSub$ = new BehaviorSubject(this.colorScheme)
 	isDarkTheme$ = this.isDarkThemeSub$.pipe(map((val) => val === 'dark'), distinctUntilChanged())
 
-	constructor(private localStorageService: LocalStorageService, rendererFactory: RendererFactory2) {
-		this.renderer = rendererFactory.createRenderer(null, null)
-	}
+	constructor(private localStorageService: LocalStorageService, private rendererFactory: RendererFactory2) {}
 
 	toggleTheme() {
 		this.update(this.colorScheme === 'dark' ? 'light' : 'dark')
@@ -43,8 +41,7 @@ export class ThemeService {
 		this.colorScheme = scheme
 
 		// Save prefers-color-scheme to localStorage
-		this.localStorageService.getSetTheme
-		localStorage.setItem('prefers-color', scheme)
+		this.localStorageService.getSetTheme(scheme)
 	}
 
 	private getColorScheme() {

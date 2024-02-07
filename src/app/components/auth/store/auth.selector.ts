@@ -3,11 +3,6 @@ import { IAuthState } from './auth.reducer'
 
 export const selectAuth = createFeatureSelector<IAuthState>('auth')
 
-export const selectHidePass = createSelector(
-	selectAuth,
-	(auth) => auth.hidePass,
-)
-
 export const selectCurrentUser = createSelector(
 	selectAuth,
 	(auth) => auth.currentUser,

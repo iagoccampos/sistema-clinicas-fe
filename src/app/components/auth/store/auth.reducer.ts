@@ -1,12 +1,11 @@
 import { createReducer, on } from '@ngrx/store'
-import { getTokenFromStore, login, loginError, loginSuccess, logout, toggleHidePass } from './auth.actions'
+import { getTokenFromStore, login, loginError, loginSuccess, logout } from './auth.actions'
 import { FormStatus } from 'src/app/models/form-status.model'
 import { IUser } from 'src/app/models/user.model'
 
 export interface IAuthState {
 	currentUser: IUser | null
 	token: string | null
-	hidePass: boolean
 	errorMsg: string | null
 	status: FormStatus
 }
@@ -14,16 +13,12 @@ export interface IAuthState {
 const initialState: IAuthState = {
 	currentUser: null,
 	token: null,
-	hidePass: true,
 	errorMsg: null,
 	status: 'pending',
 } as const
 
 export const authReducer = createReducer<IAuthState>(
 	initialState,
-	on(toggleHidePass, (state): IAuthState => {
-		return { ...state, hidePass: !state.hidePass }
-	}),
 	on(getTokenFromStore, (state): IAuthState => {
 		return { ...state }
 	}),
