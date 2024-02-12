@@ -29,11 +29,7 @@ export class InputComponent implements AfterViewInit {
 
 	@Input() set options(val: (ILabelValuePair | string)[]) {
 		this._options = val.map((el) => {
-			if(typeof el === 'string') {
-				return { label: el, value: el }
-			}
-
-			return el
+			return typeof el === 'string' ? { label: el, value: el } : el
 		})
 	}
 
