@@ -1,3 +1,4 @@
+import { coerceBooleanProperty } from '@angular/cdk/coercion'
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 
 @Component({
@@ -9,6 +10,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageHeaderComponent {
-	@Input() hideHr = false
+	@Input({ transform: coerceBooleanProperty }) hideHr = false
 	@Input({ required: true }) title = ''
 }
