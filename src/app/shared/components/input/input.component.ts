@@ -52,7 +52,7 @@ export class InputComponent implements AfterViewInit {
 		this.control.statusChanges.subscribe((status) => {
 			if(status === 'INVALID' && this.control?.errors) {
 				const firstKey = Object.keys(this.control.errors)[0] as ErrorTypes
-				console.log(this.control.errors[firstKey])
+
 				switch (firstKey) {
 					case 'required':
 						this.currentErrorMsg = $localize `Campo é requerido.`
