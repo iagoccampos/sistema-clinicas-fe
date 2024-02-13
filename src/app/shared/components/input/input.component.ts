@@ -2,9 +2,9 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, Input, SkipSelf, Vie
 import { ControlContainer, FormControl, FormControlName } from '@angular/forms'
 import { MaskNames } from '../../directives/mask.directive'
 
-type ErrorTypes = 'required' | 'maxlength' | 'minlength' | 'email' | 'passwordMismatch' | 'matDatepickerParse'
+type ErrorTypes = 'required' | 'maxlength' | 'minlength' | 'email' | 'passwordMismatch' | 'matDatepickerParse' | 'min'
 
-type InputType = 'text' | 'password' | 'date' | 'select'
+type InputType = 'text' | 'password' | 'date' | 'select' | 'currency'
 
 interface ILabelValuePair { label: string, value: string }
 
@@ -22,10 +22,10 @@ interface ILabelValuePair { label: string, value: string }
 })
 export class InputComponent implements AfterViewInit {
 	@Input({ required: true }) label = ''
+	@Input({ required: true }) controlName: string | null = null
 	@Input() type: InputType = 'text'
 	@Input() autocomplete: HTMLInputElement['autocomplete'] = 'on'
 	@Input() mask: MaskNames | null = null
-	@Input() controlName: string | null = null
 
 	@Input() set options(val: (ILabelValuePair | string)[]) {
 		this._options = val.map((el) => {
@@ -52,7 +52,7 @@ export class InputComponent implements AfterViewInit {
 		this.control.statusChanges.subscribe((status) => {
 			if(status === 'INVALID' && this.control?.errors) {
 				const firstKey = Object.keys(this.control.errors)[0] as ErrorTypes
-
+				console.log(this.control.errors[firstKey])
 				switch (firstKey) {
 					case 'required':
 						this.currentErrorMsg = $localize `Campo é requerido.`
@@ -71,6 +71,10 @@ export class InputComponent implements AfterViewInit {
 						break
 					case 'matDatepickerParse':
 						this.currentErrorMsg = $localize `Data inválida.`
+						break
+					case 'min':
+						this.currentErrorMsg = $localize `Valor mínimo de ${this.control.errors[firstKey].min}` + (this.type === 'currency' ?
+							$localize ` reais.` : '.')
 						break
 					default:
 						this.currentErrorMsg = $localize `Campo inválido.`

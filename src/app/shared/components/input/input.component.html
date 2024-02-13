@@ -1,35 +1,50 @@
-<mat-form-field *ngIf="type === 'text' || type === 'password'" class="mb-1">
-	<mat-label>{{ label }}</mat-label>
-	<input
-		matInput
-		[formControlName]="controlName"
-		[maxlength]="maxLength"
-		[type]="type === 'password' && !hidePass ? 'text' : type"
-		[autocomplete]="autocomplete"
-		[appMask]="mask">
+<div class="mb-2">
+	<mat-form-field *ngIf="type === 'text' || type === 'password'">
+		<mat-label>{{ label }}</mat-label>
+		<input
+			matInput
+			[formControlName]="controlName"
+			[maxlength]="maxLength"
+			[type]="type === 'password' && !hidePass ? 'text' : type"
+			[autocomplete]="autocomplete"
+			[appMask]="mask">
 
-	<button mat-icon-button matSuffix *ngIf="type === 'password'" type="button" tabindex="-1" (click)="togglePass()">
-		<mat-icon>{{ hidePass ? 'visibility_off' : 'visibility' }}</mat-icon>
-	</button>
+		<button mat-icon-button matSuffix *ngIf="type === 'password'" type="button" tabindex="-1" (click)="togglePass()">
+			<mat-icon>{{ hidePass ? 'visibility_off' : 'visibility' }}</mat-icon>
+		</button>
 
-	<mat-error *ngIf="currentErrorMsg">
-		{{ currentErrorMsg }}
-	</mat-error>
-</mat-form-field>
+		<mat-error *ngIf="currentErrorMsg">
+			{{ currentErrorMsg }}
+		</mat-error>
+	</mat-form-field>
 
-<mat-form-field *ngIf="type === 'date'" class="mb-1">
-	<mat-label>{{ label }}</mat-label>
-	<input matInput [matDatepicker]="picker" [formControlName]="controlName" appMask="date">
-	<mat-datepicker-toggle matSuffix [for]="picker" />
-	<mat-datepicker #picker />
-	<mat-error *ngIf="currentErrorMsg">
-		{{ currentErrorMsg }}
-	</mat-error>
-</mat-form-field>
+	<mat-form-field *ngIf="type === 'date'">
+		<mat-label>{{ label }}</mat-label>
+		<input matInput [matDatepicker]="picker" [formControlName]="controlName" appMask="date">
+		<mat-datepicker-toggle matSuffix [for]="picker" />
+		<mat-datepicker #picker />
+		<mat-error *ngIf="currentErrorMsg">
+			{{ currentErrorMsg }}
+		</mat-error>
+	</mat-form-field>
 
-<mat-form-field *ngIf="type === 'select'" class="mb-1">
-	<mat-label>{{ label }}</mat-label>
-	<mat-select [formControlName]="controlName">
-		<mat-option *ngFor="let option of _options" [value]="option.value">{{ option.label }}</mat-option>
-	</mat-select>
-</mat-form-field>
+	<mat-form-field *ngIf="type === 'select'">
+		<mat-label>{{ label }}</mat-label>
+		<mat-select [formControlName]="controlName">
+			<mat-option *ngFor="let option of _options" [value]="option.value">{{ option.label }}</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+	<mat-form-field *ngIf="type === 'currency'">
+		<mat-label>{{ label }}</mat-label>
+		<input
+			matInput
+			[formControlName]="controlName"
+			type="text"
+			appCurrencyMask>
+
+		<mat-error *ngIf="currentErrorMsg">
+			{{ currentErrorMsg }}
+		</mat-error>
+	</mat-form-field>
+</div>
