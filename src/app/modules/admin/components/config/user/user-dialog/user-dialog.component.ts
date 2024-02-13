@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { Store } from '@ngrx/store'
-import { tap, map } from 'rxjs'
 import { IUser } from 'src/app/models/user.model'
 import { addUser, updateUser } from '../store/user.actions'
 import { selectAddOrUpdateUserStatus } from '../store/user.selector'
 import { PassErrorStateMatcher, passConf } from 'src/app/shared/code-templates/reactive-form-validator'
 import { BaseComponent } from 'src/app/shared/components/base/base.component'
+import { createModalLoadingManager } from 'src/app/shared/code-templates/modal-state-manager'
 
 export type DialogData = { user?: IUser } | null
 
@@ -22,33 +22,14 @@ export class UserDialogComponent extends BaseComponent {
 
 	readonly matcher = new PassErrorStateMatcher()
 
-	readonly loading$ = this.store.select(selectAddOrUpdateUserStatus).pipe(
-		tap((val) => {
-			this.dialogRef.disableClose = val === 'loading'
-
-			if(val === 'loading') {
-				this.userForm.disable()
-			}
-
-			if(val === 'error') {
-				this.userForm.enable()
-			}
-
-			if(val === 'success') {
-				this.dialogRef.close()
-			}
-		}),
-		map((val) => {
-			return val === 'loading'
-		}),
-	)
-
 	readonly userForm = new FormGroup({
 		name: new FormControl('', { validators: [Validators.required, Validators.minLength(6), Validators.maxLength(10)], nonNullable: true }),
 		username: new FormControl('', { validators: [Validators.required, Validators.minLength(6), Validators.maxLength(30)], nonNullable: true }),
 		password: new FormControl('', { validators: [Validators.required, Validators.minLength(6), Validators.maxLength(30)], nonNullable: true }),
 		passwordConf: new FormControl('', { validators: passConf, nonNullable: true }),
 	})
+
+	readonly loading$ = createModalLoadingManager(this.store, selectAddOrUpdateUserStatus, this.userForm, this.dialogRef)
 
 	constructor(public dialogRef: MatDialogRef<UserDialogComponent, void>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private store: Store) {
 		super()

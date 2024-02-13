@@ -4,7 +4,7 @@ import { MemoizedSelector, Store } from '@ngrx/store'
 import { map, tap } from 'rxjs'
 import { FormStatus } from 'src/app/models/form-status.model'
 
-export function createLoadManager(store: Store, selector: MemoizedSelector<object, FormStatus>, formGroup: FormGroup, dialogRef: MatDialogRef<any>) {
+export function createModalLoadingManager(store: Store, selector: MemoizedSelector<object, FormStatus>, formGroup: FormGroup, dialogRef: MatDialogRef<any>) {
 	return store.select(selector).pipe(
 		tap((val) => {
 			dialogRef.disableClose = val === 'loading'
