@@ -16,6 +16,10 @@ export function createModalLoadingManager(store: Store, selector: MemoizedSelect
 			if(val === 'success') {
 				dialogRef.close()
 			}
+
+			if(val === 'error') {
+				formGroup.enable()
+			}
 		}),
 		map((val) => {
 			return val === 'loading'
