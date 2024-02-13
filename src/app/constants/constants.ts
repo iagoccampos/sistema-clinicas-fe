@@ -1,3 +1,5 @@
+import { PaymentMethods } from '../models/payment.model'
+
 export const states = [
 	{ uf: 'AC', nome: 'Acre' },
 	{ uf: 'AL', nome: 'Alagoas' },
@@ -26,4 +28,10 @@ export const states = [
 	{ uf: 'SP', nome: 'São Paulo' },
 	{ uf: 'SE', nome: 'Sergipe' },
 	{ uf: 'TO', nome: 'Tocantins' },
+] as const
+
+export const PAYMENT_METHODS = [
+	{ label: 'Dinheiro', value: PaymentMethods.Dinheiro },
+	{ label: 'Débito', value: PaymentMethods.Debito },
+	{ label: 'Crédito', value: PaymentMethods.Credito },
 ] as const

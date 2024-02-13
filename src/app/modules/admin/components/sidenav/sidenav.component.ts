@@ -47,6 +47,10 @@ export class SidenavComponent extends BaseComponent implements OnInit {
 		iconName: 'person',
 		route: './pacientes',
 	}, {
+		displayName: this.textProvider.sideNav.payments,
+		iconName: 'payment',
+		route: './pagamentos',
+	}, {
 		displayName: this.textProvider.sideNav.configs,
 		iconName: 'settings',
 		route: './configuracao',

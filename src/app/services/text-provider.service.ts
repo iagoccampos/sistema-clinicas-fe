@@ -37,6 +37,7 @@ const navbar = {
 const sidenav = {
 	dashboard: $localize `Visão geral`,
 	patients: $localize `Pacientes`,
+	payments: $localize `Pagamentos`,
 	configs: $localize `Configurações`,
 } as const
 

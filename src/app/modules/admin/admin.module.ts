@@ -27,6 +27,10 @@ import { userReducer } from './components/config/user/store/user.reducer'
 import { UserEffects } from './components/config/user/store/user.effects'
 import { UserComponent } from './components/config/user/user.component'
 import { UserPassDialogComponent } from './components/config/user/user-password/user-pass.component'
+import { PaymentComponent } from './components/payment/payment.component'
+import { paymentReducer } from './components/payment/store/payment.reducer'
+import { PaymentDialogComponent } from './components/payment/payment-dialog/payment-dialog.component'
+import { PaymenttEffects as PaymentEffects } from './components/payment/store/payment.effects'
 
 @NgModule({
 	declarations: [
@@ -44,6 +48,8 @@ import { UserPassDialogComponent } from './components/config/user/user-password/
 		UserComponent,
 		UserDialogComponent,
 		UserPassDialogComponent,
+		PaymentComponent,
+		PaymentDialogComponent,
 	],
 	imports: [
 		CommonModule,
@@ -51,11 +57,13 @@ import { UserPassDialogComponent } from './components/config/user/user-password/
 		AdminRoutingModule,
 		StoreModule.forFeature('newClinic', newClinicReducer),
 		StoreModule.forFeature('patient', patientReducer),
+		StoreModule.forFeature('payment', paymentReducer),
 		StoreModule.forFeature('config', configReducer),
 		StoreModule.forFeature('user', userReducer),
 		EffectsModule.forFeature([
 			NewClinicEffects,
 			PatientEffects,
+			PaymentEffects,
 			ConfigEffects,
 			UserEffects,
 		]),

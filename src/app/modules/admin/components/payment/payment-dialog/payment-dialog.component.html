@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Lançar pagamento</h2>
+<mat-dialog-content>
+	<form [formGroup]="paymentForm" autocomplete="off" id="form" (ngSubmit)="submit()">
+		<app-input label="Nº da ficha" controlName="card"/>
+		<app-input label="Data" controlName="date" type="date"/>
+		<app-input label="Valor" controlName="value" type="currency"/>
+		<app-input label="Forma de pagamento" controlName="method" type="select" [options]="paymentMethods"/>
+	</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button mat-button type="button" mat-dialog-close>{{ textProvider.buttons.cancel }}</button>
+	<button mat-flat-button [appButtonLoading]="loading$ | push" color="primary" form="form" [disabled]="paymentForm.invalid">
+		Adicionar
+	</button>
+</mat-dialog-actions>

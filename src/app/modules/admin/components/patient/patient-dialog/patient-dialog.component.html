@@ -42,7 +42,7 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
 	<button mat-button type="button" mat-dialog-close>{{ textProvider.buttons.cancel }}</button>
-	<button mat-flat-button [appButtonLoading]="loading$ | push" color="primary" form="form" [disabled]="patientForm.invalid ">
+	<button mat-flat-button [appButtonLoading]="loading$ | push" color="primary" form="form" [disabled]="patientForm.invalid">
 		{{ data?.patient ? textProvider.buttons.edit : textProvider.buttons.add }}
 	</button>
 </mat-dialog-actions>
