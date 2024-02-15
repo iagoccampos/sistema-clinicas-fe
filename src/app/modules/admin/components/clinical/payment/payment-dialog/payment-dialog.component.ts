@@ -25,7 +25,7 @@ export class PaymentDialogComponent extends BaseComponent {
 	readonly paymentMethods = PAYMENT_METHODS.map((val) => val)
 
 	readonly paymentForm = new FormGroup({
-		card: new FormControl('', { nonNullable: true }),
+		card: new FormControl('', { validators: [Validators.required], nonNullable: true }),
 		date: new FormControl(new Date(), { nonNullable: true }),
 		value: new FormControl(0, { validators: [Validators.min(0.01)], nonNullable: true }),
 		method: new FormControl<PaymentMethods>(PaymentMethods.Money, { nonNullable: true }),
