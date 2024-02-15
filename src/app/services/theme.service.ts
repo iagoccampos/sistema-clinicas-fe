@@ -1,4 +1,4 @@
-import { Injectable, Renderer2, RendererFactory2 } from '@angular/core'
+import { Injectable, RendererFactory2 } from '@angular/core'
 import { BehaviorSubject, distinctUntilChanged, map } from 'rxjs'
 import { LocalStorageService } from './local-storage.service'
 

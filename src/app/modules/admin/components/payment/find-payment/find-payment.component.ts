@@ -13,18 +13,11 @@ import { Paginator } from 'src/app/models/pagination.model'
 @Component({
 	selector: 'app-find-payment',
 	templateUrl: './find-payment.component.html',
-	styleUrls: ['./find-payment.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FindPaymentComponent extends BaseComponent implements AfterViewInit {
 	readonly columnsToDisplay = ['index', 'card', 'date', 'value', 'method', 'options'] as const
 	readonly paymentMethods = PAYMENT_METHODS.map((val) => val)
-
-	readonly findPaymentForm = new FormGroup({
-		card: new FormControl('', { nonNullable: true }),
-		method: new FormControl<PaymentMethods | ''>('', { nonNullable: true }),
-		date: new FormControl('', { nonNullable: true }),
-	})
 
 	readonly loading$ = this.store.select(selectFindPaymentsStatusIsLoading)
 	readonly payments$ = this.store.select(selectPayments).pipe(
@@ -37,6 +30,12 @@ export class FindPaymentComponent extends BaseComponent implements AfterViewInit
 			return val.items || []
 		}),
 	)
+
+	readonly findPaymentForm = new FormGroup({
+		card: new FormControl('', { nonNullable: true }),
+		method: new FormControl<PaymentMethods | ''>('', { nonNullable: true }),
+		date: new FormControl('', { nonNullable: true }),
+	})
 
 	@ViewChild(MatPaginator) paginator!: MatPaginator
 

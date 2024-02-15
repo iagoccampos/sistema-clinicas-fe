@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { getUsers, openDeleteUserDialog, openUpdateUserPassDialog, openUserDialog } from './store/user.actions'
-import { selectGetUsersStatus, selectUsers } from './store/user.selector'
-import { map } from 'rxjs'
+import { selectUsersStatusIsLoading, selectUsers } from './store/user.selector'
 import { IUser } from 'src/app/models/user.model'
 import { BaseComponent } from 'src/app/shared/components/base/base.component'
 
@@ -14,12 +13,7 @@ import { BaseComponent } from 'src/app/shared/components/base/base.component'
 export class UserComponent extends BaseComponent {
 	readonly displayedColumns = ['name', 'username', 'options']
 
-	readonly loading$ = this.store.select(selectGetUsersStatus).pipe(
-		map((val) => {
-			return val === 'loading'
-		}),
-	)
-
+	readonly loading$ = this.store.select(selectUsersStatusIsLoading)
 	readonly users$ = this.store.select(selectUsers)
 
 	constructor(private store: Store) {

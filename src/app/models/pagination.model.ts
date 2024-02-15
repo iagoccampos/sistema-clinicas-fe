@@ -16,5 +16,5 @@ export class Paginator implements IPaginationQuery {
 }
 
 export class PaginationResponse<T> {
-	constructor(readonly total: number, readonly items: T[]) {}
+	constructor(readonly total = 0, readonly items: T[] = []) {}
 }

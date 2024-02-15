@@ -8,9 +8,9 @@ export const selectCreateOrUpdateStatus = createSelector(
 	(state) => state.updateOrCreateStatus,
 )
 
-export const selectFindStatus = createSelector(
+export const selectFindStatusIsLoading = createSelector(
 	selectPatient,
-	(state) => state.findStatus,
+	(state) => state.findStatus === 'loading',
 )
 
 export const selectDeleteStatus = createSelector(
@@ -21,4 +21,10 @@ export const selectDeleteStatus = createSelector(
 export const selectPatients = createSelector(
 	selectPatient,
 	(state) => state.patients,
+)
+
+export const selectShouldGetPatients = createSelector(
+	selectCreateOrUpdateStatus,
+	selectDeleteStatus,
+	(state1, state2) => state1 === 'success' || state2 === 'success',
 )

@@ -3,13 +3,14 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@a
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { MatPaginator } from '@angular/material/paginator'
 import { interval, merge } from 'rxjs'
-import { debounce, filter, map, tap } from 'rxjs/operators'
+import { debounce, debounceTime, filter, map, tap } from 'rxjs/operators'
 import { Store } from '@ngrx/store'
-import { IPatient, IPatientsResponse } from 'src/app/models/patient.model'
-import { selectDeleteStatus, selectCreateOrUpdateStatus, selectFindStatus, selectPatients } from '../store/patient.selector'
+import { IPatient } from 'src/app/models/patient.model'
+import { selectDeleteStatus, selectCreateOrUpdateStatus, selectPatients, selectFindStatusIsLoading, selectShouldGetPatients } from '../store/patient.selector'
 import { findPatients, openCreateOrUpdateDialog, openDeleteDialog } from '../store/patient.actions'
 import { BaseComponent } from 'src/app/shared/components/base/base.component'
 import { openPaymentDialog } from '../../payment/store/payment.actions'
+import { Paginator } from 'src/app/models/pagination.model'
 
 @Component({
 	selector: 'app-find-patient',
@@ -24,8 +25,11 @@ import { openPaymentDialog } from '../../payment/store/payment.actions'
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FindPatientComponent extends BaseComponent implements AfterViewInit {
+	readonly columnsToDisplay = ['card', 'name', 'rg', 'cpf', 'birthday', 'actions'] as const
+	readonly columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'] as const
+
+	readonly loading$ = this.store.select(selectFindStatusIsLoading)
 	readonly patients$ = this.store.select(selectPatients).pipe(
-		filter((val): val is IPatientsResponse => !!val),
 		tap((val) => {
 			if(this.paginator) {
 				this.paginator.length = val.total
@@ -33,12 +37,6 @@ export class FindPatientComponent extends BaseComponent implements AfterViewInit
 		}),
 		map((val) => {
 			return val.items || []
-		}),
-	)
-
-	readonly loading$ = this.store.select(selectFindStatus).pipe(
-		map((val) => {
-			return val === 'loading'
 		}),
 	)
 
@@ -50,35 +48,27 @@ export class FindPatientComponent extends BaseComponent implements AfterViewInit
 		card: new FormControl('', { nonNullable: true }),
 	})
 
-	readonly columnsToDisplay = ['card', 'name', 'rg', 'cpf', 'birthday', 'actions'] as const
-	readonly columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'] as const
-
 	expandedPatient: IPatient | null = null
 
 	@ViewChild(MatPaginator) paginator!: MatPaginator
-
-	get searchForm() {
-		return { filter: this.findPatientsForm.getRawValue(), page: this.paginator.pageIndex, limit: this.paginator.pageSize }
-	}
 
 	constructor(private store: Store) {
 		super()
 	}
 
 	ngAfterViewInit() {
-		this.store.dispatch(findPatients({ search: this.searchForm }))
-
 		merge(
 			this.paginator.page,
-			this.store.select(selectCreateOrUpdateStatus).pipe(filter((val) => val === 'success')),
-			this.store.select(selectDeleteStatus).pipe(filter((val) => val === 'success')),
-			this.findPatientsForm.valueChanges.pipe(filter(() => this.findPatientsForm.valid), debounce(() => interval(1000))),
-		).subscribe(() => this.store.dispatch(findPatients({ search: this.searchForm })))
+			this.store.select(selectShouldGetPatients).pipe(filter((val) => val)),
+			this.findPatientsForm.valueChanges.pipe(filter(() => this.findPatientsForm.valid), debounceTime(500)),
+		).subscribe(() => this.submit())
+
+		this.submit()
 	}
 
 	clearForm() {
 		this.findPatientsForm.reset({}, { emitEvent: false })
-		this.store.dispatch(findPatients({ search: this.searchForm }))
+		this.submit()
 	}
 
 	createPayment(patient: IPatient) {
@@ -91,5 +81,9 @@ export class FindPatientComponent extends BaseComponent implements AfterViewInit
 
 	deletePatient(patient: IPatient) {
 		this.store.dispatch(openDeleteDialog({ patient }))
+	}
+
+	private submit() {
+		this.store.dispatch(findPatients({ query: { ...this.findPatientsForm.value, ...new Paginator(this.paginator) } }))
 	}
 }

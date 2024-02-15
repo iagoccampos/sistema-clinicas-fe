@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store'
 import { IActionError } from 'src/app/models/action-error.model'
-import { INewUpdatePatient, IFindPatient, IPatient, IPatientsResponse } from 'src/app/models/patient.model'
+import { PaginationResponse } from 'src/app/models/pagination.model'
+import { INewUpdatePatient, IPatientQuery, IPatient } from 'src/app/models/patient.model'
 
 export const openCreateOrUpdateDialog = createAction(
 	'[Patient] OpenDialog',
@@ -39,7 +40,7 @@ export const updatePatientSuccess = createAction(
 
 export const findPatients = createAction(
 	'[Patient] Find',
-	props<{ search: IFindPatient }>(),
+	props<{ query: IPatientQuery }>(),
 )
 
 export const findPatientsError = createAction(
@@ -49,7 +50,7 @@ export const findPatientsError = createAction(
 
 export const findPatientsSuccess = createAction(
 	'[Patient] FindSuccess',
-	props<{ patients: IPatientsResponse }>(),
+	props<{ patients: PaginationResponse<IPatient> }>(),
 )
 
 export const openDeleteDialog = createAction(

@@ -1,4 +1,5 @@
 import { ITimestamps } from './common.model'
+import { IPaginationQuery } from './pagination.model'
 
 export interface INewUpdatePatient {
 	name: string
@@ -8,10 +9,12 @@ export interface INewUpdatePatient {
 	phones?: string[]
 }
 
-export interface IFindPatient {
-	filter: INewUpdatePatient
-	page: number
-	limit: number
+export interface IPatientQuery extends IPaginationQuery {
+	name?: string
+	birthday?: string
+	rg?: string
+	cpf?: string
+	card?: string
 }
 
 export interface IPatient extends ITimestamps {
@@ -24,5 +27,3 @@ export interface IPatient extends ITimestamps {
 	card: string
 	clinic: string
 }
-
-export interface IPatientsResponse { total: number, items: IPatient[] }

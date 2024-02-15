@@ -3,9 +3,9 @@ import { INewOrUpdateUserState } from './user.reducer'
 
 export const selectConfig = createFeatureSelector<INewOrUpdateUserState>('user')
 
-export const selectGetUsersStatus = createSelector(
+export const selectUsersStatusIsLoading = createSelector(
 	selectConfig,
-	(user) => user.getUsersStatus,
+	(user) => user.getUsersStatus === 'loading',
 )
 
 export const selectUsers = createSelector(

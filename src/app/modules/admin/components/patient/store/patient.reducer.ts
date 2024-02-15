@@ -1,15 +1,16 @@
 import { createReducer, on } from '@ngrx/store'
 import { FormStatus } from 'src/app/models/form-status.model'
-import { IFindPatient, INewUpdatePatient, IPatientsResponse } from 'src/app/models/patient.model'
+import { IPatientQuery, INewUpdatePatient, IPatient } from 'src/app/models/patient.model'
 import { createPatientError, createPatient, createPatientSuccess, updatePatient, updatePatientError, updatePatientSuccess, findPatients, findPatientsSuccess, findPatientsError, openCreateOrUpdateDialog, openDeleteDialog, deletePatient, deletePatientError, deletePatientSuccess } from './patient.actions'
+import { PaginationResponse } from 'src/app/models/pagination.model'
 
 export interface IPatientState {
 	updateOrCreateForm: INewUpdatePatient | null
-	findForm: IFindPatient | null
+	findForm: IPatientQuery | null
 	updateOrCreateStatus: FormStatus
 	findStatus: FormStatus
 	deleteStatus: FormStatus
-	patients: IPatientsResponse | null
+	patients: PaginationResponse<IPatient>
 	errorMsg: string | null
 }
 
@@ -19,7 +20,7 @@ const initialState: IPatientState = {
 	updateOrCreateStatus: 'pending',
 	findStatus: 'pending',
 	deleteStatus: 'pending',
-	patients: null,
+	patients: new PaginationResponse<IPatient>(),
 	errorMsg: null,
 }
 
@@ -41,7 +42,7 @@ export const patientReducer = createReducer(
 		return { ...state, updateOrCreateStatus: 'success' }
 	}),
 	on(findPatients, (state, action): IPatientState => {
-		return { ...state, findStatus: 'loading', findForm: action.search, patients: null }
+		return { ...state, findStatus: 'loading', findForm: action.query }
 	}),
 	on(findPatientsSuccess, (state, action): IPatientState => {
 		return { ...state, findStatus: 'success', patients: action.patients }

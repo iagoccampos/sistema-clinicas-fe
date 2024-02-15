@@ -54,7 +54,7 @@ export class PatientEffects {
 		return this.actions.pipe(
 			ofType(findPatients),
 			switchMap((val) => {
-				return this.patientService.getPatients(val.search.filter, val.search.page, val.search.limit).pipe(
+				return this.patientService.getPatients(val.query).pipe(
 					map((res) => {
 						return findPatientsSuccess({ patients: res })
 					}),

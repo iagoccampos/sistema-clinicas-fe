@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { INewUpdatePatient, IPatient } from '../models/patient.model'
+import { INewUpdatePatient, IPatient, IPatientQuery } from '../models/patient.model'
 import { MatDialog } from '@angular/material/dialog'
 import { ClinicService } from './clinic.service'
 import { DialogData, PatientDialogComponent } from '../modules/admin/components/patient/patient-dialog/patient-dialog.component'
+import { PaginationResponse } from '../models/pagination.model'
 
 @Injectable({
 	providedIn: 'root',
@@ -12,8 +13,8 @@ export class PatientService {
 
 	constructor(private http: HttpClient, private dialog: MatDialog, private clinicService: ClinicService) { }
 
-	getPatients(filter: any, page?: number, limit?: number) {
-		return this.http.get<{ total: number, items: IPatient[] }>(this.generateUrl(), { params: { ...filter, page, limit } })
+	getPatients(query: IPatientQuery) {
+		return this.http.get<PaginationResponse<IPatient>>(this.generateUrl(), { params: { ...query } })
 	}
 
 	createPatient(patient: INewUpdatePatient) {
