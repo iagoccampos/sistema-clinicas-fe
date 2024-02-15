@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
 import { ClinicService } from './clinic.service'
-import { IPaymentModalData, PaymentDialogComponent } from '../modules/admin/components/payment/payment-dialog/payment-dialog.component'
+import { IPaymentModalData, PaymentDialogComponent } from '../modules/admin/components/clinical/payment/payment-dialog/payment-dialog.component'
 import { INewOrUpdatePayment, IPayment, IPaymentQuery, IPaymentResponse } from '../models/payment.model'
 
 @Injectable({

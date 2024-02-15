@@ -27,11 +27,11 @@ import { userReducer } from './components/config/user/store/user.reducer'
 import { UserEffects } from './components/config/user/store/user.effects'
 import { UserComponent } from './components/config/user/user.component'
 import { UserPassDialogComponent } from './components/config/user/user-password/user-pass.component'
-import { PaymentComponent } from './components/payment/payment.component'
-import { paymentReducer } from './components/payment/store/payment.reducer'
-import { PaymentDialogComponent } from './components/payment/payment-dialog/payment-dialog.component'
-import { PaymenttEffects as PaymentEffects } from './components/payment/store/payment.effects'
-import { FindPaymentComponent } from './components/payment/find-payment/find-payment.component'
+import { PaymentComponent } from './components/clinical/payment/payment.component'
+import { paymentReducer } from './components/clinical/payment/store/payment.reducer'
+import { PaymentDialogComponent } from './components/clinical/payment/payment-dialog/payment-dialog.component'
+import { PaymenttEffects as PaymentEffects } from './components/clinical/payment/store/payment.effects'
+import { FindPaymentComponent } from './components/clinical/payment/find-payment/find-payment.component'
 
 @NgModule({
 	declarations: [
