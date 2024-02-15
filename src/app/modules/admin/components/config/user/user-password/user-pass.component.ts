@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store'
 import { IUser } from 'src/app/models/user.model'
 import { updateUserPass } from '../store/user.actions'
 import { selectUpdateUserPassStatus } from '../store/user.selector'
-import { PassErrorStateMatcher, passConf } from 'src/app/shared/code-templates/reactive-form-validator'
+import { passConf } from 'src/app/shared/code-templates/reactive-form-validator'
 import { BaseComponent } from 'src/app/shared/components/base/base.component'
 import { createModalLoadingManager } from 'src/app/shared/code-templates/modal-loading-state-manager'
 
@@ -18,8 +18,6 @@ export type DialogData = { user: IUser }
 export class UserPassDialogComponent extends BaseComponent {
 	hidePass = true
 	hideConfPass = true
-
-	readonly matcher = new PassErrorStateMatcher()
 
 	readonly passForm = new FormGroup({
 		password: new FormControl('', { validators: [Validators.required, Validators.minLength(6), Validators.maxLength(30)], nonNullable: true }),
