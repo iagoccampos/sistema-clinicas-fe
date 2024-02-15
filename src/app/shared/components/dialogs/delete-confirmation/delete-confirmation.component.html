@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>{{ textProvider.deleteDialog.title }} {{ data.entityName }}</h2>
 <mat-dialog-content>
-	<p i18n>Tem certeza de que deseja deletar {{ data.entityName ? ' ' + data.entityName : '' }} {{ data.entityValue ? ' ' + data.entityValue : '' }}?</p>
+	<p i18n>Tem certeza de que deseja deletar {{ data.entityName ? ' ' + data.entityName : '' }}{{ data.entityValue ? ' ' + data.entityValue : '' }}?</p>
 	<ng-container *ngIf="data.irreversible">
 		<p i18n>Lembre-se que o processo é <strong>irreversível</strong>.</p>
 	</ng-container>
