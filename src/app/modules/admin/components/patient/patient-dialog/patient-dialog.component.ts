@@ -6,7 +6,7 @@ import { IPatient } from 'src/app/models/patient.model'
 import { createPatient, updatePatient } from '../store/patient.actions'
 import { selectCreateOrUpdateStatus } from '../store/patient.selector'
 import { BaseComponent } from 'src/app/shared/components/base/base.component'
-import { createModalLoadingManager } from 'src/app/shared/code-templates/modal-state-manager'
+import { createModalLoadingManager } from 'src/app/shared/code-templates/modal-loading-state-manager'
 
 export type DialogData = { patient?: IPatient } | null
 
@@ -25,7 +25,7 @@ export class PatientDialogComponent extends BaseComponent {
 		phones: new FormArray([new FormControl('', { nonNullable: true })]),
 	})
 
-	loading$ = createModalLoadingManager(this.store, selectCreateOrUpdateStatus, this.patientForm, this.dialogRef)
+	loading$ = createModalLoadingManager(selectCreateOrUpdateStatus, this.patientForm, this.dialogRef)
 
 	get phonesControl() {
 		return (this.patientForm.get('phones') as FormArray)

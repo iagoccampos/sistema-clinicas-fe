@@ -1,4 +1,4 @@
-import { LOCALE_ID, NgModule } from '@angular/core'
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core'
 import { CommonModule, registerLocaleData } from '@angular/common'
 import { OverlayModule } from '@angular/cdk/overlay'
 import { MatDialogModule } from '@angular/material/dialog'
@@ -40,6 +40,7 @@ import { CenterSpinnerComponent } from './components/center-spinner/center-spinn
 import { ButtonLoadingDirective } from './directives/mat-button-loading.directive'
 import { InputComponent } from './components/input/input.component'
 import { PushPipe } from '@ngrx/component'
+import { PaymentMethodPipe } from './pipes/payment-method.pipe'
 
 registerLocaleData(localePT)
 
@@ -78,6 +79,7 @@ const pipes = [
 	RgPipe,
 	CpfPipe,
 	PhonePipe,
+	PaymentMethodPipe,
 ]
 
 const directives = [
@@ -116,6 +118,7 @@ const directives = [
 	],
 	providers: [
 		{ provide: LOCALE_ID, useValue: 'pt-br' },
+		{ provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
 		{ provide: MAT_DATE_LOCALE, useValue: ptBR },
 		{ provide: DateAdapter, useClass: DateFnsAdapter, deps: [MAT_DATE_LOCALE] },
 		{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },

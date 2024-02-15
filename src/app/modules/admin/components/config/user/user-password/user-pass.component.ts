@@ -7,7 +7,7 @@ import { updateUserPass } from '../store/user.actions'
 import { selectUpdateUserPassStatus } from '../store/user.selector'
 import { PassErrorStateMatcher, passConf } from 'src/app/shared/code-templates/reactive-form-validator'
 import { BaseComponent } from 'src/app/shared/components/base/base.component'
-import { createModalLoadingManager } from 'src/app/shared/code-templates/modal-state-manager'
+import { createModalLoadingManager } from 'src/app/shared/code-templates/modal-loading-state-manager'
 
 export type DialogData = { user: IUser }
 
@@ -26,7 +26,7 @@ export class UserPassDialogComponent extends BaseComponent {
 		passwordConf: new FormControl('', { validators: passConf, nonNullable: true }),
 	})
 
-	readonly loading$ = createModalLoadingManager(this.store, selectUpdateUserPassStatus, this.passForm, this.dialogRef)
+	readonly loading$ = createModalLoadingManager(selectUpdateUserPassStatus, this.passForm, this.dialogRef)
 
 	constructor(public dialogRef: MatDialogRef<UserPassDialogComponent, void>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private store: Store) {
 		super()

@@ -1,0 +1,69 @@
+<form [formGroup]="findPaymentForm">
+	<div class="row">
+		<div class="col">
+			<app-input controlName="card" [label]="textProvider.patients.card"/>
+		</div>
+		<div class="col">
+			<app-input controlName="method" label="Método" type="select" [options]="paymentMethods"/>
+		</div>
+		<div class="col">
+			<app-input controlName="date" label="Data" type="date"/>
+		</div>
+	</div>
+</form>
+
+<app-center-spinner [loading$]="loading$" [hideTarget]="table" />
+
+<div class="mat-elevation-z8" #table>
+	<div class="mat-table-container">
+		<table mat-table [dataSource]="payments$" multiTemplateDataRows>
+			<ng-container matColumnDef="index">
+				<th mat-header-cell *matHeaderCellDef>#</th>
+				<td mat-cell *matCellDef="let i = dataIndex;">{{ i + 1 }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="card">
+				<th mat-header-cell *matHeaderCellDef> {{ textProvider.patients.card }} </th>
+				<td mat-cell *matCellDef="let payment"> {{ payment.patient.card }} </td>
+			</ng-container>
+
+			<ng-container matColumnDef="date">
+				<th mat-header-cell *matHeaderCellDef> {{ textProvider.payments.paymentDate }} </th>
+				<td mat-cell *matCellDef="let payment"> {{ payment.date | date : 'medium' }} </td>
+			</ng-container>
+
+			<ng-container matColumnDef="value">
+				<th mat-header-cell *matHeaderCellDef> {{ textProvider.payments.value }} </th>
+				<td mat-cell *matCellDef="let payment"> {{ payment.value | currency  }} </td>
+			</ng-container>
+
+			<ng-container matColumnDef="method">
+				<th mat-header-cell *matHeaderCellDef> {{ textProvider.payments.method }} </th>
+				<td mat-cell *matCellDef="let payment"> {{ payment.method | paymentMethod }} </td>
+			</ng-container>
+
+			<ng-container matColumnDef="options">
+				<th mat-header-cell *matHeaderCellDef> {{ textProvider.payments.options }} </th>
+				<td mat-cell *matCellDef="let payment">
+					<button mat-icon-button type="button" color="accent" (click)="updatePayment(payment)">
+						<mat-icon>edit</mat-icon>
+					</button>
+					<button mat-icon-button type="button" color="warn" (click)="deletePayment(payment)">
+						<mat-icon>delete</mat-icon>
+					</button>
+				</td>
+			</ng-container>
+
+			<tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+			<tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+
+			<tr class="mat-row" *matNoDataRow>
+				<td class="mat-cell" [attr.colspan]="columnsToDisplay.length">
+					{{ textProvider.payments.noPaymentsFound }}
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<mat-paginator />
+</div>

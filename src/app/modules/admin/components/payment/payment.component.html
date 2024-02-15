@@ -1,2 +1,13 @@
-<app-page-header title="Pagamentos" hideHr="true"/>
+<app-page-header [title]="textProvider.payments.title" hideHr="true"/>
 <button mat-flat-button color="primary" type="button" class="mb-3" (click)="openDialog()">{{ textProvider.buttons.add }}</button>
+<mat-expansion-panel expanded="true">
+	<mat-expansion-panel-header>
+		<mat-panel-title>
+			<mat-icon>
+				search
+			</mat-icon>
+			{{ textProvider.payments.subTitle }}
+		</mat-panel-title>
+	</mat-expansion-panel-header>
+	<app-find-payment />
+</mat-expansion-panel>

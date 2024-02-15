@@ -14,7 +14,9 @@ const routes: Routes = [
 		{ path: 'clinica/:clinicId', component: ClinicComponent, children: [
 			{ path: '', redirectTo: 'pacientes', pathMatch: 'full' },
 			{ path: 'pacientes', component: PatientComponent },
-			{ path: 'pagamentos', component: PaymentComponent },
+			{ path: 'clinico', children: [
+				{ path: 'pagamentos', component: PaymentComponent },
+			] },
 			{ path: 'configuracao', component: ConfigComponent },
 		] },
 	] },

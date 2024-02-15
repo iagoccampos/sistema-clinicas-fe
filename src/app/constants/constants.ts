@@ -31,7 +31,7 @@ export const states = [
 ] as const
 
 export const PAYMENT_METHODS = [
-	{ label: 'Dinheiro', value: PaymentMethods.Dinheiro },
-	{ label: 'Débito', value: PaymentMethods.Debito },
-	{ label: 'Crédito', value: PaymentMethods.Credito },
+	{ label: 'Dinheiro', value: PaymentMethods.Money },
+	{ label: 'Débito', value: PaymentMethods.Debit },
+	{ label: 'Crédito', value: PaymentMethods.Credit },
 ] as const

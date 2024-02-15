@@ -9,6 +9,7 @@ import { IPatient, IPatientsResponse } from 'src/app/models/patient.model'
 import { selectDeleteStatus, selectCreateOrUpdateStatus, selectFindStatus, selectPatients } from '../store/patient.selector'
 import { findPatients, openCreateOrUpdateDialog, openDeleteDialog } from '../store/patient.actions'
 import { BaseComponent } from 'src/app/shared/components/base/base.component'
+import { openPaymentDialog } from '../../payment/store/payment.actions'
 
 @Component({
 	selector: 'app-find-patient',
@@ -78,6 +79,10 @@ export class FindPatientComponent extends BaseComponent implements AfterViewInit
 	clearForm() {
 		this.findPatientsForm.reset({}, { emitEvent: false })
 		this.store.dispatch(findPatients({ search: this.searchForm }))
+	}
+
+	createPayment(patient: IPatient) {
+		this.store.dispatch(openPaymentDialog({ patient }))
 	}
 
 	updatePatient(patient: IPatient) {

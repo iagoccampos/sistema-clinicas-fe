@@ -37,6 +37,7 @@ const navbar = {
 const sidenav = {
 	dashboard: $localize `Visão geral`,
 	patients: $localize `Pacientes`,
+	clinical: $localize `Clínico`,
 	payments: $localize `Pagamentos`,
 	configs: $localize `Configurações`,
 } as const
@@ -55,6 +56,19 @@ const patients = {
 	card: $localize `Ficha`,
 	actions: $localize `Ações`,
 	noPatientFound: $localize `Nenhum paciente cadastrado`,
+} as const
+
+const payments = {
+	title: $localize `Pagamentos`,
+	subTitle: $localize `Encontrar Pagamentos`,
+	noPaymentsFound: $localize `Nenhum pagamento encontrado`,
+	paymentDate: $localize `Data do pagamento`,
+	updatedAt: $localize `Atualizado em`,
+	value: $localize `Valor`,
+	method: $localize `Método`,
+	options: $localize `Opções`,
+	addPayment: $localize `Adicionar pagamento`,
+	updatePayment: $localize `Editar pagamento`,
 } as const
 
 const configs = {
@@ -122,6 +136,10 @@ export class TextProviderService {
 
 	get patients() {
 		return patients
+	}
+
+	get payments() {
+		return payments
 	}
 
 	get configs() {

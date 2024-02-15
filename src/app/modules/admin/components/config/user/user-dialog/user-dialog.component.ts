@@ -7,7 +7,7 @@ import { addUser, updateUser } from '../store/user.actions'
 import { selectAddOrUpdateUserStatus } from '../store/user.selector'
 import { PassErrorStateMatcher, passConf } from 'src/app/shared/code-templates/reactive-form-validator'
 import { BaseComponent } from 'src/app/shared/components/base/base.component'
-import { createModalLoadingManager } from 'src/app/shared/code-templates/modal-state-manager'
+import { createModalLoadingManager } from 'src/app/shared/code-templates/modal-loading-state-manager'
 
 export type DialogData = { user?: IUser } | null
 
@@ -29,7 +29,7 @@ export class UserDialogComponent extends BaseComponent {
 		passwordConf: new FormControl('', { validators: passConf, nonNullable: true }),
 	})
 
-	readonly loading$ = createModalLoadingManager(this.store, selectAddOrUpdateUserStatus, this.userForm, this.dialogRef)
+	readonly loading$ = createModalLoadingManager(selectAddOrUpdateUserStatus, this.userForm, this.dialogRef)
 
 	constructor(public dialogRef: MatDialogRef<UserDialogComponent, void>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private store: Store) {
 		super()

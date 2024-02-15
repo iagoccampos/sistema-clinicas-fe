@@ -1,15 +1,40 @@
 <div class="mb-2">
-	<mat-form-field *ngIf="type === 'text' || type === 'password'">
+	<!-- Text -->
+	<mat-form-field *ngIf="type === 'text'">
+		<mat-label>{{ label }}</mat-label>
+		<input
+			*ngIf="!mask"
+			matInput
+			type="text"
+			[formControlName]="controlName"
+			[maxlength]="maxLength"
+			[autocomplete]="autocomplete">
+
+			<input
+			*ngIf="mask"
+			matInput
+			type="text"
+			[formControlName]="controlName"
+			[maxlength]="maxLength"
+			[autocomplete]="autocomplete"
+			[appMask]="mask">
+
+		<mat-error *ngIf="currentErrorMsg">
+			{{ currentErrorMsg }}
+		</mat-error>
+	</mat-form-field>
+
+	<!-- Password -->
+	<mat-form-field *ngIf="type === 'password'">
 		<mat-label>{{ label }}</mat-label>
 		<input
 			matInput
 			[formControlName]="controlName"
 			[maxlength]="maxLength"
-			[type]="type === 'password' && !hidePass ? 'text' : type"
-			[autocomplete]="autocomplete"
-			[appMask]="mask">
+			[type]="!hidePass ? 'text' : 'password'"
+			[autocomplete]="autocomplete">
 
-		<button mat-icon-button matSuffix *ngIf="type === 'password'" type="button" tabindex="-1" (click)="togglePass()">
+		<button mat-icon-button matSuffix type="button" tabindex="-1" (click)="togglePass()">
 			<mat-icon>{{ hidePass ? 'visibility_off' : 'visibility' }}</mat-icon>
 		</button>
 
@@ -18,16 +43,18 @@
 		</mat-error>
 	</mat-form-field>
 
+	<!-- Date -->
 	<mat-form-field *ngIf="type === 'date'">
 		<mat-label>{{ label }}</mat-label>
 		<input matInput [matDatepicker]="picker" [formControlName]="controlName" appMask="date">
-		<mat-datepicker-toggle matSuffix [for]="picker" />
+		<mat-datepicker-toggle matSuffix [for]="picker" tabindex="-1"/>
 		<mat-datepicker #picker />
 		<mat-error *ngIf="currentErrorMsg">
 			{{ currentErrorMsg }}
 		</mat-error>
 	</mat-form-field>
 
+	<!-- Select -->
 	<mat-form-field *ngIf="type === 'select'">
 		<mat-label>{{ label }}</mat-label>
 		<mat-select [formControlName]="controlName">
@@ -35,6 +62,7 @@
 		</mat-select>
 	</mat-form-field>
 
+	<!-- Currency -->
 	<mat-form-field *ngIf="type === 'currency'">
 		<mat-label>{{ label }}</mat-label>
 		<input

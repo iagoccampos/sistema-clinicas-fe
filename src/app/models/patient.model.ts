@@ -14,9 +14,14 @@ export interface IFindPatient {
 	limit: number
 }
 
-export interface IPatient extends INewUpdatePatient, ITimestamps {
+export interface IPatient extends ITimestamps {
+	name: string
+	birthday?: string
+	rg?: string
+	cpf?: string
+	phones?: string[]
 	_id: string
-	card: number
+	card: string
 	clinic: string
 }
 

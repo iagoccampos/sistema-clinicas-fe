@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { BaseComponent } from 'src/app/shared/components/base/base.component'
-import { openDialog } from './store/payment.actions'
+import { openPaymentDialog } from './store/payment.actions'
 
 @Component({
 	selector: 'app-payment',
@@ -16,6 +16,6 @@ export class PaymentComponent extends BaseComponent {
 	}
 
 	openDialog() {
-		this.store.dispatch(openDialog())
+		this.store.dispatch(openPaymentDialog({}))
 	}
 }

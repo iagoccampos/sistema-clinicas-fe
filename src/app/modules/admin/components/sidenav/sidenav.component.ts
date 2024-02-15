@@ -39,17 +39,17 @@ export class SidenavComponent extends BaseComponent implements OnInit {
 	readonly opened$ = this.openedSub$.asObservable().pipe(tap((val) => this.navService.emitSideNavOpen(val)))
 
 	readonly navItems: INavItem[] = [{
-		displayName: this.textProvider.sideNav.dashboard,
-		iconName: 'dashboard',
-		route: './dashboard',
-	}, {
 		displayName: this.textProvider.sideNav.patients,
 		iconName: 'person',
 		route: './pacientes',
 	}, {
-		displayName: this.textProvider.sideNav.payments,
-		iconName: 'payment',
-		route: './pagamentos',
+		displayName: this.textProvider.sideNav.clinical,
+		iconName: 'home_health',
+		children: [{
+			displayName: this.textProvider.sideNav.payments,
+			iconName: 'payment',
+			route: './clinico/pagamentos',
+		}],
 	}, {
 		displayName: this.textProvider.sideNav.configs,
 		iconName: 'settings',

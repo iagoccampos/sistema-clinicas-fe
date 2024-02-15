@@ -1,6 +1,16 @@
 @use "@angular/material" as mat;
 @use "styles-component-themes" as styles-component-themes;
 
+@import "material-symbols/outlined.css";
+
+.material-symbols-outlined {
+	font-variation-settings:
+		"FILL" 1,
+		"wght" 400,
+		"GRAD" 0,
+		"opsz" 48;
+}
+
 @include mat.core();
 
 $dark-theme: mat.define-dark-theme(

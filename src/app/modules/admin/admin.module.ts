@@ -31,6 +31,7 @@ import { PaymentComponent } from './components/payment/payment.component'
 import { paymentReducer } from './components/payment/store/payment.reducer'
 import { PaymentDialogComponent } from './components/payment/payment-dialog/payment-dialog.component'
 import { PaymenttEffects as PaymentEffects } from './components/payment/store/payment.effects'
+import { FindPaymentComponent } from './components/payment/find-payment/find-payment.component'
 
 @NgModule({
 	declarations: [
@@ -50,6 +51,7 @@ import { PaymenttEffects as PaymentEffects } from './components/payment/store/pa
 		UserPassDialogComponent,
 		PaymentComponent,
 		PaymentDialogComponent,
+		FindPaymentComponent,
 	],
 	imports: [
 		CommonModule,

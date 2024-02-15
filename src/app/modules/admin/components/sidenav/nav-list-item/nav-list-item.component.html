@@ -1,12 +1,13 @@
 <a mat-list-item [ngStyle]="{'padding-left': (depth * 12) + 'px'}" (click)="onItemSelected(item)"
 	[class.expanded]="expandedObs$ | push" [routerLink]="item.route ? item.route : null" routerLinkActive="active">
 
-	<mat-icon matListItemIcon>{{ item.iconName }}</mat-icon>
+	<mat-icon fontSet="material-symbols-outlined" matListItemIcon>
+		{{item.iconName}}
+	</mat-icon>
+
 	<span>{{ item.displayName }}</span>
 
-	<mat-icon *ngIf="item.children && item.children.length" [@indicatorRotate]="(expandedObs$ | push) ? 'expanded': 'collapsed'">
-		expand_more
-	</mat-icon>
+	<mat-icon fontIcon="expand_more" *ngIf="item.children && item.children.length" [@indicatorRotate]="(expandedObs$ | push) ? 'expanded': 'collapsed'" />
 </a>
 <div [hidden]="(expandedObs$ | push) === false">
 	<app-nav-list-item *ngFor="let child of item.children" [item]="child" [depth]="depth+1" (expand)="onChildExpand()" />
