@@ -19,6 +19,9 @@
 			[autocomplete]="autocomplete"
 			[appMask]="mask">
 
+		<mat-hint *ngIf="hint">
+			{{ hint }}
+		</mat-hint>
 		<mat-error *ngIf="currentErrorMsg">
 			{{ currentErrorMsg }}
 		</mat-error>
@@ -38,6 +41,9 @@
 			<mat-icon>{{ hidePass ? 'visibility_off' : 'visibility' }}</mat-icon>
 		</button>
 
+		<mat-hint *ngIf="hint">
+			{{ hint }}
+		</mat-hint>
 		<mat-error *ngIf="currentErrorMsg">
 			{{ currentErrorMsg }}
 		</mat-error>
@@ -49,6 +55,10 @@
 		<input matInput [matDatepicker]="picker" [formControlName]="controlName" appMask="date">
 		<mat-datepicker-toggle matSuffix [for]="picker" tabindex="-1"/>
 		<mat-datepicker #picker />
+
+		<mat-hint *ngIf="hint">
+			{{ 'hint' }}
+		</mat-hint>
 		<mat-error *ngIf="currentErrorMsg">
 			{{ currentErrorMsg }}
 		</mat-error>
@@ -60,6 +70,10 @@
 		<mat-select [formControlName]="controlName">
 			<mat-option *ngFor="let option of _options" [value]="option.value">{{ option.label }}</mat-option>
 		</mat-select>
+
+		<mat-hint *ngIf="hint">
+			{{ hint }}
+		</mat-hint>
 	</mat-form-field>
 
 	<!-- Currency -->
@@ -71,6 +85,9 @@
 			type="text"
 			appCurrencyMask>
 
+		<mat-hint *ngIf="hint">
+			{{ hint }}
+		</mat-hint>
 		<mat-error *ngIf="currentErrorMsg">
 			{{ currentErrorMsg }}
 		</mat-error>

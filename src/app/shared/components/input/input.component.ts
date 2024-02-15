@@ -24,6 +24,7 @@ export class InputComponent implements AfterViewInit {
 	@Input({ required: true }) label = ''
 	@Input({ required: true }) controlName: string | null = null
 	@Input() type: InputType = 'text'
+	@Input() hint = ''
 	@Input() autocomplete: HTMLInputElement['autocomplete'] = 'on'
 	@Input() mask: MaskNames | null = null
 
