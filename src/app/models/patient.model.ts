@@ -1,5 +1,5 @@
 import { ITimestamps } from './common.model'
-import { IPaginationQuery } from './pagination.model'
+import { IPaginationQuery, PaginationResponse } from './pagination.model'
 
 export interface INewUpdatePatient {
 	name: string
@@ -18,12 +18,14 @@ export interface IPatientQuery extends IPaginationQuery {
 }
 
 export interface IPatient extends ITimestamps {
+	_id: string
 	name: string
 	birthday?: string
 	rg?: string
 	cpf?: string
 	phones?: string[]
-	_id: string
 	card: string
 	clinic: string
 }
+
+export type IPatientResponse = PaginationResponse<IPatient>

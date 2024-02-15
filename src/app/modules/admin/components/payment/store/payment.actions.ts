@@ -1,8 +1,7 @@
 import { createAction, props } from '@ngrx/store'
 import { IActionError } from 'src/app/models/action-error.model'
-import { PaginationResponse } from 'src/app/models/pagination.model'
 import { IPatient } from 'src/app/models/patient.model'
-import { INewOrUpdatePayment, IPayment, IPaymentQuery } from 'src/app/models/payment.model'
+import { INewOrUpdatePayment, IPayment, IPaymentQuery, IPaymentResponse } from 'src/app/models/payment.model'
 
 export const openPaymentDialog = createAction(
 	'[Payment] OpenDialog',
@@ -31,7 +30,7 @@ export const findPayments = createAction(
 
 export const findPaymentsSuccess = createAction(
 	'[Payment] FindSuccess',
-	props<{ payments: PaginationResponse<IPayment> }>(),
+	props<{ payments: IPaymentResponse}>(),
 )
 
 export const findPaymentsError = createAction(

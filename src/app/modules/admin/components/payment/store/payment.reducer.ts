@@ -1,21 +1,21 @@
 import { createReducer, on } from '@ngrx/store'
 import { FormStatus } from 'src/app/models/form-status.model'
 import { createPayment, createPaymentError, createPaymentSuccess, deletePayment, deletePaymentError, deletePaymentSuccess, findPayments, findPaymentsError, findPaymentsSuccess, openDeletePaymentDialog, openPaymentDialog, updatePayment, updatePaymentError, updatePaymentSuccess } from './payment.actions'
-import { IPayment } from 'src/app/models/payment.model'
+import { IPayment, IPaymentResponse } from 'src/app/models/payment.model'
 import { PaginationResponse } from 'src/app/models/pagination.model'
 
 export interface IPaymentState {
 	createOrUpdatePaymentStatus: FormStatus
 	findPaymentsStatus: FormStatus
 	deletePaymentsStatus: FormStatus
-	payments: PaginationResponse<IPayment>
+	payments: IPaymentResponse
 }
 
 const initialState: IPaymentState = {
 	createOrUpdatePaymentStatus: 'pending',
 	findPaymentsStatus: 'pending',
 	deletePaymentsStatus: 'pending',
-	payments: { total: 0, items: [] },
+	payments: new PaginationResponse<IPayment>(),
 }
 
 export const paymentReducer = createReducer(initialState,

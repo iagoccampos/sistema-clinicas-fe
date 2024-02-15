@@ -1,6 +1,6 @@
 import { IClinic } from './clinic.model'
 import { ITimestamps } from './common.model'
-import { IPaginationQuery } from './pagination.model'
+import { IPaginationQuery, PaginationResponse } from './pagination.model'
 import { IPatient } from './patient.model'
 
 export enum PaymentMethods {
@@ -30,3 +30,5 @@ export interface IPaymentQuery extends IPaginationQuery {
 	date?: string
 	method?: string
 }
+
+export type IPaymentResponse = PaginationResponse<IPayment>
