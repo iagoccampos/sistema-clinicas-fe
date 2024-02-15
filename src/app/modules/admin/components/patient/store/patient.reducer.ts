@@ -42,7 +42,7 @@ export const patientReducer = createReducer(
 		return { ...state, findStatus: 'success', patients: action.patients }
 	}),
 	on(findPatientsError, (state): IPatientState => {
-		return { ...state, findStatus: 'error' }
+		return { ...state, findStatus: 'error', patients: new PaginationResponse<IPatient>() }
 	}),
 	on(deletePatient, (state): IPatientState => {
 		return { ...state, deleteStatus: 'loading' }

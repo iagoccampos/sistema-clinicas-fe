@@ -38,7 +38,7 @@ export const paymentReducer = createReducer(initialState,
 		return { ...state, findPaymentsStatus: 'success', payments: action.payments }
 	}),
 	on(findPaymentsError, (state): IPaymentState => {
-		return { ...state, findPaymentsStatus: 'error' }
+		return { ...state, findPaymentsStatus: 'error', payments: new PaginationResponse<IPayment>() }
 	}),
 	on(updatePayment, (state): IPaymentState => {
 		return { ...state, createOrUpdatePaymentStatus: 'loading' }
