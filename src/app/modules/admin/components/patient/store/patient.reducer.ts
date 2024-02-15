@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store'
 import { FormStatus } from 'src/app/models/form-status.model'
-import { INewUpdatePatient, IPatientResponse, IPatient } from 'src/app/models/patient.model'
+import { IPatientResponse, IPatient } from 'src/app/models/patient.model'
 import { createPatientError, createPatient, createPatientSuccess, updatePatient, updatePatientError, updatePatientSuccess, findPatients, findPatientsSuccess, findPatientsError, openCreateOrUpdateDialog, openDeleteDialog, deletePatient, deletePatientError, deletePatientSuccess } from './patient.actions'
 import { PaginationResponse } from 'src/app/models/pagination.model'
 
