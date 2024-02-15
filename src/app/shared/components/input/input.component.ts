@@ -1,5 +1,5 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, Input, SkipSelf, ViewChild } from '@angular/core'
-import { ControlContainer, FormControl, FormControlName } from '@angular/forms'
+import { ChangeDetectionStrategy, Component, Input, OnInit, SkipSelf } from '@angular/core'
+import { ControlContainer, FormControl } from '@angular/forms'
 import { MaskNames } from '../../directives/mask.directive'
 
 type ErrorTypes = 'required' | 'maxlength' | 'minlength' | 'email' | 'passwordMismatch' | 'matDatepickerParse' | 'min'
@@ -20,9 +20,10 @@ interface ILabelValuePair { label: string, value: string }
 		},
 	],
 })
-export class InputComponent implements AfterViewInit {
-	@Input({ required: true }) label = ''
-	@Input({ required: true }) controlName: string | null = null
+export class InputComponent implements OnInit {
+	@Input({ required: true }) label!: string
+	@Input({ required: true }) controlName!: string
+
 	@Input() type: InputType = 'text'
 	@Input() hint = ''
 	@Input() autocomplete: HTMLInputElement['autocomplete'] = 'on'
@@ -36,17 +37,15 @@ export class InputComponent implements AfterViewInit {
 
 	_options: ILabelValuePair[] = []
 
-	@ViewChild(FormControlName) formControl!: FormControlName
-
 	control!: FormControl
 	currentErrorMsg = ''
 	maxLength = Number.MAX_SAFE_INTEGER
 	hidePass = true
 
-	constructor() {}
+	constructor(private controlContainer: ControlContainer) {}
 
-	ngAfterViewInit() {
-		this.control = this.formControl.control
+	ngOnInit() {
+		this.control = this.controlContainer.control?.get(this.controlName) as FormControl
 
 		this.checkMaxLength()
 
@@ -89,13 +88,21 @@ export class InputComponent implements AfterViewInit {
 	private checkMaxLength() {
 		const currentValue = this.control.value
 
-		this.control.setValue(new Array(1000).fill('a').join(), { emitEvent: false, emitModelToViewChange: false, emitViewToModelChange: false })
+		this.control.disable({ emitEvent: false })
+
+		this.control.setValue(new Array(1000).fill('a').join(''), {
+			emitEvent: false, emitModelToViewChange: false, emitViewToModelChange: false, onlySelf: true,
+		})
 
 		if(this.control.errors?.['maxlength']) {
 			this.maxLength = this.control.errors['maxlength'].requiredLength
 		}
 
-		this.control.setValue(currentValue, { emitEvent: false, emitModelToViewChange: false, emitViewToModelChange: false })
+		this.control.setValue(currentValue, {
+			emitEvent: false, emitModelToViewChange: false, emitViewToModelChange: false,
+		})
+
+		this.control.enable({ emitEvent: false })
 	}
 
 	togglePass() {
