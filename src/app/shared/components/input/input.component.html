@@ -19,7 +19,7 @@
 			[autocomplete]="autocomplete"
 			[appMask]="mask">
 
-		<mat-icon matSuffix *ngIf="_statusPending | async">
+		<mat-icon matSuffix *ngIf="_statusPending | push">
 			<mat-progress-spinner [diameter]="24" mode="indeterminate"/>
 		</mat-icon>
 		<mat-hint *ngIf="hint">
