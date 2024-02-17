@@ -37,14 +37,14 @@ describe('InputComponent', () => {
 	})
 
 	it('should toggle the pass', () => {
-		const value = component.hidePass
+		const value = component._hidePass
 		component.togglePass()
-		expect(component.hidePass).toBe(!value)
+		expect(component._hidePass).toBe(!value)
 	})
 
 	it('should have a max value of 100', () => {
-		component.ngAfterViewInit()
-		expect(component.maxLength).toBe(100)
+		component.ngOnInit()
+		expect(component._maxLength).toBe(100)
 	})
 
 	it('should set options as key/value pair if it recieves as string or object', () => {

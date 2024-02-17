@@ -1,8 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, SkipSelf } from '@angular/core'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit, SkipSelf, ViewChild } from '@angular/core'
 import { ControlContainer, FormControl } from '@angular/forms'
 import { MaskNames } from '../../directives/mask.directive'
+import { debounceTime, delay, filter, map, of, pairwise, takeUntil, tap } from 'rxjs'
+import { BaseComponent } from '../base/base.component'
 
-type ErrorTypes = 'required' | 'maxlength' | 'minlength' | 'email' | 'passwordMismatch' | 'matDatepickerParse' | 'min'
+type ErrorTypes = 'required' | 'maxlength' | 'minlength' | 'email' | 'passwordMismatch' | 'matDatepickerParse' | 'min' | 'notFound'
 
 type InputType = 'text' | 'password' | 'date' | 'select' | 'currency'
 
@@ -20,7 +22,7 @@ interface ILabelValuePair { label: string, value: string }
 		},
 	],
 })
-export class InputComponent implements OnInit {
+export class InputComponent extends BaseComponent implements OnInit {
 	@Input({ required: true }) label!: string
 	@Input({ required: true }) controlName!: string
 
@@ -35,17 +37,35 @@ export class InputComponent implements OnInit {
 		})
 	}
 
+	_maxLength = Number.MAX_SAFE_INTEGER
+	_hidePass = true
 	_options: ILabelValuePair[] = []
+	_currentErrorMsg = ''
+	_statusPending = of(false)
 
-	control!: FormControl
-	currentErrorMsg = ''
-	maxLength = Number.MAX_SAFE_INTEGER
-	hidePass = true
+	private control!: FormControl
 
-	constructor(private controlContainer: ControlContainer) {}
+	@ViewChild('input') input!: ElementRef<HTMLInputElement>
+
+	constructor(private controlContainer: ControlContainer, private cdr: ChangeDetectorRef) {
+		super()
+	}
 
 	ngOnInit() {
 		this.control = this.controlContainer.control?.get(this.controlName) as FormControl
+
+		// To solve an angular bug using ChangeDetectionStrategy.OnPush with async validation
+		this.control.statusChanges.pipe(
+			takeUntil(this.destroy$),
+			pairwise()).subscribe(([oldStatus, newStatus]) => {
+			if(oldStatus === 'PENDING' && (newStatus === 'INVALID' || newStatus === 'VALID')) {
+				this.cdr.markForCheck()
+			}
+		})
+
+		this._statusPending = this.control.statusChanges.pipe(
+			map((status) => status === 'PENDING'),
+		)
 
 		this.checkMaxLength()
 
@@ -55,32 +75,35 @@ export class InputComponent implements OnInit {
 
 				switch (firstKey) {
 					case 'required':
-						this.currentErrorMsg = $localize `Campo é requerido.`
+						this._currentErrorMsg = $localize `Campo é requerido.`
 						break
 					case 'minlength':
-						this.currentErrorMsg = $localize `Campo deve conter no mínimo ${this.control.errors[firstKey].requiredLength} caracteres.`
+						this._currentErrorMsg = $localize `Campo deve conter no mínimo ${this.control.errors[firstKey].requiredLength} caracteres.`
 						break
 					case 'maxlength':
-						this.currentErrorMsg = $localize `Campo deve conter no máximo ${this.control.errors[firstKey].requiredLength} caracteres.`
+						this._currentErrorMsg = $localize `Campo deve conter no máximo ${this.control.errors[firstKey].requiredLength} caracteres.`
 						break
 					case 'email':
-						this.currentErrorMsg = $localize `Campo deve conter um e-mail válido.`
+						this._currentErrorMsg = $localize `Campo deve conter um e-mail válido.`
 						break
 					case 'passwordMismatch':
-						this.currentErrorMsg = $localize `As senhas não conferem.`
+						this._currentErrorMsg = $localize `As senhas não conferem.`
 						break
 					case 'matDatepickerParse':
-						this.currentErrorMsg = $localize `Data inválida.`
+						this._currentErrorMsg = $localize `Data inválida.`
 						break
 					case 'min':
-						this.currentErrorMsg = $localize `Valor mínimo de ${this.control.errors[firstKey].min}` + (this.type === 'currency' ?
+						this._currentErrorMsg = $localize `Valor mínimo de ${this.control.errors[firstKey].min}` + (this.type === 'currency' ?
 							$localize ` reais.` : '.')
 						break
+					case 'notFound':
+						this._currentErrorMsg = $localize `Não encontrado.`
+						break
 					default:
-						this.currentErrorMsg = $localize `Campo inválido.`
+						this._currentErrorMsg = $localize `Campo inválido.`
 				}
 			} else {
-				this.currentErrorMsg = ''
+				this._currentErrorMsg = ''
 			}
 		})
 	}
@@ -95,7 +118,7 @@ export class InputComponent implements OnInit {
 		})
 
 		if(this.control.errors?.['maxlength']) {
-			this.maxLength = this.control.errors['maxlength'].requiredLength
+			this._maxLength = this.control.errors['maxlength'].requiredLength
 		}
 
 		this.control.setValue(currentValue, {
@@ -106,6 +129,6 @@ export class InputComponent implements OnInit {
 	}
 
 	togglePass() {
-		this.hidePass = !this.hidePass
+		this._hidePass = !this._hidePass
 	}
 }

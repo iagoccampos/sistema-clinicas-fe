@@ -2,28 +2,31 @@
 	<!-- Text -->
 	<mat-form-field *ngIf="type === 'text'">
 		<mat-label>{{ label }}</mat-label>
-		<input
+		<input #input
 			*ngIf="!mask"
 			matInput
 			type="text"
 			[formControlName]="controlName"
-			[maxlength]="maxLength"
+			[maxlength]="_maxLength"
 			[autocomplete]="autocomplete">
 
-			<input
+			<input #input
 			*ngIf="mask"
 			matInput
 			type="text"
 			[formControlName]="controlName"
-			[maxlength]="maxLength"
+			[maxlength]="_maxLength"
 			[autocomplete]="autocomplete"
 			[appMask]="mask">
 
+		<mat-icon matSuffix *ngIf="_statusPending | async">
+			<mat-progress-spinner [diameter]="24" mode="indeterminate"/>
+		</mat-icon>
 		<mat-hint *ngIf="hint">
 			{{ hint }}
 		</mat-hint>
-		<mat-error *ngIf="currentErrorMsg">
-			{{ currentErrorMsg }}
+		<mat-error *ngIf="_currentErrorMsg">
+			{{ _currentErrorMsg }}
 		</mat-error>
 	</mat-form-field>
 
@@ -33,19 +36,19 @@
 		<input
 			matInput
 			[formControlName]="controlName"
-			[maxlength]="maxLength"
-			[type]="!hidePass ? 'text' : 'password'"
+			[maxlength]="_maxLength"
+			[type]="!_hidePass ? 'text' : 'password'"
 			[autocomplete]="autocomplete">
 
 		<button mat-icon-button matSuffix type="button" tabindex="-1" (click)="togglePass()">
-			<mat-icon>{{ hidePass ? 'visibility_off' : 'visibility' }}</mat-icon>
+			<mat-icon>{{ _hidePass ? 'visibility_off' : 'visibility' }}</mat-icon>
 		</button>
 
 		<mat-hint *ngIf="hint">
 			{{ hint }}
 		</mat-hint>
-		<mat-error *ngIf="currentErrorMsg">
-			{{ currentErrorMsg }}
+		<mat-error *ngIf="_currentErrorMsg">
+			{{ _currentErrorMsg }}
 		</mat-error>
 	</mat-form-field>
 
@@ -59,8 +62,8 @@
 		<mat-hint *ngIf="hint">
 			{{ 'hint' }}
 		</mat-hint>
-		<mat-error *ngIf="currentErrorMsg">
-			{{ currentErrorMsg }}
+		<mat-error *ngIf="_currentErrorMsg">
+			{{ _currentErrorMsg }}
 		</mat-error>
 	</mat-form-field>
 
@@ -88,8 +91,8 @@
 		<mat-hint *ngIf="hint">
 			{{ hint }}
 		</mat-hint>
-		<mat-error *ngIf="currentErrorMsg">
-			{{ currentErrorMsg }}
+		<mat-error *ngIf="_currentErrorMsg">
+			{{ _currentErrorMsg }}
 		</mat-error>
 	</mat-form-field>
 </div>
