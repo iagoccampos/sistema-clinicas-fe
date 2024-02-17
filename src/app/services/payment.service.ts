@@ -4,13 +4,18 @@ import { MatDialog } from '@angular/material/dialog'
 import { ClinicService } from './clinic.service'
 import { IPaymentModalData, PaymentDialogComponent } from '../modules/admin/components/clinical/payment/payment-dialog/payment-dialog.component'
 import { INewOrUpdatePayment, IPayment, IPaymentQuery, IPaymentResponse } from '../models/payment.model'
+import { PatientService } from './patient.service'
 
 @Injectable({
 	providedIn: 'root',
 })
 export class PaymentService {
 
-	constructor(private http: HttpClient, private dialog: MatDialog, private clinicService: ClinicService) { }
+	constructor(
+		private http: HttpClient,
+		private dialog: MatDialog,
+		private clinicService: ClinicService,
+		private patitentService: PatientService) { }
 
 	openPaymentDialog(data?: IPaymentModalData) {
 		this.dialog.open(PaymentDialogComponent, { data, width: '400px' })

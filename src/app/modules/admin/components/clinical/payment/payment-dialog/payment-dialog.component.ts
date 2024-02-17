@@ -9,6 +9,7 @@ import { createModalLoadingManager } from 'src/app/shared/code-templates/modal-l
 import { createPayment, updatePayment } from '../store/payment.actions'
 import { IPayment, PaymentMethods } from 'src/app/models/payment.model'
 import { IPatient } from 'src/app/models/patient.model'
+import { PatientService } from 'src/app/services/patient.service'
 
 export interface IPaymentModalData {
 	payment?: IPayment
@@ -25,7 +26,7 @@ export class PaymentDialogComponent extends BaseComponent {
 	readonly paymentMethods = PAYMENT_METHODS.map((val) => val)
 
 	readonly paymentForm = new FormGroup({
-		card: new FormControl('', { validators: [Validators.required], nonNullable: true }),
+		card: new FormControl('', { validators: [Validators.required], asyncValidators: [this.patitentService.patientExistsFactory()], nonNullable: true }),
 		date: new FormControl(new Date(), { nonNullable: true }),
 		value: new FormControl(0, { validators: [Validators.min(0.01)], nonNullable: true }),
 		method: new FormControl<PaymentMethods>(PaymentMethods.Money, { nonNullable: true }),
@@ -36,8 +37,10 @@ export class PaymentDialogComponent extends BaseComponent {
 	constructor(
 		private dialogRef: MatDialogRef<PaymentDialogComponent, void>,
 		@Inject(MAT_DIALOG_DATA) public data: IPaymentModalData,
-		private store: Store) {
+		private store: Store,
+		private patitentService: PatientService) {
 		super()
+
 		if(data.patient) {
 			this.paymentForm.controls.card.setValue(data.patient.card)
 		}

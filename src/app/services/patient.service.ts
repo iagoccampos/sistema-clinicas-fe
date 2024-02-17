@@ -4,6 +4,8 @@ import { INewUpdatePatient, IPatient, IPatientQuery, IPatientResponse } from '..
 import { MatDialog } from '@angular/material/dialog'
 import { ClinicService } from './clinic.service'
 import { DialogData, PatientDialogComponent } from '../modules/admin/components/patient/patient-dialog/patient-dialog.component'
+import { AbstractControl, ValidationErrors } from '@angular/forms'
+import { Observable, of, delay, switchMap, map, catchError } from 'rxjs'
 
 @Injectable({
 	providedIn: 'root',
@@ -14,6 +16,10 @@ export class PatientService {
 
 	getPatients(query: IPatientQuery) {
 		return this.http.get<IPatientResponse>(this.generateUrl(), { params: { ...query } })
+	}
+
+	getPatientByCard(card: string) {
+		return this.http.get<IPatient>(this.generateUrl() + '/find-by-card', { params: { card } })
 	}
 
 	createPatient(patient: INewUpdatePatient) {
@@ -30,6 +36,18 @@ export class PatientService {
 
 	openPatientDialog(patient?: IPatient) {
 		this.dialog.open<PatientDialogComponent, DialogData>(PatientDialogComponent, { data: { patient } })
+	}
+
+	patientExistsFactory() {
+		return (control: AbstractControl): Observable<ValidationErrors | null> => {
+			return of(control.value).pipe(
+				delay(600),
+				switchMap((val) => this.getPatientByCard(val).pipe(
+					map((patient) => (patient ? null : { notFound: true })),
+					catchError(() => of({ notFound: true })),
+				)),
+			)
+		}
 	}
 
 	private generateUrl(patientId?: string) {
