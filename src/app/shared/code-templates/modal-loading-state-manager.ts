@@ -19,18 +19,6 @@ export function createModalLoadingManager(selector: MemoizedSelector<object, For
 				if(val === 'success') {
 					dialogRef.close()
 				}
-			} else {
-				if(val === 'success') {
-					formGroup.enable()
-				}
-			}
-
-			if(val === 'loading') {
-				formGroup.disable()
-			}
-
-			if(val === 'error') {
-				formGroup.enable()
 			}
 		}),
 		map((val) => {
