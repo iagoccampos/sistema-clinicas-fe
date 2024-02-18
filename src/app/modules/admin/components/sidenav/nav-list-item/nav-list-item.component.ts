@@ -33,21 +33,6 @@ export class NavListItemComponent implements OnInit {
 	@Output() expand = new EventEmitter<void>(true)
 
 	expanded$ = new BehaviorSubject(false)
-	expandedObs$ = merge(
-		this.router.events.pipe(filter((data): data is NavigationEnd => data instanceof NavigationEnd)),
-		this.expanded$).pipe(
-		map((data) => {
-			if(typeof data === 'boolean') {
-				return data
-			}
-
-			return this.evaluateRoute(data.urlAfterRedirects)
-		}), tap((val) => {
-			if(val) {
-				this.expand.next()
-			}
-		}),
-	)
 
 	constructor(public router: Router) { }
 
