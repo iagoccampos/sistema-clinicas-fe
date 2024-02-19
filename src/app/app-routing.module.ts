@@ -12,7 +12,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes, { bindToComponentInputs: true, preloadingStrategy: PreloadAllModules, enableTracing: true })],
+	imports: [RouterModule.forRoot(routes, { bindToComponentInputs: true, preloadingStrategy: PreloadAllModules })],
 	exports: [RouterModule],
 })
 export class AppRoutingModule { }
