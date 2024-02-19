@@ -67,8 +67,7 @@ export class FindPatientComponent extends BaseComponent implements AfterViewInit
 	}
 
 	clearForm() {
-		this.findPatientsForm.reset({}, { emitEvent: false })
-		this.submit()
+		this.findPatientsForm.reset()
 	}
 
 	createPayment(patient: IPatient) {
