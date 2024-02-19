@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router'
 import { AuthComponent } from './components/auth/auth.component'
 import { isAuth } from './shared/guards/is-auth.guard'
 import { isAdmin } from './shared/guards/is-admin.guard'
@@ -12,7 +12,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes, { bindToComponentInputs: true })],
+	imports: [RouterModule.forRoot(routes, { bindToComponentInputs: true, preloadingStrategy: PreloadAllModules, enableTracing: true })],
 	exports: [RouterModule],
 })
 export class AppRoutingModule { }

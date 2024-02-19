@@ -35,13 +35,13 @@ import { tokenExpiredInterceptor } from './shared/token-expired.interceptor'
 		StoreModule.forRoot({
 			auth: authReducer,
 		}),
+		EffectsModule.forRoot([
+			AuthEffects,
+		]),
 		StoreDevtoolsModule.instrument({
 			maxAge: 25,
 			logOnly: !environment.production,
 		}),
-		EffectsModule.forRoot([
-			AuthEffects,
-		]),
 	],
 	providers: [
 		provideHttpClient(

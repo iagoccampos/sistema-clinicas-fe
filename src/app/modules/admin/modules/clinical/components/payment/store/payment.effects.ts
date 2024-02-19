@@ -8,7 +8,7 @@ import { DialogService } from 'src/app/services/dialog.service'
 import { selectDeletePaymentStatus } from './payment.selector'
 
 @Injectable()
-export class PaymenttEffects {
+export class PaymentEffects {
 	private readonly openCreateOrUpdateDialog = createEffect(() => {
 		return this.actions.pipe(
 			ofType(openPaymentDialog),

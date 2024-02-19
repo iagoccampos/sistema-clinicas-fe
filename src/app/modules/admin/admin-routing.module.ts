@@ -5,7 +5,6 @@ import { ClinicsComponent } from './components/clinics/clinics.component'
 import { ClinicComponent } from './components/clinic/clinic.component'
 import { PatientComponent } from './components/patient/patient.component'
 import { ConfigComponent } from './components/config/config.component'
-import { PaymentComponent } from './components/clinical/payment/payment.component'
 
 const routes: Routes = [
 	{ path: '', component: AdminComponent, children: [
@@ -14,9 +13,7 @@ const routes: Routes = [
 		{ path: 'clinica/:clinicId', component: ClinicComponent, children: [
 			{ path: '', redirectTo: 'pacientes', pathMatch: 'full' },
 			{ path: 'pacientes', component: PatientComponent },
-			{ path: 'clinico', children: [
-				{ path: 'pagamentos', component: PaymentComponent },
-			] },
+			{ path: 'clinico', loadChildren: () => import('./modules/clinical/clincial.module').then((m) => m.ClinicalModule) },
 			{ path: 'configuracao', component: ConfigComponent },
 		] },
 	] },

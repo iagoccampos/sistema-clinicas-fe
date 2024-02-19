@@ -9,7 +9,7 @@ import { IPatient } from 'src/app/models/patient.model'
 import { selectPatients, selectFindStatusIsLoading, selectShouldGetPatients } from '../store/patient.selector'
 import { findPatients, openCreateOrUpdateDialog, openDeleteDialog } from '../store/patient.actions'
 import { BaseComponent } from 'src/app/shared/components/base/base.component'
-import { openPaymentDialog } from '../../clinical/payment/store/payment.actions'
+import { openPaymentDialog } from '../../../modules/clinical/components/payment/store/payment.actions'
 import { Paginator } from 'src/app/models/pagination.model'
 
 @Component({
