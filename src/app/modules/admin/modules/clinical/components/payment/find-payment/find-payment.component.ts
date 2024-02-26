@@ -1,13 +1,14 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@angular/core'
 import { FormControl, FormGroup } from '@angular/forms'
 import { Store } from '@ngrx/store'
+import { ActivatedRoute } from '@angular/router'
+import { MatPaginator } from '@angular/material/paginator'
 import { PAYMENT_METHODS } from 'src/app/constants/constants'
 import { IPayment, PaymentMethods } from 'src/app/models/payment.model'
 import { findPayments, openDeletePaymentDialog, openPaymentDialog } from '../store/payment.actions'
 import { BaseComponent } from 'src/app/shared/components/base/base.component'
 import { selectFindPaymentsStatusIsLoading, selectPayments, selectShouldGetPayments } from '../store/payment.selector'
 import { takeUntil, debounceTime, filter, merge, tap, map } from 'rxjs'
-import { MatPaginator } from '@angular/material/paginator'
 import { Paginator } from 'src/app/models/pagination.model'
 
 @Component({
@@ -32,14 +33,14 @@ export class FindPaymentComponent extends BaseComponent implements AfterViewInit
 	)
 
 	readonly findPaymentForm = new FormGroup({
-		card: new FormControl('', { nonNullable: true }),
+		card: new FormControl(this.route.snapshot.queryParamMap.get('card') || '', { nonNullable: true }),
 		method: new FormControl<PaymentMethods | ''>('', { nonNullable: true }),
 		date: new FormControl('', { nonNullable: true }),
 	})
 
 	@ViewChild(MatPaginator) paginator!: MatPaginator
 
-	constructor(private store: Store) {
+	constructor(private store: Store, private route: ActivatedRoute) {
 		super()
 	}
 

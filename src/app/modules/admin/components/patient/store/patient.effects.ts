@@ -6,6 +6,8 @@ import { createPatientError, createPatient, createPatientSuccess, updatePatient,
 import { SnackbarService } from 'src/app/services/snackbar.service'
 import { DialogService } from 'src/app/services/dialog.service'
 import { selectDeleteStatus } from './patient.selector'
+import { goToClientPayments } from '../../../modules/clinical/components/payment/store/payment.actions'
+import { Router } from '@angular/router'
 
 @Injectable()
 export class PatientEffects {
@@ -127,7 +129,17 @@ export class PatientEffects {
 		)
 	}, { dispatch: false })
 
+	private readonly goToClientPayments = createEffect(() => {
+		return this.actions.pipe(
+			ofType(goToClientPayments),
+			tap((val) => {
+				this.router.navigate(['/admin/clinica/65776efbf55ed3d8825c8c70/clinico/pagamentos'], { queryParams: { card: val.patientCard } })
+			}),
+		)
+	}, { dispatch: false })
+
 	constructor(
+		private router: Router,
 		private actions: Actions,
 		private snackbarService: SnackbarService,
 		private patientService: PatientService,

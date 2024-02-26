@@ -72,3 +72,8 @@ export const openDeletePaymentDialog = createAction(
 	'[Payment] OpenDeleteDialog',
 	props<{ payment: IPayment }>(),
 )
+
+export const goToClientPayments = createAction(
+	'[Payment] GoToClientPayments',
+	props<{ patientCard: string }>(),
+)

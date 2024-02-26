@@ -116,6 +116,11 @@ mat-panel-title {
 		padding: 8px;
 		text-align: center;
 	}
+
+	.expanded-table {
+		overflow: hidden;
+		display: flex;
+	}
 }
 
 // Custom snackbar

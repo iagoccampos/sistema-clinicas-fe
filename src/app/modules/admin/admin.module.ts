@@ -27,6 +27,7 @@ import { userReducer } from './components/config/user/store/user.reducer'
 import { UserEffects } from './components/config/user/store/user.effects'
 import { UserComponent } from './components/config/user/user.component'
 import { UserPassDialogComponent } from './components/config/user/user-password/user-pass.component'
+import { ExpandedPatientTableContentComponent } from './components/patient/find-patient/expanded-patient-table-content/expanded-patient-table-content.component'
 
 @NgModule({
 	declarations: [
@@ -40,6 +41,7 @@ import { UserPassDialogComponent } from './components/config/user/user-password/
 		PatientComponent,
 		PatientDialogComponent,
 		FindPatientComponent,
+		ExpandedPatientTableContentComponent,
 		ConfigComponent,
 		UserComponent,
 		UserDialogComponent,

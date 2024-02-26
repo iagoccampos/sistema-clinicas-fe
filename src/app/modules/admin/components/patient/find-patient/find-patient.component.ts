@@ -70,10 +70,6 @@ export class FindPatientComponent extends BaseComponent implements AfterViewInit
 		this.findPatientsForm.reset()
 	}
 
-	createPayment(patient: IPatient) {
-		this.store.dispatch(openPaymentDialog({ patient }))
-	}
-
 	updatePatient(patient: IPatient) {
 		this.store.dispatch(openCreateOrUpdateDialog({ patient }))
 	}

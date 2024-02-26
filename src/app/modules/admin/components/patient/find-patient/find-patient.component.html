@@ -55,9 +55,6 @@
 			<ng-container matColumnDef="actions">
 				<th mat-header-cell *matHeaderCellDef> {{ textProvider.patients.actions }} </th>
 				<td mat-cell *matCellDef="let patient">
-					<button mat-icon-button type="button" color="accent" (click)="$event.stopPropagation(); createPayment(patient)">
-						<mat-icon>payment</mat-icon>
-					</button>
 					<button mat-icon-button type="button" color="accent" (click)="$event.stopPropagation(); updatePatient(patient)">
 						<mat-icon>edit</mat-icon>
 					</button>
@@ -79,21 +76,8 @@
 
 			<ng-container matColumnDef="expandedDetail">
 				<td mat-cell *matCellDef="let patient" [attr.colspan]="columnsToDisplayWithExpand.length">
-					<div [@detailExpand]="patient === expandedPatient ? 'expanded' : 'collapsed'">
-						Telefones
-						<!-- <div class="row">
-							<div class="col-3" *ngFor="let phone of patient.phones">
-								<p>{{ phone | phone }}</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-3">
-								<p>Criado em: {{ patient.createdAt | date }}</p>
-							</div>
-							<div class="col-3">
-								<p>Ultima alteração em: {{ patient.updatedAt | date }}</p>
-							</div>
-						</div> -->
+					<div class="expanded-table" [@detailExpand]="patient === expandedPatient ? 'expanded' : 'collapsed'">
+						<app-expanded-patient-table-content [patient]="patient"/>
 					</div>
 				</td>
 			</ng-container>
