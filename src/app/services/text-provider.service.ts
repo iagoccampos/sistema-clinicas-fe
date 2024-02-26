@@ -69,6 +69,7 @@ const payments = {
 	options: $localize `Opções`,
 	addPayment: $localize `Adicionar pagamento`,
 	updatePayment: $localize `Editar pagamento`,
+	checkPayments: $localize `Ver pagamentos`,
 } as const
 
 const configs = {

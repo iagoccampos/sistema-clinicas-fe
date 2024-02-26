@@ -4,11 +4,11 @@
 		<div mat-subheader>Pagamentos:</div>
 		<mat-list-item (click)="createClinicalPayment()">
 			<mat-icon matListItemIcon>add</mat-icon>
-			<div matListItemTitle>Adicionar pagamento</div>
+			<div matListItemTitle>{{ textProvider.payments.addPayment }}</div>
 		</mat-list-item>
 		<mat-list-item (click)="checkClinicalPayments()">
 			<mat-icon matListItemIcon>payments</mat-icon>
-			<div matListItemTitle>Ver pagamentos</div>
+			<div matListItemTitle>{{ textProvider.payments.checkPayments }}</div>
 		</mat-list-item>
 	</mat-list>
 </div>
