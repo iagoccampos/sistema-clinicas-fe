@@ -6,14 +6,12 @@ import { IUser } from 'src/app/models/user.model'
 export interface IAuthState {
 	currentUser: IUser | null
 	token: string | null
-	errorMsg: string | null
 	status: FormStatus
 }
 
 const initialState: IAuthState = {
 	currentUser: null,
 	token: null,
-	errorMsg: null,
 	status: 'pending',
 } as const
 
@@ -23,10 +21,10 @@ export const authReducer = createReducer<IAuthState>(
 		return { ...state }
 	}),
 	on(login, (state): IAuthState => {
-		return { ...state, status: 'loading', errorMsg: null }
+		return { ...state, status: 'loading' }
 	}),
-	on(loginError, (state, action): IAuthState => {
-		return { ...state, status: 'error', errorMsg: action.error.errorMsg }
+	on(loginError, (state): IAuthState => {
+		return { ...state, status: 'error' }
 	}),
 	on(loginSuccess, (state, action): IAuthState => {
 		return { ...state, status: 'success', currentUser: action.currentUser, token: action.token }

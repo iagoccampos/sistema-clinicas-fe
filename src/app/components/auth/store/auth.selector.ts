@@ -17,8 +17,3 @@ export const selectStatus = createSelector(
 	selectAuth,
 	(auth) => auth.status,
 )
-
-export const selectErrorMsg = createSelector(
-	selectAuth,
-	(auth) => auth.errorMsg,
-)
