@@ -10,7 +10,8 @@
 		"test": "ng test",
 		"lint": "ng lint",
 		"lint:fix": "ng lint --fix",
-		"extract": "ng extract-i18n --output-path src/locale"
+		"extract": "ng extract-i18n --output-path src/locale",
+		"prepare": "husky"
 	},
 	"private": true,
 	"dependencies": {
@@ -51,12 +52,15 @@
 		"@angular/cli": "^16.2.9",
 		"@angular/compiler-cli": "^16.2.0",
 		"@angular/localize": "^16.2.12",
+		"@commitlint/cli": "^19.3.0",
+		"@commitlint/config-conventional": "^19.2.2",
 		"@ngrx/eslint-plugin": "^16.3.0",
 		"@types/inputmask": "^5.0.6",
 		"@types/jasmine": "~4.3.0",
 		"@typescript-eslint/eslint-plugin": "5.62.0",
 		"@typescript-eslint/parser": "5.62.0",
 		"eslint": "^8.49.0",
+		"husky": "^9.0.11",
 		"jasmine-core": "~4.6.0",
 		"karma": "~6.4.0",
 		"karma-chrome-launcher": "~3.2.0",
